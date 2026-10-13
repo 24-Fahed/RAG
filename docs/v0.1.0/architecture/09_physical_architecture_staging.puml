@@ -1,11 +1,11 @@
-@startuml RAG_Physical_Architecture_Staging
+@startuml 09_physical_architecture_staging
 !theme plain
 !pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
-title RAG Physical Architecture - Stage 2: Integration Testing
+title 09 — RAG Physical Architecture - Stage 2: Integration Testing
 
 legend right
   **Stage 2: Integration Testing (Staging)**

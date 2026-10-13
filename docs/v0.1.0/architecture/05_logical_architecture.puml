@@ -1,11 +1,11 @@
-@startuml RAG_Logical_Architecture
+@startuml 05_logical_architecture
 !theme plain
 !pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
-title RAG Logical Architecture
+title 05 — RAG Logical Architecture
 
 package "RAG System" {
 

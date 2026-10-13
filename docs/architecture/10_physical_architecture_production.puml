@@ -1,11 +1,11 @@
-@startuml RAG_Physical_Architecture_Production
+@startuml 10_physical_architecture_production
 !theme plain
 !pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
-title RAG Physical Architecture - Stage 3: Production
+title 10 — RAG Physical Architecture - Stage 3: Production
 
 legend right
   **Stage 3: Production**

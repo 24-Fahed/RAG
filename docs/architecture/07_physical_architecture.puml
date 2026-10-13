@@ -1,11 +1,11 @@
-@startuml RAG_Physical_Architecture
+@startuml 07_physical_architecture
 !theme plain
 !pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
-title RAG Physical Architecture
+title 07 — RAG Physical Architecture
 
 node "User PC\n(Client Machine)" as user {
     rectangle "PU-1\nClient Application" as pu1

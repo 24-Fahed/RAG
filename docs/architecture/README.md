@@ -34,37 +34,37 @@ PlantUML 源码为架构定义的维护入口，PNG 直接由该源码渲染生�
 
 ## Logical Architecture
 
-![Logical Architecture](RAG_Logical_Architecture.png)
+![Logical Architecture](05_logical_architecture.png)
 
 [PlantUML](05_logical_architecture.puml)
 
 ## Program Units
 
-![Program Units](RAG_Program_Units.png)
+![Program Units](06_program_units.png)
 
 [PlantUML](06_program_units.puml)
 
 ## Physical Architecture
 
-![Physical Architecture](RAG_Physical_Architecture.png)
+![Physical Architecture](07_physical_architecture.png)
 
 [PlantUML](07_physical_architecture.puml)
 
 ## Physical Architecture — Local
 
-![Physical Architecture Local](RAG_Physical_Architecture_Local.png)
+![Physical Architecture Local](08_physical_architecture_local.png)
 
 [PlantUML](08_physical_architecture_local.puml)
 
 ## Physical Architecture — Staging
 
-![Physical Architecture Staging](RAG_Physical_Architecture_Staging.png)
+![Physical Architecture Staging](09_physical_architecture_staging.png)
 
 [PlantUML](09_physical_architecture_staging.puml)
 
 ## Physical Architecture — Production
 
-![Physical Architecture Production](RAG_Physical_Architecture_Production.png)
+![Physical Architecture Production](10_physical_architecture_production.png)
 
 [PlantUML](10_physical_architecture_production.puml)
 

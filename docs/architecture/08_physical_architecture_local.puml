@@ -1,11 +1,11 @@
-@startuml RAG_Physical_Architecture_Local
+@startuml 08_physical_architecture_local
 !theme plain
 !pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
-title RAG Physical Architecture - Stage 1: Local Testing
+title 08 — RAG Physical Architecture - Stage 1: Local Testing
 
 legend right
   **Stage 1: Local Testing**
