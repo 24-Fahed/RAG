@@ -1,11 +1,11 @@
-@startuml RAG_Program_Units
+@startuml 06_program_units
 !theme plain
 !pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
-title RAG Program Units (Deployable)
+title 06 — RAG Program Units (Deployable)
 
 package "PU-1: Client Application" as pu1 {
     package "Client Interface" {

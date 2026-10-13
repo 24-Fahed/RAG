@@ -18,7 +18,7 @@
 
 ## Workflow
 
-![Logical Architecture](docs/architecture/RAG_Logical_Architecture.png)
+![Workflow](docs/workflow.png)
 
 当前主流程为：
 
