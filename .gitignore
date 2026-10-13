@@ -6,3 +6,9 @@ bm25_data/
 venv/
 .env
 CLAUDE.md
+
+.pytest_cache/
+inference/config/secrets.yaml
+
+server/config/auth/
+client/config/access.token

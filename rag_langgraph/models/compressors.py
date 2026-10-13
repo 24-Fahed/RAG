@@ -8,16 +8,10 @@
 """
 
 import logging
-import math
 from abc import ABC, abstractmethod
-from typing import Optional
 
-import torch
-from transformers import AutoModel, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 
 logger = logging.getLogger(__name__)
-
-_compressor_instances: dict[str, "BaseCompressor"] = {}
 
 
 class BaseCompressor(ABC):
@@ -48,6 +42,8 @@ class RecompExtractiveCompressor(BaseCompressor):
     """
 
     def __init__(self, model_name: str = "fangyuan/nq_extractive_compressor"):
+        from transformers import AutoModel, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModel.from_pretrained(model_name)
@@ -75,11 +71,12 @@ class RecompExtractiveCompressor(BaseCompressor):
     def _split_sentences(self, text: str) -> list[str]:
         """将文本分割为句子。"""
         import re
-        sentences = re.split(r'(?<=[.!?。！？])\s+', text.strip())
+        sentences = re.split(r'(?<=[。！？])\s*|(?<=[.!?])\s+', text.strip())
         return [s.strip() for s in sentences if s.strip()]
 
     def _score_sentences(self, query: str, sentences: list[str]) -> list[float]:
         """使用嵌入模型计算查询与每个句子之间的相似度。"""
+        import torch
         scores = []
         query_inputs = self.tokenizer(query, return_tensors="pt", truncation=True, max_length=512, padding=True).to(self.device)
 
@@ -104,6 +101,8 @@ class RecompAbstractiveCompressor(BaseCompressor):
     """
 
     def __init__(self, model_name: str = "fangyuan/nq_abstractive_compressor"):
+        from transformers import AutoModel, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tokenizer = T5Tokenizer.from_pretrained(model_name, legacy=False)
         self.model = T5ForConditionalGeneration.from_pretrained(model_name)
@@ -112,6 +111,7 @@ class RecompAbstractiveCompressor(BaseCompressor):
         logger.info(f"Loaded Recomp abstractive compressor: {model_name}")
 
     def compress(self, query: str, context: str, ratio: float = 0.6) -> str:
+        import torch
         max_length = max(10, int(len(context.split()) * ratio))
         input_text = f"question: {query} context: {context}"
         inputs = self.tokenizer(
@@ -136,16 +136,11 @@ class LLMLinguaCompressor(BaseCompressor):
         except ImportError:
             raise ImportError("LLMLingua requires: pip install llmlingua")
 
-        self.compressor = PromptCompressor(model_name)
+        self.compressor = PromptCompressor(model_name=model_name, use_llmlingua2=True)
         logger.info(f"Loaded LLMLingua compressor: {model_name}")
 
     def compress(self, query: str, context: str, ratio: float = 0.6) -> str:
-        target_token = max(10, int(len(context.split()) * ratio))
-        result = self.compressor.compress(
-            context,
-            instruction=query,
-            target_token=target_token,
-        )
+        result = self.compressor.compress_prompt(context, rate=ratio)
         return result["compressed_prompt"]
 
 
@@ -156,11 +151,11 @@ COMPRESSOR_REGISTRY = {
 }
 
 
-def get_compressor(method: str = "recomp_extractive") -> BaseCompressor:
-    """获取或创建缓存的压缩器实例。"""
-    if method not in _compressor_instances:
-        cls = COMPRESSOR_REGISTRY.get(method)
-        if cls is None:
-            raise ValueError(f"Unknown compressor: {method}. Available: {list(COMPRESSOR_REGISTRY.keys())}")
-        _compressor_instances[method] = cls()
-    return _compressor_instances[method]
+def get_compressor(method: str = "recomp_extractive", model_name: str | None = None) -> BaseCompressor:
+    from rag_langgraph.models.runtime import registry
+    from rag_langgraph.model_options import COMPRESSION_MODELS
+    cls = COMPRESSOR_REGISTRY.get(method)
+    if cls is None:
+        raise ValueError(f"Unknown compressor adapter: {method}")
+    model_name = model_name or COMPRESSION_MODELS[method]
+    return registry.get(("compressor", method, model_name), lambda: cls(model_name))

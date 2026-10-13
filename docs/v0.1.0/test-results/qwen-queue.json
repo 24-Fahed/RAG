@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "name": "real Qwen HyDE and answer share serialized instance",
+      "passed": true
+    },
+    {
+      "name": "five queued Qwen requests complete",
+      "passed": true
+    }
+  ],
+  "intervals": [
+    {
+      "thread": "ThreadPoolExecutor-0_4",
+      "start": 29727145.452256173,
+      "end": 29727146.202623747
+    },
+    {
+      "thread": "ThreadPoolExecutor-0_3",
+      "start": 29727146.202798598,
+      "end": 29727147.139844995
+    },
+    {
+      "thread": "ThreadPoolExecutor-0_1",
+      "start": 29727147.140031744,
+      "end": 29727149.05096622
+    },
+    {
+      "thread": "ThreadPoolExecutor-0_2",
+      "start": 29727149.051128127,
+      "end": 29727149.7129836
+    },
+    {
+      "thread": "ThreadPoolExecutor-0_0",
+      "start": 29727149.713076644,
+      "end": 29727150.410839222
+    }
+  ],
+  "results": [
+    {
+      "passed": true,
+      "answer": "图书馆文档检索是指在图书馆环境中，利用特定的检索工具或系统，对馆藏文献"
+    },
+    {
+      "passed": true,
+      "answer": "档案号，也称为档案编号，是指为档案设定的一个唯一标识符。这个标识符用于区分不同的档案文件，以便于管理和检索。具体的编号规则可能会根据不同的组织或系统"
+    },
+    {
+      "passed": true,
+      "answer": "图书馆文档检索是指在图书馆环境中，利用特定的检索系统或工具，查找和获取所需"
+    },
+    {
+      "passed": true,
+      "answer": "档案号，也称为档案编号，是指为便于管理和检索档案而赋予每一份档案的唯一编号。这个编号通常包含有组织的代码、年度、分类号、案卷号"
+    },
+    {
+      "passed": true,
+      "answer": "图书馆文档检索是指在图书馆环境中，利用特定的检索系统或工具，对馆藏文献"
+    }
+  ]
+}

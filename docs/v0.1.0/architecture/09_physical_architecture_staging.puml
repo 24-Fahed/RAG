@@ -1,0 +1,58 @@
+@startuml RAG_Physical_Architecture_Staging
+!theme plain
+!pragma layout smetana
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Physical Architecture - Stage 2: Integration Testing
+
+legend right
+  **Stage 2: Integration Testing (Staging)**
+  Real servers, real models, real data.
+  End-to-end testing and parameter tuning.
+end legend
+
+node "User PC\n(Client Machine)" as user {
+    rectangle "PU-1\nClient Application\n(client/config/staging.yaml)" as pu1
+}
+
+node "Public Server\nLinux (Public IP)" as server {
+    rectangle "PU-2\nRAG Server\n(FastAPI, port 8000)\n(server/config/staging.yaml)" as pu2
+    rectangle "Milvus Standalone\n(Docker, port 19530)" as milvus
+    rectangle "Etcd\n(Docker)" as etcd
+    rectangle "MinIO\n(Docker)" as minio
+    rectangle "BM25 Index\n(./bm25_data/)" as bm25
+    rectangle "SSH Tunnel\nlocalhost:8001 -> GPU:8000" as tunnel
+}
+
+node "GPU Server\n(AutoDL)\n32GB VRAM\nModel cache on local disk" as gpu {
+    rectangle "PU-3\nInference Worker\n(FastAPI, port 8000)\n(inference/config/staging.yaml)" as pu3
+    rectangle "Model Storage\nLLaMA-3-8B + multilingual BERT\nBGE-zh / BGE-en + Rerankers\nRecomp + LLMLingua-2" as models
+}
+
+pu1 ..> pu2 : HTTP\n<public_ip>:8000
+pu2 ..> tunnel : HTTP\nlocalhost:8001
+tunnel ..> pu3 : SSH Tunnel
+pu2 ..> milvus : gRPC\nlocalhost:19530
+pu2 ..> bm25 : local file
+pu3 ..> models : load models
+
+node "SiliconFlow\n(External Model Service)" as cloud {
+    rectangle "Qwen2.5-7B-Instruct\nChat Completions API" as qwen
+}
+
+pu3 ..> qwen : HTTPS\nHyDE / single-turn answer
+
+note right of gpu
+  Local models load through one global FIFO queue.
+  Calls to the same model instance are serialized.
+  Different loaded models may run concurrently.
+  Qwen weights are hosted by SiliconFlow.
+  Hardware-aware admission control is deferred to v1.0.0.
+end note
+
+milvus ..> etcd : metadata
+milvus ..> minio : object storage
+
+@enduml

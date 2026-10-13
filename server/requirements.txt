@@ -6,3 +6,7 @@ pymilvus>=2.4
 rank-bm25>=0.2.2
 pyyaml
 python-multipart
+
+Authlib==1.8.0
+joserfc>=1.6,<2
+cryptography>=43

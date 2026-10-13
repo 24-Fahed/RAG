@@ -5,6 +5,8 @@ Milvus 向量存储。
 """
 
 import logging
+import json
+from rag_langgraph.model_options import EN_EMBEDDING
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -14,9 +16,11 @@ class MilvusVectorStore:
     """用于文档嵌入的 Milvus 向量存储。"""
 
     def __init__(self, collection_name: str = "rag_collection", dim: int = 768,
-                 host: str = "localhost", port: int = 19530):
+                 host: str = "localhost", port: int = 19530,
+                 embedding_model: str = EN_EMBEDDING):
         self.collection_name = collection_name
         self.dim = dim
+        self.embedding_model = embedding_model
         self.host = host
         self.port = port
         self.client = None
@@ -24,28 +28,30 @@ class MilvusVectorStore:
 
     def _connect(self):
         """连接到 Milvus，如需要则创建集合。"""
-        try:
-            from pymilvus import MilvusClient, DataType
-
-            self.client = MilvusClient(uri=f"http://{self.host}:{self.port}")
-
-            # 检查集合是否存在
-            if not self.client.has_collection(self.collection_name):
-                self._create_collection()
-                logger.info(f"Created Milvus collection: {self.collection_name}")
-            else:
-                logger.info(f"Connected to existing Milvus collection: {self.collection_name}")
-
-        except ImportError:
-            logger.warning("pymilvus not installed. Install with: pip install pymilvus")
-        except Exception as e:
-            logger.warning(f"Could not connect to Milvus: {e}")
+        from pymilvus import MilvusClient
+        self.client = MilvusClient(uri=f"http://{self.host}:{self.port}")
+        if not self.client.has_collection(self.collection_name):
+            self._create_collection()
+        else:
+            schema = self.client.describe_collection(self.collection_name)
+            actual_dim = next(int(field["params"]["dim"]) for field in schema["fields"]
+                              if field["name"] == "embedding")
+            try:
+                identity = json.loads(schema.get("description") or "{}")
+            except (ValueError, TypeError):
+                identity = {}
+            if not isinstance(identity, dict):
+                identity = {}
+            existing_model = identity.get("embedding_model", EN_EMBEDDING)
+            if actual_dim != self.dim or existing_model != self.embedding_model:
+                raise ValueError("Collection embedding model/dimension mismatch; reindex into a new collection")
+            self.client.load_collection(self.collection_name)
 
     def _create_collection(self):
         """使用合适的模式创建新的 Milvus 集合。"""
         from pymilvus import CollectionSchema, FieldSchema, DataType
 
-        schema = CollectionSchema(fields=[
+        schema = CollectionSchema(description=json.dumps({"embedding_model": self.embedding_model}), fields=[
             FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
             FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=self.dim),
             FieldSchema(name="content", dtype=DataType.VARCHAR, max_length=65535),
@@ -83,9 +89,10 @@ class MilvusVectorStore:
             metadatas: JSON 编码的元数据字符串列表。
         """
         if self.client is None:
-            logger.warning("Milvus not connected, skipping insert")
-            return
+            raise RuntimeError("Milvus is not connected")
 
+        if not (len(embeddings) == len(contents) == len(metadatas)) or any(len(v) != self.dim for v in embeddings):
+            raise ValueError("Embedding batch count or dimension mismatch")
         data = [
             {"embedding": emb, "content": content, "metadata": meta}
             for emb, content, meta in zip(embeddings, contents, metadatas)
@@ -106,9 +113,10 @@ class MilvusVectorStore:
             包含 content、score 和 metadata 的结果字典列表。
         """
         if self.client is None:
-            logger.warning("Milvus not connected, returning empty results")
-            return []
+            raise RuntimeError("Milvus is not connected")
 
+        if len(query_embedding) != self.dim:
+            raise ValueError("Query embedding dimension mismatch")
         results = self.client.search(
             collection_name=self.collection_name,
             data=[query_embedding],

@@ -1,0 +1,54 @@
+@startuml RAG_Physical_Architecture_Production
+!theme plain
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Physical Architecture - Stage 3: Production
+
+legend right
+  **Stage 3: Production**
+  Same physical architecture as Staging.
+  Finalized configuration, stable deployment.
+  --
+  Differences from Staging:
+  - No debug/reload mode
+  - Production-level logging
+  - Stable parameter values
+  - autossh for persistent tunnel
+end legend
+
+node "User PC\nWindows / 32GB RAM\n(Client Machine)" as user {
+    rectangle "PU-1\nClient Application\n(client/config/production.yaml)" as pu1
+}
+
+node "Public Server\nLinux / 2GB RAM / 20GB Disk\n(Public IP)" as server {
+    rectangle "PU-2\nRAG Server\n(FastAPI, port 8000)\n(server/config/production.yaml)\n**No reload**" as pu2
+    rectangle "Milvus Standalone\n(Docker, port 19530)" as milvus
+    rectangle "Etcd\n(Docker)" as etcd
+    rectangle "MinIO\n(Docker)" as minio
+    rectangle "BM25 Index\n(./bm25_data/)" as bm25
+    rectangle "autossh Tunnel\nlocalhost:8001 -> GPU:8000\n(ServerAliveInterval=60)" as tunnel
+}
+
+node "GPU Server\n(AutoDL)\nRTX 3090/4090 24GB VRAM\n32GB RAM / 50GB Disk" as gpu {
+    rectangle "PU-3\nInference Worker\n(FastAPI, port 8000)\n(inference/config/production.yaml)" as pu3
+    rectangle "Model Storage\nLLaMA-3-8B + BERT + BGE\n+ MonoT5 + Recomp (~20GB)" as models
+}
+
+pu1 ..> pu2 : HTTPS\n<public_ip>:8000
+pu2 ..> tunnel : HTTP\nlocalhost:8001
+tunnel ..> pu3 : autossh Tunnel
+pu2 ..> milvus : gRPC\nlocalhost:19530
+pu2 ..> bm25 : local file
+pu3 ..> models : load models
+
+note right of server
+  **Production Differences:**
+  - uvicorn reload=False
+  - autossh persistent tunnel
+  - Log level: WARNING+
+  - Stable query parameters
+end note
+
+@enduml

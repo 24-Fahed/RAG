@@ -4,7 +4,7 @@
 
 本项目实现了一条面向部署的 RAG 知识库链路，用于完成文档入库、检索、重排序、重打包与上下文压缩，并为上层系统提供可消费的检索结果与上下文。
 
-本项目不负责最终回答生成。若需要生成最终回答，需要额外接入语言模型，并基于知识库输出继续处理。
+`/api/query` 返回检索上下文，`/api/agent_query` 进一步调用 Qwen 生成无记忆单轮回答。
 
 ## 论文与来源
 
@@ -18,11 +18,11 @@
 
 ## Workflow
 
-![Workflow](docs/workflow.png)
+![Logical Architecture](docs/architecture/RAG_Logical_Architecture.png)
 
 当前主流程为：
 
-`query -> hyde -> retrieve -> rerank -> repack -> compress`
+`query -> 可选分类 -> 可选 HyDE -> retrieve -> rerank -> repack -> compress -> 可选 answer`
 
 ## 目录结构
 
@@ -56,17 +56,11 @@ python -m inference.main --mode local
 python -m server.main --mode local
 ```
 
-### 3. 查询知识库
+### 3. 调用接口
 
-```bash
-python -m client.client --mode local query "What is RAG?"
-```
+通过 Server `/docs` 的 Authorize 输入 Bearer Token 后，按 OpenAPI 指定集合、检索策略及各阶段模型。CLI 支持 `--token-file`，查询和索引参数必须显式指定。
 
-### 4. 导入文档
-
-```bash
-python -m client.client --mode local index ./documents
-```
+接口与鉴权入口见[当前文档](docs/README.md)，规范见[OpenAPI](docs/api/openapi.json)。
 
 ## 文档入口
 

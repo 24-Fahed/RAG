@@ -1,19 +1,15 @@
 """Generator model used only for HyDE document generation."""
 
 import logging
-from typing import Optional
 
 logger = logging.getLogger(__name__)
-
-_generator_instance: Optional["Generator"] = None
 
 
 class Generator:
     """LLM-backed HyDE generator."""
 
-    def __init__(self, model_path: str = "", max_out_len: int = 100):
+    def __init__(self, model_path: str = ""):
         self.model_path = model_path
-        self.max_out_len = max_out_len
         self.model = None
         self.tokenizer = None
 
@@ -39,7 +35,7 @@ class Generator:
                 bool(getattr(self.tokenizer, "chat_template", None)),
             )
         except Exception as exc:
-            logger.warning("Could not load model from %s: %s", model_path, exc)
+            raise RuntimeError(f"Could not load generator {model_path}") from exc
 
     def _preview(self, text: str, limit: int = 200) -> str:
         return text.replace("\n", "\\n")[:limit]
@@ -135,9 +131,9 @@ class Generator:
             return outputs
         raise TypeError(f"Unsupported generate output type: {type(outputs)!r}")
 
-    def generate_hyde(self, query: str) -> str:
+    def generate_hyde(self, query: str, max_out_len: int = 100) -> str:
         if self.model is None:
-            return "[No model loaded]"
+            raise ValueError("A local generator model_path is required")
 
         inputs, prompt, input_token_count, truncated, used_chat_template = self._build_inputs(query)
 
@@ -158,7 +154,7 @@ class Generator:
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs,
-                max_new_tokens=self.max_out_len,
+                max_new_tokens=max_out_len,
                 return_dict_in_generate=False,
                 use_cache=False,
             )
@@ -178,9 +174,12 @@ class Generator:
         return response
 
 
-def get_generator(model_path: str = "", max_out_len: int = 100) -> Generator:
-    """Get or create a singleton HyDE generator instance."""
-    global _generator_instance
-    if _generator_instance is None:
-        _generator_instance = Generator(model_path=model_path, max_out_len=max_out_len)
-    return _generator_instance
+def get_generator(model_path: str = "", *, provider: str = "local"):
+    """Generation length belongs to generate_hyde(), never to the shared factory."""
+    from rag_langgraph.models.runtime import registry
+    if provider == "siliconflow":
+        from rag_langgraph.models.remote_generator import SiliconFlowGenerator
+        return registry.get(("generator", provider, model_path), lambda: SiliconFlowGenerator(model_path))
+    if provider != "local":
+        raise ValueError(f"Unknown generation provider: {provider}")
+    return registry.get(("generator", provider, model_path), lambda: Generator(model_path))

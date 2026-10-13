@@ -1,0 +1,30 @@
+{
+  "BAAI/bge-base-zh-v1.5": {
+    "revision": "f03589ceff5aac7111bd60cfc7d497ca17ecac65",
+    "source": "/root/autodl-tmp/rag-chinese-check/models/embedding"
+  },
+  "BAAI/bge-reranker-v2-m3": {
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "source": "/root/autodl-tmp/rag-chinese-check/models/reranker"
+  },
+  "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank": {
+    "revision": "5f0c82792b7ea14c6484e015b6a072009496b7f2",
+    "source": "/root/autodl-tmp/rag-chinese-check/models/compressor"
+  },
+  "BAAI/bge-base-en-v1.5": {
+    "revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+    "source": "/root/.cache/huggingface/hub/models--BAAI--bge-base-en-v1.5"
+  },
+  "castorini/monot5-base-msmarco-10k": {
+    "revision": "f15657ab3d2a5dd0b9a30c8c0b6a0a73c9cb5884",
+    "source": "/root/.cache/huggingface/hub/models--castorini--monot5-base-msmarco-10k"
+  },
+  "fangyuan/nq_extractive_compressor": {
+    "revision": "46f98c1f57fa919c72d86ced16e3ece3403f9e9e",
+    "source": "/root/.cache/huggingface/hub/models--fangyuan--nq_extractive_compressor"
+  },
+  "google-bert/bert-base-multilingual-cased": {
+    "revision": "3f076fdb1ab68d5b2880cb87a0886f315b8146f8",
+    "source": "/root/.cache/huggingface/hub/models--google-bert--bert-base-multilingual-cased"
+  }
+}

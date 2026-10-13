@@ -1,0 +1,1 @@
+{"scenario": "tunnel disconnected", "status": 502, "response": {"detail": "Retrieval or inference service failed"}, "passed": true}

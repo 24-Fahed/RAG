@@ -2,7 +2,7 @@
 
 ## 1. transformers torch.load 安全检查阻止模型加载
 
-**状态**：未解决
+**状态**：已解决
 
 **现象**：Inference Worker 加载 rerank 模型（`castorini/monot5-base-msmarco-10k`）时报错：
 
@@ -53,7 +53,7 @@ rerank.py -> get_reranker() -> MonoT5Reranker.__init__()
 
 ## 3. monkey-patch 时序问题
 
-**状态**：未解决
+**状态**：已解决
 
 **现象**：在 `inference/main.py` 中对 transformers 的 monkey-patch 对部分模块无效。
 
@@ -70,3 +70,43 @@ rerank.py -> get_reranker() -> MonoT5Reranker.__init__()
 **原因**：Windows 环境下编辑的 `.sh` 文件包含中文 echo 输出，通过 scp 传到 Linux 后编码不一致导致乱码。
 
 **修复**：所有 `.sh` 脚本的 echo 输出改为英文，注释保留中文。
+
+---
+
+## 5. 三处模型单例忽略后续请求参数
+
+**状态**：已解决
+
+**现象**：模型实例创建后，后续请求即使指定不同的模型或参数，也继续使用首次创建的实例；该问题在串行请求中同样存在，并非仅由并发触发。
+
+| 位置 | 被忽略的后续参数 | 影响 |
+| --- | --- | --- |
+| `rag_langgraph/indexing/embedding.py` 的 `get_embedder()` | `model_name`、`dim` | 请求切换中英文向量模型时仍使用原模型；此处 `dim` 是实例属性，不会改变模型实际输出维度 |
+| `rag_langgraph/models/generator.py` 的 `get_generator()` | `model_path`、`max_out_len` | 继续使用原模型与首次设置的生成长度；默认启动预热设置 `max_out_len=100`，后续 HyDE 请求的长度参数不生效 |
+| `rag_langgraph/models/classifier.py` 的 `get_classifier()` | `model_name`、`weights_path` | 继续使用原分类模型；后续指定的微调权重不会加载 |
+
+**原因**：三个工厂函数仅在全局实例为 `None` 时使用传入参数创建对象，之后直接返回缓存实例，不检查参数是否匹配。生成长度保存在共享实例的 `self.max_out_len` 中，推理时没有独立接收本次请求的长度。
+
+**影响范围**：`/inference/embed`、`/inference/hyde`、`/inference/classify`。即使请求返回成功，也可能未按本次指定的模型或参数执行。
+
+**建议修复**：模型固定部署时，对不同模型或权重参数明确拒绝，避免静默忽略；需要多模型时，按模型路径及权重配置缓存实例并保护初始化。`max_out_len` 应作为每次推理的参数传入，不能通过修改共享实例属性实现请求间切换。
+
+---
+
+## 6. LLMLingua 接入与官方 API 不匹配
+
+**状态**：已解决
+
+**位置**：`rag_langgraph/models/compressors.py` 的 `LLMLinguaCompressor.__init__()` 和 `compress()`。
+
+**问题**：
+
+- 项目调用 `self.compressor.compress(...)`，核查时的官方 `PromptCompressor` 提供的是 `compress_prompt(...)`，未定义公开的 `compress()` 方法。使用该 API 的版本会在压缩调用处发生 `AttributeError`。
+- 默认模型为 `microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank`，但构造调用仅为 `PromptCompressor(model_name)`，没有传入 `use_llmlingua2=True`。官方实现的该参数默认值为 `False`，因此不会启用 LLMLingua-2 的初始化及压缩分支。
+- `inference/requirements.txt` 未声明 `llmlingua`，项目也未固定其版本，不能保证部署环境具备兼容的依赖。
+
+**影响范围**：使用 `compression_method="llmlingua"` 的请求。缺少依赖时会在导入阶段失败；安装不匹配版本时可能在接口调用或模型执行阶段失败。默认 `recomp_extractive` 压缩链路不受此项影响。
+
+**建议修复**：选定并固定经过验证的 LLMLingua 版本，声明依赖；按该版本 API 使用 `compress_prompt()`，并为 LLMLingua-2 模型设置 `use_llmlingua2=True`。完成单请求压缩验证后再验证共享实例的并发行为。
+
+**核查依据与限制**：[LLMLingua 官方源码](https://github.com/microsoft/LLMLingua/blob/main/llmlingua/prompt_compressor.py)。依据为官方 `main` 分支，不能据此断言所有历史版本行为相同；历史核查时本机未安装 LLMLingua；现有 GPU 实测见 [模型参数测试](v0.1.0/test-results/model-parameters.json)。

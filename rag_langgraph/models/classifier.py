@@ -8,18 +8,17 @@
 import logging
 from typing import Optional
 
-import torch
-from transformers import BertForSequenceClassification, BertTokenizer
 
 logger = logging.getLogger(__name__)
 
-_classifier_instance: Optional["RetrievalClassifier"] = None
 
 
 class RetrievalClassifier:
     """用于判断检索必要性的 BERT 二分类器。"""
 
     def __init__(self, model_name: str, weights_path: Optional[str] = None):
+        from transformers import BertForSequenceClassification, BertTokenizer
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tokenizer = BertTokenizer.from_pretrained(model_name)
         self.model = BertForSequenceClassification.from_pretrained(model_name, num_labels=2)
@@ -42,6 +41,7 @@ class RetrievalClassifier:
         Returns:
             0 = 不需要检索，1 = 需要检索。
         """
+        import torch
         inputs = self.tokenizer(
             query, return_tensors="pt", truncation=True, max_length=512, padding=True
         ).to(self.device)
@@ -61,8 +61,7 @@ def get_classifier(
     model_name: str = "google-bert/bert-base-multilingual-cased",
     weights_path: Optional[str] = None,
 ) -> RetrievalClassifier:
-    """获取或创建单例分类器实例。"""
-    global _classifier_instance
-    if _classifier_instance is None:
-        _classifier_instance = RetrievalClassifier(model_name, weights_path)
-    return _classifier_instance
+    """按模型与微调权重获取缓存实例。"""
+    from rag_langgraph.models.runtime import registry
+    return registry.get(("classifier", model_name, weights_path),
+                        lambda: RetrievalClassifier(model_name, weights_path))

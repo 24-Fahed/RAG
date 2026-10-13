@@ -1,0 +1,129 @@
+{
+  "real_models": true,
+  "isolated_process": true,
+  "checks": [
+    {
+      "name": "cold different model loading intervals do not overlap",
+      "passed": true
+    },
+    {
+      "name": "same configuration cold requests reuse one instance",
+      "passed": true
+    },
+    {
+      "name": "failed load propagates",
+      "passed": true
+    },
+    {
+      "name": "registry remains usable after failed load",
+      "passed": true
+    },
+    {
+      "name": "five real same-model calls never overlap",
+      "passed": true
+    },
+    {
+      "name": "same-model execution follows actual FIFO tickets",
+      "passed": true
+    },
+    {
+      "name": "all same-model outputs have expected shape",
+      "passed": true
+    },
+    {
+      "name": "different real-model calls overlap",
+      "passed": true
+    },
+    {
+      "name": "all different-model outputs have expected shape",
+      "passed": true
+    }
+  ],
+  "loading_intervals": [
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "start": 29727450.226984527,
+      "end": 29727452.834337756
+    },
+    {
+      "model": "BAAI/bge-base-en-v1.5",
+      "start": 29727452.8344754,
+      "end": 29727453.056956127
+    },
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "start": 29727453.05805036,
+      "end": 29727453.126859322
+    }
+  ],
+  "same_model_intervals": [
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "thread": "ThreadPoolExecutor-1_4",
+      "start": 29727453.133677863,
+      "end": 29727453.332984462
+    },
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "thread": "ThreadPoolExecutor-1_0",
+      "start": 29727453.333079305,
+      "end": 29727453.377272185
+    },
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "thread": "ThreadPoolExecutor-1_1",
+      "start": 29727453.377370577,
+      "end": 29727453.42144003
+    },
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "thread": "ThreadPoolExecutor-1_2",
+      "start": 29727453.421579886,
+      "end": 29727453.4654626
+    },
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "thread": "ThreadPoolExecutor-1_3",
+      "start": 29727453.465554077,
+      "end": 29727453.508750495
+    }
+  ],
+  "fifo_tickets": [
+    {
+      "thread": "ThreadPoolExecutor-1_4",
+      "ticket": 0
+    },
+    {
+      "thread": "ThreadPoolExecutor-1_0",
+      "ticket": 1
+    },
+    {
+      "thread": "ThreadPoolExecutor-1_1",
+      "ticket": 2
+    },
+    {
+      "thread": "ThreadPoolExecutor-1_2",
+      "ticket": 3
+    },
+    {
+      "thread": "ThreadPoolExecutor-1_3",
+      "ticket": 4
+    }
+  ],
+  "different_model_intervals": [
+    {
+      "model": "BAAI/bge-base-zh-v1.5",
+      "thread": "ThreadPoolExecutor-2_0",
+      "start": 29727453.510680307,
+      "end": 29727453.635721475
+    },
+    {
+      "model": "BAAI/bge-base-en-v1.5",
+      "thread": "ThreadPoolExecutor-2_1",
+      "start": 29727453.510375008,
+      "end": 29727453.637442783
+    }
+  ],
+  "passed": 9,
+  "failed": 0
+}

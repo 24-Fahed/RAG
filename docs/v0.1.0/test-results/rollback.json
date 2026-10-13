@@ -1,0 +1,80 @@
+{
+  "checks": [
+    {
+      "name": "previous image starts with existing authentication",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "previous server reads new zh/original data against current Worker",
+      "passed": false,
+      "status": 409,
+      "body": {
+        "detail": "Collection embedding language does not match request; use a matching collection or reindex into a new collection"
+      }
+    },
+    {
+      "name": "previous server reads new zh/bm25 data against current Worker",
+      "passed": false,
+      "status": 409,
+      "body": {
+        "detail": "Collection embedding language does not match request; use a matching collection or reindex into a new collection"
+      }
+    },
+    {
+      "name": "previous server reads new en/original data against current Worker",
+      "passed": false,
+      "status": 500,
+      "body": {
+        "text": "Internal Server Error"
+      }
+    },
+    {
+      "name": "previous server reads new en/bm25 data against current Worker",
+      "passed": true,
+      "status": 200,
+      "body": {
+        "retrieved_documents": [
+          {
+            "content": "Project Red Maple performs equipment maintenance every Wednesday. Its coordinator is Alice.",
+            "score": 0.601662071155903,
+            "metadata": {}
+          },
+          {
+            "content": "Project White Stone has archive code WS-3168 and studies coastal sediments.",
+            "score": 0.24422006742179228,
+            "metadata": {}
+          },
+          {
+            "content": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory.",
+            "score": 0.21217174751711,
+            "metadata": {}
+          }
+        ],
+        "reranked_documents": [
+          {
+            "content": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory.",
+            "score": 0.9996335013899602,
+            "metadata": {}
+          },
+          {
+            "content": "Project White Stone has archive code WS-3168 and studies coastal sediments.",
+            "score": 0.09896197097211636,
+            "metadata": {}
+          },
+          {
+            "content": "Project Red Maple performs equipment maintenance every Wednesday. Its coordinator is Alice.",
+            "score": 1.34222405677306e-05,
+            "metadata": {}
+          }
+        ],
+        "repacked_context": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory.\n\nProject Red Maple performs equipment maintenance every Wednesday. Its coordinator is Alice.\n\nProject White Stone has archive code WS-3168 and studies coastal sediments.",
+        "compressed_context": "Project Heron has archive code HN-7429. Its coordinator is Alice. Project White Stone has archive code WS-3168 and studies coastal sediments.",
+        "hyde_document": null,
+        "classification_label": 1
+      }
+    }
+  ],
+  "passed": 2,
+  "failed": 3
+}

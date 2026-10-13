@@ -3,6 +3,8 @@
 封装 rag_langgraph.models.rerankers 的调度逻辑。
 """
 
+from inference.schemas import Document, RerankRequest
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -11,28 +13,23 @@ from rag_langgraph.models.rerankers import get_reranker
 router = APIRouter()
 
 
-class Document(BaseModel):
-    content: str
-    score: float = 0.0
-    metadata: dict = {}
-
-
-class RerankRequest(BaseModel):
-    query: str
-    documents: list[Document]
-    model: str = "monot5"
-    top_k: int = 10
-
-
 class RerankResponse(BaseModel):
     documents: list[Document]
 
 
 @router.post("/rerank", response_model=RerankResponse)
 def rerank(req: RerankRequest):
-    reranker = get_reranker(model_name=req.model)
+    if not req.documents:
+        return RerankResponse(documents=[])
+    reranker = get_reranker(model_name=req.model, checkpoint=req.model_name)
     doc_texts = [d.content for d in req.documents]
     results = reranker.rerank(req.query, doc_texts)
+    from collections import defaultdict, deque
+    metadata = defaultdict(deque)
+    for document in req.documents:
+        metadata[document.content].append(document.metadata)
+    for result in results:
+        result["metadata"] = metadata[result["content"]].popleft()
     results = results[:req.top_k]
     return RerankResponse(
         documents=[Document(**d) for d in results]

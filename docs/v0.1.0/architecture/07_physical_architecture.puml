@@ -1,0 +1,47 @@
+@startuml RAG_Physical_Architecture
+!theme plain
+!pragma layout smetana
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Physical Architecture
+
+node "User PC\n(Client Machine)" as user {
+    rectangle "PU-1\nClient Application" as pu1
+}
+
+node "Public Server\nLinux (Public IP)" as server {
+    rectangle "PU-2\nRAG Server\n(FastAPI)" as pu2
+    rectangle "Milvus Standalone\n(Docker, port 19530)" as milvus
+    rectangle "BM25 Index\n(local persistent files)" as bm25
+    rectangle "Etcd\n(Docker)" as etcd
+    rectangle "MinIO\n(Docker)" as minio
+}
+
+node "GPU Server\n(AutoDL)\n32GB VRAM\nModel cache on local disk" as gpu {
+    rectangle "PU-3\nInference Worker\n(FastAPI, single process)" as pu3
+    rectangle "Model Storage\nLLaMA-3-8B + multilingual BERT\nBGE-zh / BGE-en + Rerankers\nRecomp + LLMLingua-2" as models
+}
+
+user ..> server : HTTP
+server ..> gpu : HTTP over SSH tunnel
+
+node "SiliconFlow\n(External Model Service)" as cloud {
+    rectangle "Qwen2.5-7B-Instruct\nChat Completions API" as qwen
+}
+
+pu3 ..> qwen : HTTPS\nHyDE / single-turn answer
+
+note right of gpu
+  Local models load through one global FIFO queue.
+  Calls to the same model instance are serialized.
+  Different loaded models may run concurrently.
+  Qwen weights are hosted by SiliconFlow.
+  Hardware-aware admission control is deferred to v1.0.0.
+end note
+
+milvus ..> etcd : metadata
+milvus ..> minio : object storage
+
+@enduml

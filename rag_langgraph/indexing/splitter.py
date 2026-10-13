@@ -29,36 +29,18 @@ def split_text(
     Returns:
         文本块列表。
     """
-    # 按句子分割
-    sentences = _split_sentences(text)
-    if not sentences:
-        return []
-
+    if chunk_size <= 0 or not 0 <= chunk_overlap < chunk_size:
+        raise ValueError("Require chunk_size > chunk_overlap >= 0")
+    # Slice original character spans: preserve Chinese punctuation and whitespace,
+    # cap long sentences, count each CJK character as one approximate token.
+    spans = list(re.finditer(r"[\u3400-\u9fff]|[^\s\u3400-\u9fff]+", text))
     chunks = []
-    current_chunk = []
-    current_size = 0
-
-    for sentence in sentences:
-        sentence_words = sentence.split()
-        sentence_size = len(sentence_words)
-
-        if current_size + sentence_size > chunk_size and current_chunk:
-            # 保存当前块
-            chunks.append(separator.join(current_chunk))
-
-            # 以重叠方式开始新块
-            overlap_words = _get_overlap_words(current_chunk, chunk_overlap, separator)
-            current_chunk = overlap_words.split() if overlap_words else []
-            current_size = len(current_chunk)
-
-        current_chunk.extend(sentence_words)
-        current_size += sentence_size
-
-    # 添加最后一个块
-    if current_chunk:
-        chunks.append(separator.join(current_chunk))
-
-    logger.info(f"Split text into {len(chunks)} chunks (chunk_size={chunk_size}, overlap={chunk_overlap})")
+    step = chunk_size - chunk_overlap
+    for start in range(0, len(spans), step):
+        stop = min(start + chunk_size, len(spans))
+        chunks.append(text[spans[start].start():spans[stop - 1].end()])
+        if stop == len(spans):
+            break
     return chunks
 
 

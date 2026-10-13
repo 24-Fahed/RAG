@@ -1,0 +1,16 @@
+{
+  "zh": {
+    "cases": 20,
+    "retrieval_hit": 20,
+    "rerank_hit": 20,
+    "compressed_fact_retained": 20,
+    "answer_fact_correct": 20
+  },
+  "en": {
+    "cases": 20,
+    "retrieval_hit": 20,
+    "rerank_hit": 20,
+    "compressed_fact_retained": 20,
+    "answer_fact_correct": 20
+  }
+}

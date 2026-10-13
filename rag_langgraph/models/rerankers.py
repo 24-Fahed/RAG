@@ -10,14 +10,9 @@
 
 import logging
 from abc import ABC, abstractmethod
-from typing import Optional
 
-import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 
 logger = logging.getLogger(__name__)
-
-_reranker_instances: dict[str, "BaseReranker"] = {}
 
 
 class BaseReranker(ABC):
@@ -47,6 +42,8 @@ class MonoT5Reranker(BaseReranker):
     """
 
     def __init__(self, model_name: str = "castorini/monot5-base-msmarco-10k"):
+        from transformers import T5ForConditionalGeneration, T5Tokenizer
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tokenizer = T5Tokenizer.from_pretrained(model_name, legacy=False)
         self.model = T5ForConditionalGeneration.from_pretrained(model_name)
@@ -64,6 +61,7 @@ class MonoT5Reranker(BaseReranker):
         return results
 
     def _score_single(self, query: str, document: str) -> float:
+        import torch
         input_text = f"Query: {query} Document: {document} Relevant:"
         inputs = self.tokenizer(
             input_text, return_tensors="pt", truncation=True, max_length=512, padding=True
@@ -89,6 +87,8 @@ class BGEReranker(BaseReranker):
     """BGE 交叉编码器重排序器。"""
 
     def __init__(self, model_name: str = "BAAI/bge-reranker-v2-m3"):
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
@@ -97,6 +97,7 @@ class BGEReranker(BaseReranker):
         logger.info(f"Loaded BGE reranker: {model_name}")
 
     def rerank(self, query: str, documents: list[str]) -> list[dict]:
+        import torch
         pairs = [[query, doc] for doc in documents]
         features = self.tokenizer(
             pairs, padding=True, truncation=True, max_length=512, return_tensors="pt"
@@ -121,6 +122,8 @@ class TILDEReranker(BaseReranker):
     """使用查询扩展的 TILDE 重排序器。"""
 
     def __init__(self, model_name: str = "ielab/TILDEv2-TILDE200-exp"):
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
@@ -130,6 +133,7 @@ class TILDEReranker(BaseReranker):
 
     def rerank(self, query: str, documents: list[str]) -> list[dict]:
         # TILDE 使用文档扩展 + 词项评分
+        import torch
         results = []
         for doc in documents:
             inputs = self.tokenizer(
@@ -153,6 +157,7 @@ class RankLLaMAReranker(BaseReranker):
         except ImportError:
             raise ImportError("RankLLaMA requires peft: pip install peft")
 
+        import torch
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         base_model_name = "meta-llama/Llama-2-7b-hf"
         self.tokenizer = LlamaTokenizer.from_pretrained(base_model_name)
@@ -165,6 +170,7 @@ class RankLLaMAReranker(BaseReranker):
         logger.info(f"Loaded RankLLaMA reranker: {model_name}")
 
     def rerank(self, query: str, documents: list[str]) -> list[dict]:
+        import torch
         results = []
         for doc in documents:
             prompt = f"Query: {query} Document: {doc}\nRelevant:"
@@ -190,11 +196,11 @@ RERANKER_REGISTRY = {
 }
 
 
-def get_reranker(model_name: str = "monot5") -> BaseReranker:
-    """获取或创建缓存的重排序器实例。"""
-    if model_name not in _reranker_instances:
-        cls = RERANKER_REGISTRY.get(model_name)
-        if cls is None:
-            raise ValueError(f"Unknown reranker: {model_name}. Available: {list(RERANKER_REGISTRY.keys())}")
-        _reranker_instances[model_name] = cls()
-    return _reranker_instances[model_name]
+def get_reranker(model_name: str = "monot5", checkpoint: str | None = None) -> BaseReranker:
+    from rag_langgraph.models.runtime import registry
+    from rag_langgraph.model_options import RERANK_MODELS
+    cls = RERANKER_REGISTRY.get(model_name)
+    if cls is None:
+        raise ValueError(f"Unknown reranker adapter: {model_name}")
+    checkpoint = checkpoint or RERANK_MODELS[model_name]
+    return registry.get(("reranker", model_name, checkpoint), lambda: cls(checkpoint))

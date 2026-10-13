@@ -1,0 +1,55 @@
+@startuml RAG_Logical_Architecture
+!theme plain
+!pragma layout smetana
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Logical Architecture
+
+package "RAG System" {
+
+    package "Client Interface" {
+        rectangle "Query Client"
+        rectangle "Document Client"
+    }
+
+    package "API Gateway" {
+        rectangle "Query API"
+        rectangle "Agent Query API"
+        rectangle "Indexing API"
+    }
+
+    package "Knowledge Base" {
+        package "Document Processing" {
+            rectangle "Document Loader"
+            rectangle "Text Splitter\n(Chinese / English)"
+            rectangle "Metadata Extractor"
+        }
+        rectangle "Vector Storage\n(Milvus, model + dimension identity)"
+        rectangle "Sparse Index\n(BM25, Chinese / English)"
+    }
+
+    package "ML Inference" {
+        package "Model Runtime" {
+            rectangle "Model Registry\n(adapter + model + weights + configuration)"
+            rectangle "Initialization Queue\n(global FIFO, one loader)"
+            rectangle "Inference Queues\n(one FIFO per model instance)"
+        }
+
+        rectangle "Classification\n(multilingual BERT + fine-tuned weights)"
+        rectangle "Embedding\n(BGE-base-zh / BGE-base-en)"
+        rectangle "Reranking\n(MonoT5 / BGE / RankLLaMA / TILDE)"
+        rectangle "Compression\n(Recomp / LLMLingua)"
+        rectangle "Local Generation\n(LLaMA-3-8B, HyDE)"
+        rectangle "Remote Generation Adapter\n(SiliconFlow Qwen, HyDE / Answer)"
+    }
+
+    package "Pipeline Orchestration" {
+        rectangle "Indexing Pipeline\n(load -> split -> metadata -> embed -> store)"
+        rectangle "Agent Query Pipeline\n(retrieval -> Qwen answer, stateless)"
+        rectangle "Retrieval Pipeline\n(optional classify -> HyDE / retrieve -> rerank -> repack -> compress)"
+    }
+}
+
+@enduml

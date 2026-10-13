@@ -11,7 +11,7 @@ import time
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
 
 _parser = argparse.ArgumentParser(add_help=False)
 _parser.add_argument(
@@ -67,7 +67,7 @@ def _warmup_models() -> None:
         components = []
 
         if LLM_MODEL_PATH:
-            components.append(("generator", lambda: get_generator(model_path=LLM_MODEL_PATH, max_out_len=100)))
+            components.append(("generator", lambda: get_generator(model_path=LLM_MODEL_PATH)))
 
         if EMBEDDING_MODEL:
             components.append(("embedder", lambda: get_embedder(model_name=EMBEDDING_MODEL)))
@@ -95,7 +95,9 @@ def _warmup_models() -> None:
 
 @app.on_event("startup")
 async def startup_preload() -> None:
-    if MODE == "mock":
+    if MODE == "mock" or os.environ.get("RAG_PRELOAD_MODELS", "0") != "1":
+        app.state.ready = True
+        app.state.preloading = False
         return
     thread = threading.Thread(target=_warmup_models, name="model-preload", daemon=True)
     thread.start()
@@ -129,6 +131,16 @@ else:
     app.include_router(rerank.router, prefix="/inference", tags=["rerank"])
     app.include_router(compress.router, prefix="/inference", tags=["compress"])
     app.include_router(generate.router, prefix="/inference", tags=["hyde"])
+
+
+@app.exception_handler(ValueError)
+async def invalid_model(request, exc):
+    return JSONResponse(status_code=422, content={"detail": str(exc)})
+
+
+@app.exception_handler(RuntimeError)
+async def model_failure(request, exc):
+    return JSONResponse(status_code=502, content={"detail": "Model initialization or inference failed"})
 
 
 @app.get("/health")

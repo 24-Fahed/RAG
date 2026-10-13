@@ -6,9 +6,15 @@
 
 import os
 import pickle
+import re
 from rank_bm25 import BM25Okapi
 
 from server.config import BM25_INDEX_DIR
+
+
+def tokenize(text: str) -> list[str]:
+    # Character tokens for CJK plus words for Latin scripts: deterministic, no model download.
+    return re.findall(r"[\u3400-\u9fff]|[a-z0-9_]+", text.lower())
 
 
 class BM25Index:
@@ -21,14 +27,14 @@ class BM25Index:
         os.makedirs(index_dir, exist_ok=True)
 
     def build(self, documents: list[str]):
-        tokenized = [doc.lower().split() for doc in documents]
+        tokenized = [tokenize(doc) for doc in documents]
         self.bm25 = BM25Okapi(tokenized)
         self.documents = documents
 
     def search(self, query: str, top_k: int = 100) -> list[dict]:
         if self.bm25 is None:
             return []
-        tokenized_query = query.lower().split()
+        tokenized_query = tokenize(query)
         scores = self.bm25.get_scores(tokenized_query)
         ranked = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
         return [
@@ -49,7 +55,7 @@ class BM25Index:
         with open(path, "rb") as f:
             data = pickle.load(f)
         self.documents = data["documents"]
-        tokenized = [doc.lower().split() for doc in self.documents]
+        tokenized = [tokenize(doc) for doc in self.documents]
         self.bm25 = BM25Okapi(tokenized)
         return True
 

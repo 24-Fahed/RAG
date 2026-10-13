@@ -1,0 +1,20 @@
+{
+  "checks": [
+    {
+      "name": "zh public client agent_query",
+      "status": 200,
+      "passed": true,
+      "seconds": 2.412384576000477,
+      "answer": "苍鹭项目的档案编号是 HN-7429。",
+      "body": null
+    },
+    {
+      "name": "en public client agent_query",
+      "status": 200,
+      "passed": true,
+      "seconds": 0.9612760899981367,
+      "answer": "Project Heron的存档代码是HN-7429。",
+      "body": null
+    }
+  ]
+}
