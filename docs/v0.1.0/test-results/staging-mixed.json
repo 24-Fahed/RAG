@@ -1,0 +1,198 @@
+{
+  "stage": "staging",
+  "real_models": true,
+  "started_at": "2026-10-13T11:19:31.052637+00:00",
+  "checks": [
+    {
+      "name": "zh embedding + en reranker + zh compressor",
+      "passed": true,
+      "status": 200,
+      "request": {
+        "query": "苍鹭项目的档案编号是什么？",
+        "collection": "v010_staging_zh_778adb61",
+        "search_method": "hybrid",
+        "embedding_model": "BAAI/bge-base-zh-v1.5",
+        "embedding_dim": 768,
+        "hyde_provider": "siliconflow",
+        "hyde_model": "Qwen/Qwen2.5-7B-Instruct",
+        "hyde_max_out_len": 80,
+        "rerank_method": "monot5",
+        "rerank_model": "castorini/monot5-base-msmarco-10k",
+        "top_k": 3,
+        "search_k": 5,
+        "compression_method": "llmlingua",
+        "compression_model": "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
+        "compression_ratio": 0.8,
+        "answer_model": "Qwen/Qwen2.5-7B-Instruct",
+        "answer_max_out_len": 256
+      },
+      "response": {
+        "retrieved_documents": [
+          {
+            "content": "苍鹭项目的档案编号为 HN-7429。该项目在蓝松实验室保存观测档案。",
+            "score": 1.0,
+            "metadata": {
+              "source": "zh_0.txt",
+              "doc_index": 0,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "白石项目的档案编号为 WS-3168。该项目研究海岸沉积物。",
+            "score": 0.46661612439553657,
+            "metadata": {
+              "source": "zh_1.txt",
+              "doc_index": 1,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "红枫项目每周三维护设备。其负责人为李明。",
+            "score": 0.0,
+            "metadata": {
+              "source": "zh_2.txt",
+              "doc_index": 2,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          }
+        ],
+        "reranked_documents": [
+          {
+            "content": "红枫项目每周三维护设备。其负责人为李明。",
+            "score": 0.10678353308319725,
+            "metadata": {
+              "source": "zh_2.txt",
+              "doc_index": 2,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "白石项目的档案编号为 WS-3168。该项目研究海岸沉积物。",
+            "score": 0.06226551976855795,
+            "metadata": {
+              "source": "zh_1.txt",
+              "doc_index": 1,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "苍鹭项目的档案编号为 HN-7429。该项目在蓝松实验室保存观测档案。",
+            "score": 0.0392486895564335,
+            "metadata": {
+              "source": "zh_0.txt",
+              "doc_index": 0,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          }
+        ],
+        "repacked_context": "红枫项目每周三维护设备。其负责人为李明。\n\n苍鹭项目的档案编号为 HN-7429。该项目在蓝松实验室保存观测档案。\n\n白石项目的档案编号为 WS-3168。该项目研究海岸沉积物。",
+        "compressed_context": "红 枫 项 目 周 三 维 护 设 备 负 责 李 明 苍 鹭 项 目 档 案 编 号 HN - 7429 蓝 松 实 验 室 保 存 观 测 档 案 白 石 项 目 档 案 编 号 WS - 3168 研 究 海 岸 沉 积 物",
+        "hyde_document": null,
+        "classification_label": 1
+      }
+    },
+    {
+      "name": "en embedding + zh reranker + en compressor",
+      "passed": true,
+      "status": 200,
+      "request": {
+        "query": "What is the archive code of Project Heron?",
+        "collection": "v010_staging_en_184619dd",
+        "search_method": "hybrid",
+        "embedding_model": "BAAI/bge-base-en-v1.5",
+        "embedding_dim": 768,
+        "hyde_provider": "local",
+        "hyde_model": "/root/models/llama3-8b-ragga",
+        "hyde_max_out_len": 80,
+        "rerank_method": "bge",
+        "rerank_model": "BAAI/bge-reranker-v2-m3",
+        "top_k": 3,
+        "search_k": 5,
+        "compression_method": "recomp_extractive",
+        "compression_model": "fangyuan/nq_extractive_compressor",
+        "compression_ratio": 0.8,
+        "answer_model": "Qwen/Qwen2.5-7B-Instruct",
+        "answer_max_out_len": 256
+      },
+      "response": {
+        "retrieved_documents": [
+          {
+            "content": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory.",
+            "score": 1.0,
+            "metadata": {
+              "source": "en_0.txt",
+              "doc_index": 1,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "Project Red Maple performs equipment maintenance every Wednesday. Its coordinator is Alice.",
+            "score": 0.25238144902312676,
+            "metadata": {
+              "source": "en_2.txt",
+              "doc_index": 2,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "Project White Stone has archive code WS-3168 and studies coastal sediments.",
+            "score": 0.19299684564310807,
+            "metadata": {
+              "source": "en_1.txt",
+              "doc_index": 0,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          }
+        ],
+        "reranked_documents": [
+          {
+            "content": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory.",
+            "score": 8.844772338867188,
+            "metadata": {
+              "source": "en_0.txt",
+              "doc_index": 1,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "Project White Stone has archive code WS-3168 and studies coastal sediments.",
+            "score": -3.990110397338867,
+            "metadata": {
+              "source": "en_1.txt",
+              "doc_index": 0,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          },
+          {
+            "content": "Project Red Maple performs equipment maintenance every Wednesday. Its coordinator is Alice.",
+            "score": -10.669270515441895,
+            "metadata": {
+              "source": "en_2.txt",
+              "doc_index": 2,
+              "chunk_index": 0,
+              "total_chunks": 1
+            }
+          }
+        ],
+        "repacked_context": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory.\n\nProject Red Maple performs equipment maintenance every Wednesday. Its coordinator is Alice.\n\nProject White Stone has archive code WS-3168 and studies coastal sediments.",
+        "compressed_context": "Project Heron has archive code HN-7429. Its observation records are stored at Blue Pine Laboratory. Its coordinator is Alice. Project White Stone has archive code WS-3168 and studies coastal sediments.",
+        "hyde_document": null,
+        "classification_label": 1
+      }
+    }
+  ],
+  "passed": 2,
+  "failed": 0,
+  "completed_at": "2026-10-13T11:19:31.650748+00:00"
+}

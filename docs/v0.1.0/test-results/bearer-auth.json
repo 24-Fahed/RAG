@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "name": "/health requires Bearer",
+      "passed": true
+    },
+    {
+      "name": "/api/index requires Bearer",
+      "passed": true
+    },
+    {
+      "name": "/api/query requires Bearer",
+      "passed": true
+    },
+    {
+      "name": "/api/agent_query requires Bearer",
+      "passed": true
+    },
+    {
+      "name": "valid",
+      "passed": true
+    },
+    {
+      "name": "wrong scheme",
+      "passed": true
+    },
+    {
+      "name": "malformed",
+      "passed": true
+    },
+    {
+      "name": "tampered signature",
+      "passed": true
+    },
+    {
+      "name": "expired",
+      "passed": true
+    },
+    {
+      "name": "wrong issuer",
+      "passed": true
+    },
+    {
+      "name": "wrong audience",
+      "passed": true
+    },
+    {
+      "name": "not yet valid",
+      "passed": true
+    },
+    {
+      "name": "insufficient scope",
+      "passed": true
+    },
+    {
+      "name": "OpenAPI declares bearer scheme",
+      "passed": true
+    },
+    {
+      "name": "all API operations declare authentication",
+      "passed": true
+    },
+    {
+      "name": "missing key fails closed",
+      "passed": true
+    },
+    {
+      "name": "key initialization refuses overwrite",
+      "passed": true
+    },
+    {
+      "name": "private key permissions",
+      "passed": true
+    }
+  ],
+  "passed": 18,
+  "failed": 0
+}

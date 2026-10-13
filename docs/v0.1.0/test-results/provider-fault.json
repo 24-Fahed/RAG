@@ -1,0 +1,15 @@
+{
+  "checks": [
+    {
+      "name": "invalid key rejected without leaking credentials",
+      "passed": true,
+      "status": 401,
+      "error": "SiliconFlow completion failed"
+    },
+    {
+      "name": "valid credentials work after failure",
+      "passed": true,
+      "output": "文档检索是一种信息检索技术，用于从大量文档中快速定位和提取与特定查询相关的"
+    }
+  ]
+}

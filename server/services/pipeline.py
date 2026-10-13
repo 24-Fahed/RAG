@@ -4,7 +4,8 @@ import json
 import logging
 
 from rag_langgraph.nodes.repacking import repacking_node
-from server.config import COLLECTION_NAME, EMBEDDING_DIM
+from server.config import COLLECTION_NAME, MILVUS_HOST, MILVUS_PORT
+from rag_langgraph.model_options import EN_EMBEDDING, CLASSIFIER
 from server.services import inference_client
 from server.services.bm25_search import get_bm25_index
 
@@ -74,7 +75,7 @@ def _hybrid_fuse(
 def run_query_pipeline(
     query: str,
     search_method: str = "hyde_with_hybrid",
-    rerank_model: str = "monot5",
+    rerank_method: str = "monot5",
     top_k: int = 10,
     repack_method: str = "sides",
     compression_method: str = "recomp_extractive",
@@ -82,29 +83,45 @@ def run_query_pipeline(
     hybrid_alpha: float = 0.3,
     search_k: int = 100,
     collection_name: str | None = COLLECTION_NAME,
+    embedding_model: str = EN_EMBEDDING,
+    embedding_dim: int = 768,
+    hyde_provider: str = "local",
+    hyde_model: str = "/root/models/llama3-8b-ragga",
+    hyde_max_out_len: int = 100,
+    rerank_model: str | None = None,
+    compression_model: str | None = None,
+    classification_enabled: bool = False,
+    classification_model: str = CLASSIFIER,
+    classification_weights_path: str | None = None,
 ) -> dict:
     """Run the retrieval-first query pipeline and return retrieval context outputs."""
     collection_name = collection_name or COLLECTION_NAME
 
-    # Classification is intentionally bypassed in this deployment. All queries go through retrieval.
     classification_label = 1
+    if classification_enabled:
+        if not classification_weights_path:
+            raise ValueError("Classification requires fine-tuned weights")
+        classification_label = inference_client.classify(
+            query, model_name=classification_model, weights_path=classification_weights_path)
+        if classification_label == 0:
+            return {"retrieved_documents": [], "reranked_documents": [],
+                    "repacked_context": "", "compressed_context": "",
+                    "hyde_document": None, "classification_label": 0}
 
     hyde_document = None
     effective_query = query
     if search_method in ("hyde", "hyde_with_hybrid"):
-        hyde_document = inference_client.hyde(query)
+        hyde_document = inference_client.hyde(query, model_path=hyde_model, provider=hyde_provider, max_out_len=hyde_max_out_len)
         effective_query = hyde_document
 
     dense_results = []
     if search_method in ("original", "hyde", "hybrid", "hyde_with_hybrid"):
-        query_embedding = inference_client.embed([effective_query])[0]
+        query_embedding = inference_client.embed([effective_query], model_name=embedding_model, dim=embedding_dim)[0]
         from rag_langgraph.indexing.vectorstore import MilvusVectorStore
 
-        store = MilvusVectorStore(collection_name=collection_name, dim=EMBEDDING_DIM)
-        try:
-            dense_results = store.search(query_embedding, top_k=search_k)
-        except Exception as exc:
-            logger.warning("Milvus search failed: %s", exc)
+        store = MilvusVectorStore(collection_name=collection_name, dim=embedding_dim, embedding_model=embedding_model,
+                                  host=MILVUS_HOST, port=MILVUS_PORT)
+        dense_results = store.search(query_embedding, top_k=search_k)
 
     sparse_results = []
     if search_method in ("hybrid", "hyde_with_hybrid", "bm25"):
@@ -118,7 +135,7 @@ def run_query_pipeline(
     else:
         final_results = dense_results
 
-    reranked_documents = inference_client.rerank(query, final_results, model=rerank_model, top_k=top_k)
+    reranked_documents = inference_client.rerank(query, final_results, model=rerank_method, top_k=top_k, model_name=rerank_model) if final_results else []
     repacked_context = repacking_node(
         {
             "reranked_documents": reranked_documents,
@@ -132,6 +149,7 @@ def run_query_pipeline(
             repacked_context,
             method=compression_method,
             ratio=compression_ratio,
+            model_name=compression_model,
         )
 
     return {
@@ -149,6 +167,8 @@ def run_indexing_pipeline(
     collection_name: str = COLLECTION_NAME,
     chunk_size: int = 512,
     chunk_overlap: int = 20,
+    embedding_model: str = EN_EMBEDDING,
+    embedding_dim: int = 768,
 ) -> dict:
     """Run indexing: load -> split -> embed -> store."""
     from rag_langgraph.indexing.loader import load_from_directory, load_from_json
@@ -167,17 +187,18 @@ def run_indexing_pipeline(
     chunks = split_documents(documents, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     texts = [chunk["content"] for chunk in chunks]
 
-    embeddings = inference_client.embed(texts)
+    embeddings = inference_client.embed(texts, model_name=embedding_model, dim=embedding_dim)
 
     from rag_langgraph.indexing.vectorstore import MilvusVectorStore
 
-    store = MilvusVectorStore(collection_name=collection_name, dim=EMBEDDING_DIM)
+    store = MilvusVectorStore(collection_name=collection_name, dim=embedding_dim, embedding_model=embedding_model,
+                                  host=MILVUS_HOST, port=MILVUS_PORT)
     metadata_strs = [json.dumps(chunk.get("metadata", {}), ensure_ascii=False) for chunk in chunks]
     store.insert(embeddings, texts, metadata_strs)
     store.flush()
 
     bm25 = get_bm25_index(collection_name)
-    bm25.build(texts)
+    bm25.build(bm25.documents + texts)
     bm25.save(collection_name)
 
     stats = store.get_stats()

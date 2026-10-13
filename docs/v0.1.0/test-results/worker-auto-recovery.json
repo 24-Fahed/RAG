@@ -1,0 +1,7 @@
+{
+  "scenario": "Worker unexpected process exit",
+  "passed": true,
+  "old_pid": 5010,
+  "new_pid": 5954,
+  "recovery_seconds": 1.3639002852141857
+}

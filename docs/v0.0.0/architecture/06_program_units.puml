@@ -1,0 +1,50 @@
+@startuml RAG_Program_Units
+!theme plain
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Program Units (Deployable)
+
+package "PU-1: Client Application" as pu1 {
+    package "Client Interface" {
+        rectangle "Query Client"
+        rectangle "Document Client"
+    }
+}
+
+package "PU-2: RAG Server" as pu2 {
+    package "API Gateway" {
+        rectangle "Query API"
+        rectangle "Indexing API"
+        rectangle "Task Router"
+    }
+    package "Knowledge Base" {
+        package "Document Processing" {
+            rectangle "Document Loader"
+            rectangle "Text Splitter"
+            rectangle "Metadata Extractor"
+        }
+        rectangle "Vector Storage\n(Milvus)"
+        rectangle "Sparse Index\n(BM25)"
+    }
+    package "Pipeline Orchestration\n(LangGraph)" {
+        rectangle "Indexing Pipeline"
+        rectangle "Retrieval Pipeline"
+    }
+}
+
+package "PU-3: Inference Worker" as pu3 {
+    package "ML Inference" {
+        rectangle "Classification\n(BERT)"
+        rectangle "Embedding\n(BGE-base)"
+        rectangle "Reranking\n(MonoT5 / BGE / RankLLaMA / TILDE)"
+        rectangle "Compression\n(Recomp / LLMLingua)"
+        rectangle "Generation\n(LLaMA-3-8B)"
+    }
+}
+
+pu1 ..> pu2
+pu2 ..> pu3
+
+@enduml

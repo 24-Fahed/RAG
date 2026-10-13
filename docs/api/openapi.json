@@ -1,0 +1,827 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "RAG Server API",
+    "description": "文档索引、检索与单轮回答接口。模型由请求逐项指定，无语言预设、默认模型组合或自动补全。模型标识与算法适配器分别配置。密钥由 Worker 本地凭证文件管理，不属于公开请求参数。",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/query": {
+      "post": {
+        "tags": [
+          "query"
+        ],
+        "summary": "检索知识库并返回整理后的证据",
+        "description": "执行可选分类、可选 HyDE、检索、重排、重打包及压缩。各阶段模型由请求显式指定，不提供语言预设或模型自动补全。未知字段返回 422。未启用阶段的参数不参与执行。",
+        "operationId": "query",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest",
+                "description": "JSON 请求体。Example Value 显示完整调用示例，Schema 显示字段及约束。"
+              },
+              "examples": {
+                "explicit_models": {
+                  "summary": "显式指定模型的 JSON 请求体",
+                  "description": "仅用于展示请求格式。服务不以此示例补全任何请求参数。",
+                  "value": {
+                    "query": "检索增强生成如何工作？",
+                    "collection": "knowledge_zh",
+                    "search_method": "hyde_with_hybrid",
+                    "embedding_model": "BAAI/bge-base-zh-v1.5",
+                    "embedding_dim": 768,
+                    "hyde_provider": "siliconflow",
+                    "hyde_model": "Qwen/Qwen2.5-7B-Instruct",
+                    "hyde_max_out_len": 200,
+                    "rerank_method": "bge",
+                    "rerank_model": "BAAI/bge-reranker-v2-m3",
+                    "top_k": 5,
+                    "repack_method": "sides",
+                    "compression_method": "llmlingua",
+                    "compression_model": "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
+                    "compression_ratio": 0.6,
+                    "hybrid_alpha": 0.3,
+                    "search_k": 100,
+                    "classification_enabled": false
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "字段缺失、未知字段、枚举或取值非法、阶段模型配置缺失，或向量空间不一致。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "检索或推理服务调用失败。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "推理 Worker HTTP 请求超时，包含排队等待时间。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "RAGAccessToken": []
+          }
+        ]
+      }
+    },
+    "/api/agent_query": {
+      "post": {
+        "tags": [
+          "query"
+        ],
+        "summary": "检索知识库并生成单轮回答",
+        "description": "接受与 query 相同的字段；额外要求 answer_model 非空，否则在执行检索前返回 422。检索结束后，将当前问题和 compressed_context 交给指定 SiliconFlow 模型组织回答。无会话记忆。",
+        "operationId": "agent_query",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest",
+                "description": "JSON 请求体。与 query 使用相同字段；本接口必须提供 answer_model。"
+              },
+              "examples": {
+                "explicit_models": {
+                  "summary": "检索并生成单轮回答的 JSON 请求体",
+                  "description": "最终回答模型必须单独指定；示例不作为服务默认配置。",
+                  "value": {
+                    "query": "检索增强生成如何工作？",
+                    "collection": "knowledge_zh",
+                    "search_method": "hyde_with_hybrid",
+                    "embedding_model": "BAAI/bge-base-zh-v1.5",
+                    "embedding_dim": 768,
+                    "hyde_provider": "siliconflow",
+                    "hyde_model": "Qwen/Qwen2.5-7B-Instruct",
+                    "hyde_max_out_len": 200,
+                    "rerank_method": "bge",
+                    "rerank_model": "BAAI/bge-reranker-v2-m3",
+                    "top_k": 5,
+                    "repack_method": "sides",
+                    "compression_method": "llmlingua",
+                    "compression_model": "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
+                    "compression_ratio": 0.6,
+                    "hybrid_alpha": 0.3,
+                    "search_k": 100,
+                    "classification_enabled": false,
+                    "answer_model": "Qwen/Qwen2.5-7B-Instruct",
+                    "answer_max_out_len": 1024
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentQueryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "字段缺失、未知字段、枚举或取值非法、阶段模型配置缺失，或向量空间不一致。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "检索或推理服务调用失败。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "推理 Worker HTTP 请求超时，包含排队等待时间。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "RAGAccessToken": []
+          }
+        ]
+      }
+    },
+    "/api/index": {
+      "post": {
+        "tags": [
+          "indexing"
+        ],
+        "summary": "上传文档并建立知识库索引",
+        "description": "接收 multipart/form-data 文件，执行分块、向量化、Milvus 写入和 BM25 索引构建。集合、模型和维度必须显式指定。追加索引必须与已有集合的向量模型及维度一致。",
+        "operationId": "index_documents",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_index_documents"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IndexResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "请求参数非法，或向量模型、维度与集合不一致。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "存储或推理服务调用失败；索引接口的上游 HTTP 超时也使用此状态码。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "RAGAccessToken": []
+          }
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "获取 Server 进程状态",
+        "description": "仅表示 Server 进程可响应，不代表存储、Worker 或模型已就绪。",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Health"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "RAGAccessToken": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgentQueryResponse": {
+        "properties": {
+          "retrieved_documents": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentResult"
+            },
+            "type": "array",
+            "title": "Retrieved Documents",
+            "description": "重排前的检索结果，最多 top_k 条。"
+          },
+          "reranked_documents": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentResult"
+            },
+            "type": "array",
+            "title": "Reranked Documents",
+            "description": "重排后的文档，最多 top_k 条。"
+          },
+          "repacked_context": {
+            "type": "string",
+            "title": "Repacked Context",
+            "description": "按 repack_method 重排并拼接的上下文；无证据时为空字符串。",
+            "default": ""
+          },
+          "compressed_context": {
+            "type": "string",
+            "title": "Compressed Context",
+            "description": "压缩后的证据文本，供最终回答使用。",
+            "default": ""
+          },
+          "hyde_document": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hyde Document",
+            "description": "HyDE 生成的假设文档；未执行时为 null，不作为回答证据。"
+          },
+          "classification_label": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Classification Label",
+            "description": "0 表示跳过检索，1 表示继续检索；分类关闭时固定为 1，属于编排策略而非预测。"
+          },
+          "answer": {
+            "type": "string",
+            "title": "Answer",
+            "description": "根据当前问题和压缩证据生成的单轮回答。空证据仍进入回答阶段；不保存对话历史。"
+          }
+        },
+        "type": "object",
+        "required": [
+          "answer"
+        ],
+        "title": "AgentQueryResponse"
+      },
+      "Body_index_documents": {
+        "properties": {
+          "files": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Files",
+            "description": "待上传文档；多个文件重复使用 files 字段。"
+          },
+          "collection": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "title": "Collection",
+            "description": "目标集合名；必须显式指定。"
+          },
+          "chunk_size": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Chunk Size",
+            "description": "文档分块长度上限，按当前分块器的中英文词项规则计数。",
+            "default": 512
+          },
+          "chunk_overlap": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Chunk Overlap",
+            "description": "相邻分块重叠长度，必须小于 chunk_size。",
+            "default": 20
+          },
+          "embedding_model": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Embedding Model",
+            "description": "Embedding 模型 ID 或 Worker 本地路径；无默认模型。"
+          },
+          "embedding_dim": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Embedding Dim",
+            "description": "模型实际输出维度，用于校验向量空间一致性。"
+          }
+        },
+        "type": "object",
+        "required": [
+          "files",
+          "collection",
+          "embedding_model",
+          "embedding_dim"
+        ],
+        "title": "Body_index_documents"
+      },
+      "DocumentResult": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "文档分块正文。"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score",
+            "description": "当前检索或重排阶段的分数；不同模型的分数不可直接比较。"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata",
+            "description": "文档元数据；具体字段由索引来源决定。"
+          }
+        },
+        "type": "object",
+        "required": [
+          "content",
+          "score"
+        ],
+        "title": "DocumentResult"
+      },
+      "IndexResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "成功时为 ok。"
+          },
+          "collection": {
+            "type": "string",
+            "title": "Collection",
+            "description": "写入的集合名称。"
+          },
+          "document_count": {
+            "type": "integer",
+            "title": "Document Count",
+            "description": "索引完成后集合的文档分块总数；不是本次上传文件数。"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "本次索引处理说明。",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "collection",
+          "document_count"
+        ],
+        "title": "IndexResponse"
+      },
+      "QueryRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Query",
+            "description": "用户问题。必须包含非空白字符。"
+          },
+          "collection": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "title": "Collection",
+            "description": "目标知识库集合名。必须显式指定；向量检索要求与建库时使用相同的模型和维度。"
+          },
+          "search_method": {
+            "type": "string",
+            "enum": [
+              "original",
+              "hyde",
+              "hybrid",
+              "hyde_with_hybrid",
+              "bm25"
+            ],
+            "title": "Search Method",
+            "description": "检索策略：original 为原问题向量检索；hyde 为扩展问题向量检索；hybrid 为原问题向量与 BM25 融合；hyde_with_hybrid 为 HyDE 向量与原问题 BM25 融合；bm25 为纯稀疏检索。"
+          },
+          "embedding_model": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embedding Model",
+            "description": "Embedding 模型 ID 或 Worker 本地路径。除 bm25 外必填，无默认模型；bm25 不使用此字段。"
+          },
+          "embedding_dim": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embedding Dim",
+            "description": "Embedding 实际输出维度。除 bm25 外必填；用于一致性校验，不裁剪或转换向量。"
+          },
+          "hyde_provider": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "local",
+                  "siliconflow"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hyde Provider",
+            "description": "HyDE 调用方式。local 在 Worker 执行；siliconflow 调用远程服务。hyde 和 hyde_with_hybrid 策略必填。"
+          },
+          "hyde_model": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hyde Model",
+            "description": "HyDE 模型 ID 或 Worker 本地路径。hyde 和 hyde_with_hybrid 策略必填；须与 hyde_provider 相容。"
+          },
+          "hyde_max_out_len": {
+            "type": "integer",
+            "maximum": 8192.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Hyde Max Out Len",
+            "description": "本次 HyDE 最大生成 token 数；仅在 HyDE 阶段使用，仍受模型或服务商限制。",
+            "default": 100
+          },
+          "rerank_method": {
+            "type": "string",
+            "enum": [
+              "monot5",
+              "bge",
+              "tilde",
+              "rankllama"
+            ],
+            "title": "Rerank Method",
+            "description": "重排适配器名称，决定推理实现；须与 rerank_model 的模型架构相容。"
+          },
+          "rerank_model": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Rerank Model",
+            "description": "重排模型 ID 或 Worker 本地路径。必填，无默认模型；不接受以适配器名称代替模型标识。"
+          },
+          "top_k": {
+            "type": "integer",
+            "maximum": 1000.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Top K",
+            "description": "最终保留文档数上限，不得大于 search_k。",
+            "default": 10
+          },
+          "repack_method": {
+            "type": "string",
+            "enum": [
+              "sides",
+              "compact",
+              "compact_reverse"
+            ],
+            "title": "Repack Method",
+            "description": "上下文重排方法：compact 按重排结果顺序拼接；compact_reverse 逆序拼接；sides 交替取首尾文档拼接。",
+            "default": "sides"
+          },
+          "compression_method": {
+            "type": "string",
+            "enum": [
+              "recomp_extractive",
+              "recomp_abstractive",
+              "llmlingua"
+            ],
+            "title": "Compression Method",
+            "description": "压缩适配器名称，决定推理实现；须与 compression_model 相容。"
+          },
+          "compression_model": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Compression Model",
+            "description": "压缩模型 ID 或 Worker 本地路径。必填，无默认模型。"
+          },
+          "compression_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Compression Ratio",
+            "description": "目标保留比例。实际长度取决于压缩适配器，不保证精确比例。",
+            "default": 0.6
+          },
+          "hybrid_alpha": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Hybrid Alpha",
+            "description": "混合检索中 BM25 的融合权重；向量权重为 1-alpha。仅 hybrid 和 hyde_with_hybrid 使用。",
+            "default": 0.3
+          },
+          "search_k": {
+            "type": "integer",
+            "maximum": 10000.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Search K",
+            "description": "各检索分支的候选数量上限；混合检索融合后保留至多该数量，再执行重排。",
+            "default": 100
+          },
+          "classification_enabled": {
+            "type": "boolean",
+            "title": "Classification Enabled",
+            "description": "是否执行检索必要性分类。关闭时直接继续检索；开启时必须提供分类模型及微调权重。",
+            "default": false
+          },
+          "classification_model": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Classification Model",
+            "description": "分类基础模型 ID 或 Worker 本地路径。启用分类时必填，无默认模型。"
+          },
+          "classification_weights_path": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Classification Weights Path",
+            "description": "检索必要性分类的微调权重路径，位于 Worker 文件系统。启用分类时必填。"
+          },
+          "answer_model": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Model",
+            "description": "最终回答的 SiliconFlow 模型 ID。agent_query 必填；query 接受此字段但不执行回答阶段。无默认模型，不继承 hyde_model。"
+          },
+          "answer_max_out_len": {
+            "type": "integer",
+            "maximum": 8192.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Answer Max Out Len",
+            "description": "最终回答最大生成 token 数，仅 agent_query 使用；仍受服务商限制。",
+            "default": 1024
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query",
+          "collection",
+          "search_method",
+          "rerank_method",
+          "rerank_model",
+          "compression_method",
+          "compression_model"
+        ],
+        "title": "QueryRequest"
+      },
+      "QueryResponse": {
+        "properties": {
+          "retrieved_documents": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentResult"
+            },
+            "type": "array",
+            "title": "Retrieved Documents",
+            "description": "重排前的检索结果，最多 top_k 条。"
+          },
+          "reranked_documents": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentResult"
+            },
+            "type": "array",
+            "title": "Reranked Documents",
+            "description": "重排后的文档，最多 top_k 条。"
+          },
+          "repacked_context": {
+            "type": "string",
+            "title": "Repacked Context",
+            "description": "按 repack_method 重排并拼接的上下文；无证据时为空字符串。",
+            "default": ""
+          },
+          "compressed_context": {
+            "type": "string",
+            "title": "Compressed Context",
+            "description": "压缩后的证据文本，供最终回答使用。",
+            "default": ""
+          },
+          "hyde_document": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hyde Document",
+            "description": "HyDE 生成的假设文档；未执行时为 null，不作为回答证据。"
+          },
+          "classification_label": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Classification Label",
+            "description": "0 表示跳过检索，1 表示继续检索；分类关闭时固定为 1，属于编排策略而非预测。"
+          }
+        },
+        "type": "object",
+        "title": "QueryResponse"
+      },
+      "RequestError": {
+        "properties": {
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Detail",
+            "description": "业务校验失败时为字符串；请求结构校验失败时为错误数组，包含 loc、msg、type 等字段。"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "RequestError"
+      },
+      "ServiceError": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "description": "服务错误说明。"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ServiceError"
+      }
+    },
+    "securitySchemes": {
+      "RAGAccessToken": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "query",
+      "description": "知识库检索与无记忆单轮回答。"
+    },
+    {
+      "name": "indexing",
+      "description": "文档上传与知识库索引。"
+    },
+    {
+      "name": "health",
+      "description": "进程健康状态。"
+    }
+  ]
+}

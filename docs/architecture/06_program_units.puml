@@ -1,5 +1,6 @@
 @startuml RAG_Program_Units
 !theme plain
+!pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
@@ -16,35 +17,43 @@ package "PU-1: Client Application" as pu1 {
 package "PU-2: RAG Server" as pu2 {
     package "API Gateway" {
         rectangle "Query API"
+        rectangle "Agent Query API"
         rectangle "Indexing API"
-        rectangle "Task Router"
     }
     package "Knowledge Base" {
         package "Document Processing" {
             rectangle "Document Loader"
-            rectangle "Text Splitter"
+            rectangle "Text Splitter\n(Chinese / English)"
             rectangle "Metadata Extractor"
         }
-        rectangle "Vector Storage\n(Milvus)"
-        rectangle "Sparse Index\n(BM25)"
+        rectangle "Vector Storage\n(Milvus, model + dimension identity)"
+        rectangle "Sparse Index\n(BM25, Chinese / English)"
     }
-    package "Pipeline Orchestration\n(LangGraph)" {
+    package "Pipeline Orchestration\n(RAG Server)" {
         rectangle "Indexing Pipeline"
         rectangle "Retrieval Pipeline"
+        rectangle "Agent Query Pipeline"
     }
 }
 
 package "PU-3: Inference Worker" as pu3 {
     package "ML Inference" {
-        rectangle "Classification\n(BERT)"
-        rectangle "Embedding\n(BGE-base)"
+        package "Model Runtime" {
+            rectangle "Model Registry\n(adapter + model + weights + configuration)"
+            rectangle "Initialization Queue\n(global FIFO, one loader)"
+            rectangle "Inference Queues\n(one FIFO per model instance)"
+        }
+
+        rectangle "Classification\n(multilingual BERT + fine-tuned weights)"
+        rectangle "Embedding\n(BGE-base-zh / BGE-base-en)"
         rectangle "Reranking\n(MonoT5 / BGE / RankLLaMA / TILDE)"
         rectangle "Compression\n(Recomp / LLMLingua)"
-        rectangle "Generation\n(LLaMA-3-8B)"
+        rectangle "Local Generation\n(LLaMA-3-8B, HyDE)"
+        rectangle "Remote Generation Adapter\n(SiliconFlow Qwen, HyDE / Answer)"
     }
 }
 
-pu1 ..> pu2
-pu2 ..> pu3
+pu1 ..> pu2 : RAG HTTP API
+pu2 ..> pu3 : Inference HTTP API
 
 @enduml

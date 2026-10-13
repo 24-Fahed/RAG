@@ -13,50 +13,15 @@ router = APIRouter()
 MOCK_EMBEDDING_DIM = 768
 
 
-# ---------- 数据模型 ----------
-
-class ClassifyRequest(BaseModel):
-    query: str
-
-class ClassifyResponse(BaseModel):
-    label: int
-
-class EmbedRequest(BaseModel):
-    texts: list[str]
-
-class EmbedResponse(BaseModel):
-    embeddings: list[list[float]]
-    dim: int
-
-class Document(BaseModel):
-    content: str
-    score: float = 0.0
-    metadata: dict = {}
-
-class RerankRequest(BaseModel):
-    query: str
-    documents: list[Document]
-    model: str = "monot5"
-    top_k: int = 10
-
-class RerankResponse(BaseModel):
-    documents: list[Document]
-
-class CompressRequest(BaseModel):
-    query: str
-    context: str
-    method: str = "recomp_extractive"
-    ratio: float = 0.6
-
-class CompressResponse(BaseModel):
-    compressed: str
-
-class HyDERequest(BaseModel):
-    query: str
-
-class HyDEResponse(BaseModel):
-    hypothetical_document: str
-
+from inference.schemas import (
+    ClassifyRequest, EmbedRequest, RerankRequest, CompressRequest,
+    HyDERequest, AnswerRequest, Document,
+)
+from inference.routers.classify import ClassifyResponse
+from inference.routers.embed import EmbedResponse
+from inference.routers.rerank import RerankResponse
+from inference.routers.compress import CompressResponse
+from inference.routers.generate import HyDEResponse
 
 # ---------- 接口端点 ----------
 
@@ -69,10 +34,10 @@ def classify(req: ClassifyRequest):
 def embed(req: EmbedRequest):
     embeddings = []
     for _ in req.texts:
-        vec = [random.gauss(0, 1) for _ in range(MOCK_EMBEDDING_DIM)]
+        vec = [random.gauss(0, 1) for _ in range(req.dim)]
         norm = sum(x * x for x in vec) ** 0.5
         embeddings.append([x / norm for x in vec])
-    return EmbedResponse(embeddings=embeddings, dim=MOCK_EMBEDDING_DIM)
+    return EmbedResponse(embeddings=embeddings, dim=req.dim)
 
 
 @router.post("/rerank", response_model=RerankResponse)
@@ -100,3 +65,8 @@ def hyde(req: HyDERequest):
     return HyDEResponse(
         hypothetical_document=f"Retrieval-augmented retrieval expands {req.query} with a short hypothetical passage to improve document search quality."
     )
+
+
+@router.post("/answer")
+def answer(req: AnswerRequest):
+    return {"answer": f"[MOCK] {req.query}: {req.context}"}

@@ -1,38 +1,47 @@
 @startuml RAG_Physical_Architecture
 !theme plain
+!pragma layout smetana
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam defaultFontSize 12
 
 title RAG Physical Architecture
 
-node "User PC\nWindows / 32GB RAM\n(Client Machine)" as user {
+node "User PC\n(Client Machine)" as user {
     rectangle "PU-1\nClient Application" as pu1
 }
 
-node "Public Server\nLinux / 2GB RAM / 20GB Disk\n(Public IP)" as server {
+node "Public Server\nLinux (Public IP)" as server {
     rectangle "PU-2\nRAG Server\n(FastAPI)" as pu2
     rectangle "Milvus Standalone\n(Docker, port 19530)" as milvus
+    rectangle "BM25 Index\n(local persistent files)" as bm25
     rectangle "Etcd\n(Docker)" as etcd
     rectangle "MinIO\n(Docker)" as minio
 }
 
-node "GPU Server\n(AutoDL)\nRTX 3090/4090 24GB VRAM\n32GB RAM / 50GB Disk" as gpu {
-    rectangle "PU-3\nInference Worker\n(FastAPI / gRPC)" as pu3
-    rectangle "Model Storage\nLLaMA-3-8B + BERT + BGE\n+ MonoT5 + Recomp (~20GB)" as models
+node "GPU Server\n(AutoDL)\n32GB VRAM\nModel cache on local disk" as gpu {
+    rectangle "PU-3\nInference Worker\n(FastAPI, single process)" as pu3
+    rectangle "Model Storage\nLLaMA-3-8B + multilingual BERT\nBGE-zh / BGE-en + Rerankers\nRecomp + LLMLingua-2" as models
 }
 
-user ..> server : HTTPS
-server ..> gpu : gRPC / HTTP
+user ..> server : HTTP
+server ..> gpu : HTTP over SSH tunnel
+
+node "SiliconFlow\n(External Model Service)" as cloud {
+    rectangle "Qwen2.5-7B-Instruct\nChat Completions API" as qwen
+}
+
+pu3 ..> qwen : HTTPS\nHyDE / single-turn answer
 
 note right of gpu
-  **GPU Selection Guide:**
-  LLaMA-3-8B fp16 = ~16GB VRAM
-  + BERT + BGE + MonoT5 + Recomp = ~3GB
-  --
-  Recommended: RTX 3090 / 4090 (24GB VRAM)
-  Budget option: RTX 4080 (16GB) with int8 quantization
-  System RAM: 32GB (load models before GPU transfer)
+  Local models load through one global FIFO queue.
+  Calls to the same model instance are serialized.
+  Different loaded models may run concurrently.
+  Qwen weights are hosted by SiliconFlow.
+  Hardware-aware admission control is deferred to v1.0.0.
 end note
+
+milvus ..> etcd : metadata
+milvus ..> minio : object storage
 
 @enduml

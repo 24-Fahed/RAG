@@ -1,0 +1,46 @@
+@startuml RAG_Logical_Architecture
+!theme plain
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Logical Architecture
+
+package "RAG System" {
+
+    package "Client Interface" {
+        rectangle "Query Client"
+        rectangle "Document Client"
+    }
+
+    package "API Gateway" {
+        rectangle "Query API"
+        rectangle "Indexing API"
+        rectangle "Task Router"
+    }
+
+    package "Knowledge Base" {
+        package "Document Processing" {
+            rectangle "Document Loader"
+            rectangle "Text Splitter"
+            rectangle "Metadata Extractor"
+        }
+        rectangle "Vector Storage\n(Milvus, 768-dim)"
+        rectangle "Sparse Index\n(BM25 / Lucene)"
+    }
+
+    package "ML Inference" {
+        rectangle "Classification\n(BERT)"
+        rectangle "Embedding\n(BGE-base)"
+        rectangle "Reranking\n(MonoT5 / BGE / RankLLaMA / TILDE)"
+        rectangle "Compression\n(Recomp / LLMLingua)"
+        rectangle "Generation\n(LLaMA-3-8B)"
+    }
+
+    package "Pipeline Orchestration\n(LangGraph)" {
+        rectangle "Indexing Pipeline\n(load -> split -> metadata -> embed -> store)"
+        rectangle "Retrieval Pipeline\n(classify -> retrieve -> rerank -> repack -> compress -> generate)"
+    }
+}
+
+@enduml

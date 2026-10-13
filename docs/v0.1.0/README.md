@@ -1,86 +1,80 @@
-# v0.1.0 Notes
+# RAG v0.1.0
 
-## Known Issues
+## 版本范围
 
-### 1. Model compatibility
+v0.1.0 提供文档索引、中文及英文检索、按请求配置模型、模型加载与推理调度，以及基于检索证据的单轮回答。版本保留 Client、RAG Server、Inference Worker 三个可部署程序单元。
 
-`llama3-8b-ragga` is an instruction-tuned chat model. After downgrading to `transformers==4.48.2`, the `apply_chat_template(..., return_tensors="pt")` path may return a tensor instead of a `BatchEncoding` object. This can cause compatibility issues if the code assumes `inputs["input_ids"]` is always available.
+本目录为该版本的完整设计文档。`architecture/` 中的六份架构定义替代原 `docs/architecture/` 对应视图；原目录保留为历史基线。架构描述设计结构，实施与验收状态另行记录，不混入架构元素。
 
-Reason:
-- Different `transformers` versions return different input container types for chat-template generation.
-- This release is focused on restoring the main retrieval and inference chain first.
+## 架构变更审核
 
-Decision for this version:
-- Record the compatibility risk.
-- Leave broader compatibility hardening to the next version.
+[架构修改与重构清单](方案.md#architecture-changes) 集中列出相对提交 `71ce0fa` 的原结构、新结构、修改原因、影响范围、迁移要求及对应架构视图。
 
-### 2. Empty answer output
+## 文档目录
 
-`llama3-8b-ragga` may return an empty answer when it is prompted as a plain completion model.
+| 文档 | 内容 |
+| --- | --- |
+| [技术方案](方案.md) | 原始需求追踪、设计决策、模块职责、接口及兼容性影响 |
+| [架构定义](architecture/README.md) | 逻辑架构、程序单元、物理架构及三种部署模式；PlantUML 源码与渲染结果 |
+| [接口说明](接口说明.md) | OpenAPI 规范、IDE 预览工具及在线文档入口 |
+| [测试方案](测试方案.md) | local、staging、production 三个部署阶段的测试设计及准入条件 |
+| [本地 HTTP 测试记录](test-results/local-http.json) | 独立进程 HTTP/BM25 局部链路的原始结果 |
+| [部署测试记录](部署测试记录.md) | 服务器部署位置、真实模型联调结果、重启验证及剩余验收项 |
 
-Reason:
-- This model is a fine-tuned instruct/chat model, not a plain causal completion model.
-- A prompt like `Context ... Question ... Answer:` can lead to `generated_tokens=0`, even when retrieval, reranking, and compression all succeed.
+PR 文档暂不纳入本轮交付。
 
-Decision for this version:
-- Record the issue and keep diagnostic logs.
-- Move full prompt-format refinement and output stabilization to the next version.
+## 系统组成
 
-### 3. Reranking can suppress relevant retrieved evidence
+| 程序单元 | 部署职责 | 主要实现 |
+| --- | --- | --- |
+| PU-1 Client Application | 上传文档，提交查询，展示结果 | `client/`；新增模型组合亦可直接通过 HTTP 调用 |
+| PU-2 RAG Server | 参数解析、索引编排、检索编排、单轮回答编排；访问 Milvus 和 BM25 | `server/`、`rag_langgraph/indexing/`、`rag_langgraph/nodes/repacking.py` |
+| PU-3 Inference Worker | 按参数选择模型，统一管理实例、加载队列和调用队列；调用 SiliconFlow | `inference/`、`rag_langgraph/models/` |
 
-The current staging runs show that the retrieval layer can surface useful candidates, but the reranking stage may still push obviously relevant evidence down or replace it with only loosely related passages.
+知识库使用 Milvus 保存向量，使用本地 BM25 索引执行稀疏检索。中文与英文 embedding 对应不同向量空间，索引和查询必须使用相同模型。Qwen 由 SiliconFlow 提供服务，不在 GPU 服务器加载其权重。
 
-Observed pattern:
-- `retrieved_documents` can already contain domain-relevant papers.
-- `reranked_documents` may over-weight broad statistical language, country names, or generic biomedical patterns instead of preserving the strongest entity match.
-- `repacked_context` and `compressed_context` then inherit that ranking error, because both stages are downstream of reranking.
+## 处理流程
 
-Concrete examples from staging:
+- **索引：** 文档读取 → 中英文分块 → 指定模型向量化 → Milvus 写入及 BM25 构建。
+- **query：** 可选分类 → 可选 HyDE → 检索与融合 → 重排序 → 重打包 → 压缩 → 返回检索结果。
+- **agent_query：** 执行相同检索流程 → 将问题与压缩证据发送给 Qwen → 返回检索结果及 `answer`。不保存会话历史。
 
-1. Query: `1 in 5 million in UK have abnormal PrP positivity.`
-- Retrieval already surfaced clearly relevant prion documents such as:
-  - `Biochemical Properties of Highly Neuroinvasive Prion Strains`
-  - `Rapid and Sensitive RT-QuIC Detection of Human Creutzfeldt-Jakob Disease`
-  - `Estimating prion concentration in fluids and tissues by quantitative PMCA`
-- But reranking promoted less relevant material about:
-  - patient survey reliability in England
-  - BMI in UK adults
-  - unrelated cancer papers
-- This suggests the reranker is being distracted by surface signals like `UK`, prevalence-style numbers, and positivity/rate language instead of prioritizing the `PrP / prion` entity anchor.
+调用方逐项显式指定模型及对应适配器；接口不提供语言预设或默认模型组合。需求指定的模型清单见[技术方案 §2](方案.md#r2)。
 
-2. Query: `5'-nucleotidase metabolizes 6MP.`
-- Retrieval surfaced strong entity matches immediately:
-  - `High Km soluble 5'-nucleotidase from human placenta`
-  - `Prognostic importance of 6-mercaptopurine dose intensity in acute lymphoblastic leukemia`
-- Reranking kept these documents near the top.
-- This contrast suggests the current reranker behaves more reliably when the query contains uncommon, highly specific entity anchors.
+## 部署与运行
 
-Impact:
-- End-to-end pipeline health can still look good in smoke tests.
-- But factual claim-style quality degrades when reranking distorts an otherwise acceptable candidate set.
+| 模式 | 程序分布 | 模型运行方式 | 配置 |
+| --- | --- | --- | --- |
+| local | 开发机运行三个 PU 及存储服务 | Mock 推理，不调用真实 Qwen | 各程序 `config/local.yaml` |
+| staging | 客户端、公网 Server、GPU Worker 分布部署 | 真实本地模型及 Qwen API，SSH 隧道通信 | 各程序 `config/staging.yaml` |
+| production | 与 staging 相同的物理分工 | 最终配置、持久隧道、运行维护策略 | 各程序 `config/production.yaml` |
 
-Working hypothesis:
-- The dominant quality issue in these examples is not indexing failure.
-- It is also not obviously a HyDE failure, because relevant documents are often present in the retrieved set.
-- The most likely weak point is reranking behavior on claim-style biomedical queries, especially those containing:
-  - ratios or prevalence language
-  - country names
-  - short factual assertions
-  - entity + statistic combinations
+在仓库根目录、已安装对应依赖且 Milvus 可用的环境中启动本地服务：
 
-Next-step focus:
-- Compare rerankers (`monot5` vs `bge`) on the same claim set.
-- Inspect whether HyDE expansion is adding noisy epidemiology language for factual claims.
-- Measure not only retrieved hit rate, but also reranked hit rate and compressed-context retention.
+```bash
+python -m inference.main --mode local
+python -m server.main --mode local
+```
 
-## Why keep these items for the next version
+两个命令分别运行于独立终端。local 的 Worker 端口为 8000，Server 端口为 8001。通过 `/api/index` 建立集合后，向 `/api/query` 或 `/api/agent_query` 提交请求。API 定义见[OpenAPI 规范](api/openapi.json)，访问方式见[接口文档入口](接口说明.md)。
 
-This version is intended to stabilize the deployment chain first:
-- server to inference connectivity
-- model preload readiness
-- indexing
-- retrieval
-- reranking
-- compression
+真实 Worker 限定为单进程，默认按需加载；`RAG_PRELOAD_MODELS=1` 开启预热。真实 Qwen 调用从 `inference/config/secrets.yaml` 的 `siliconflow.api_key` 读取密钥。模型下载默认使用国内镜像，可通过 `HF_ENDPOINT` 切换官方地址。基础 multilingual BERT 不含检索分类的微调权重，分类功能默认关闭。
 
-Generator prompt refinement and broader cross-version compatibility cleanup will be handled in the next release after the current chain is stable and reproducible.
+## 访问鉴权
+
+公开业务接口和健康检查使用 Bearer JWT 鉴权；密钥以文件保存。Token 签发、CLI `--token-file` 和 Swagger Authorize 使用方法见[接口说明](接口说明.md#bearer-token-鉴权)。
+
+## 当前验证状态
+
+| 验证项 | 状态 |
+| --- | --- |
+| staging / production 主检查 | 各 29 项通过 |
+| 公网客户端问答 | 中英文均通过 |
+| 数据保留及自动恢复 | 手动重启、进程异常退出恢复后的查询均通过 |
+| 真实模型调度 | 加载串行、FIFO 调用、跨模型并行及 Qwen 共享队列验证通过 |
+| 检索质量 | 中英文各 20 个事实问题的检索、重排及压缩均保留目标事实 |
+| 持续运行 | 约 18 分 53 秒，621 次请求，1 次 502；按用户要求停止 |
+| 已知运行问题 | Qwen 偶发超时；一次普通检索 502 原因未确定 |
+| 分类模型 | 暂缓；本地测试及取消项目不再继续 |
+
+服务已部署至公网服务器和 GPU 服务器，运行 production 配置。代码仍在本地 `feature/chinese-query-model-routing` 工作区，未提交、未合并；PR 暂不编写。完整证据与范围见[部署测试记录](部署测试记录.md)。

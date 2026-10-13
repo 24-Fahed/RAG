@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "scenario": "server unexpected process exit",
+      "passed": true,
+      "old_pid": 3938790,
+      "new_pid": 3956041,
+      "recovery_seconds": 1.7544145369902253
+    },
+    {
+      "scenario": "tunnel unexpected process exit",
+      "passed": true,
+      "old_pid": 3938312,
+      "new_pid": 3956182,
+      "recovery_seconds": 6.1570074474439025
+    }
+  ]
+}

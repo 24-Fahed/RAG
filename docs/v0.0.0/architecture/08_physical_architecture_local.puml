@@ -1,0 +1,37 @@
+@startuml RAG_Physical_Architecture_Local
+!theme plain
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontSize 12
+
+title RAG Physical Architecture - Stage 1: Local Testing
+
+legend right
+  **Stage 1: Local Testing**
+  All services on one machine (User PC).
+  No GPU, no real models. Mock inference only.
+  Validate communication links and code logic.
+end legend
+
+node "User PC\nWindows / 32GB RAM\n(Development Machine)" as user {
+    rectangle "PU-1\nClient Application\n(client/config/local.yaml)" as pu1
+    rectangle "PU-2\nRAG Server\n(FastAPI, port 8001)\n(server/config/local.yaml)" as pu2
+    rectangle "Milvus Standalone\n(Docker, port 19530)" as milvus
+    rectangle "BM25 Index\n(./bm25_data/)" as bm25
+    rectangle "PU-3\nInference Worker\n(FastAPI, port 8000)\n(inference/config/local.yaml)\n**MOCK MODE**" as pu3
+}
+
+pu1 ..> pu2 : HTTP\n:8001/api/query
+pu2 ..> pu3 : HTTP\n:8000/inference/*
+pu2 ..> milvus : gRPC\n:19530
+pu2 ..> bm25 : local file
+
+note bottom of pu3
+  **Mock Mode:**
+  - No GPU required
+  - No ML models loaded
+  - Returns simulated data
+  - All endpoints functional
+end note
+
+@enduml

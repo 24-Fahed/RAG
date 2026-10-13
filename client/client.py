@@ -2,6 +2,7 @@
 
 import argparse
 import os
+from pathlib import Path
 
 import httpx
 
@@ -37,9 +38,18 @@ def _print_documents(title: str, documents: list[dict], *, limit: int = 5) -> No
         print(f"      {_preview(doc.get('content', ''))}")
 
 
-def query_single(query: str, **kwargs) -> None:
+def _auth_headers(token_file: str | None) -> dict[str, str]:
+    if not token_file:
+        return {}
+    token = Path(token_file).read_text(encoding="utf-8").strip()
+    if not token or any(c.isspace() for c in token):
+        raise ValueError("Token file must contain one nonempty Bearer token")
+    return {"Authorization": f"Bearer {token}"}
+
+
+def query_single(query: str, *, token_file: str | None = None, **kwargs) -> None:
     """Send a single query to the RAG knowledge base service."""
-    resp = httpx.post(f"{RAG_SERVER_URL}/api/query", json={"query": query, **kwargs}, timeout=120.0)
+    resp = httpx.post(f"{RAG_SERVER_URL}/api/query", json={"query": query, **kwargs}, headers=_auth_headers(token_file), timeout=120.0)
     resp.raise_for_status()
     data = resp.json()
 
@@ -104,9 +114,12 @@ def interactive_mode(**kwargs) -> None:
 
 def index_documents(
     data_path: str,
-    collection: str = "rag_collection",
+    collection: str,
+    embedding_model: str,
+    embedding_dim: int,
     chunk_size: int = 512,
     chunk_overlap: int = 20,
+    token_file: str | None = None,
 ) -> None:
     """Upload files to the RAG knowledge base for indexing."""
     if not os.path.exists(data_path):
@@ -130,8 +143,11 @@ def index_documents(
         resp = httpx.post(
             f"{RAG_SERVER_URL}/api/index",
             files=[("files", f) for f in files],
+            headers=_auth_headers(token_file),
             data={
                 "collection": collection,
+                "embedding_model": embedding_model,
+                "embedding_dim": embedding_dim,
                 "chunk_size": chunk_size,
                 "chunk_overlap": chunk_overlap,
             },
@@ -151,24 +167,35 @@ def index_documents(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="RAG knowledge base client", parents=[_pre_parser])
+    parser.add_argument("--token-file", required=True, help="File containing the Bearer token")
     sub = parser.add_subparsers(dest="command")
 
     q = sub.add_parser("query", help="Query the RAG knowledge base")
     q.add_argument("query", nargs="?", default=None, help="Query text")
     q.add_argument("--interactive", "-i", action="store_true", help="Interactive mode")
-    q.add_argument("--collection", default=None, help="Collection name")
+    q.add_argument("--collection", required=True, help="Collection name")
     q.add_argument(
         "--search-method",
-        default="hyde_with_hybrid",
+        required=True,
         choices=["original", "hyde", "hybrid", "hyde_with_hybrid", "bm25"],
         help="Retrieval method",
     )
     q.add_argument(
-        "--rerank-model",
-        default="monot5",
+        "--rerank-method",
+        required=True,
         choices=["monot5", "bge", "tilde", "rankllama"],
         help="Reranker model",
     )
+    q.add_argument("--rerank-model", required=True, help="Model ID or Worker path")
+    q.add_argument("--embedding-model")
+    q.add_argument("--embedding-dim", type=int)
+    q.add_argument("--hyde-provider", choices=["local", "siliconflow"])
+    q.add_argument("--hyde-model")
+    q.add_argument("--hyde-max-out-len", type=int, default=100)
+    q.add_argument("--compression-model", required=True)
+    q.add_argument("--classification-enabled", action="store_true")
+    q.add_argument("--classification-model")
+    q.add_argument("--classification-weights-path")
     q.add_argument("--top-k", type=int, default=10, help="Number of final documents to keep")
     q.add_argument(
         "--repack-method",
@@ -178,7 +205,7 @@ def main() -> None:
     )
     q.add_argument(
         "--compression-method",
-        default="recomp_extractive",
+        required=True,
         choices=["recomp_extractive", "recomp_abstractive", "llmlingua"],
         help="Context compression method",
     )
@@ -188,7 +215,9 @@ def main() -> None:
 
     idx = sub.add_parser("index", help="Upload documents into the knowledge base")
     idx.add_argument("path", help="File or directory path")
-    idx.add_argument("--collection", default="rag_collection")
+    idx.add_argument("--collection", required=True)
+    idx.add_argument("--embedding-model", required=True)
+    idx.add_argument("--embedding-dim", type=int, required=True)
     idx.add_argument("--chunk-size", type=int, default=512)
     idx.add_argument("--chunk-overlap", type=int, default=20)
 
@@ -196,9 +225,20 @@ def main() -> None:
 
     if args.command == "query":
         query_kwargs = {
+            "token_file": args.token_file,
             "collection": args.collection,
             "search_method": args.search_method,
+            "rerank_method": args.rerank_method,
             "rerank_model": args.rerank_model,
+            "embedding_model": args.embedding_model,
+            "embedding_dim": args.embedding_dim,
+            "hyde_provider": args.hyde_provider,
+            "hyde_model": args.hyde_model,
+            "hyde_max_out_len": args.hyde_max_out_len,
+            "compression_model": args.compression_model,
+            "classification_enabled": args.classification_enabled,
+            "classification_model": args.classification_model,
+            "classification_weights_path": args.classification_weights_path,
             "top_k": args.top_k,
             "repack_method": args.repack_method,
             "compression_method": args.compression_method,
@@ -213,7 +253,7 @@ def main() -> None:
         else:
             query_single(args.query, **query_kwargs)
     elif args.command == "index":
-        index_documents(args.path, args.collection, args.chunk_size, args.chunk_overlap)
+        index_documents(args.path, args.collection, args.embedding_model, args.embedding_dim, args.chunk_size, args.chunk_overlap, token_file=args.token_file)
     else:
         parser.print_help()
 

@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "name": "embedding identity actually changes vector",
+      "passed": true,
+      "difference_l1": 400.28635680745356
+    },
+    {
+      "name": "switching back restores the same embedding output",
+      "passed": true
+    },
+    {
+      "name": "cached LLMLingua respects per-request compression ratio",
+      "passed": true,
+      "lengths": [
+        635,
+        2255,
+        635
+      ]
+    },
+    {
+      "name": "compression ratio does not leak between requests",
+      "passed": true
+    }
+  ],
+  "passed": 4,
+  "failed": 0
+}

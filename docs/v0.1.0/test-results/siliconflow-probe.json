@@ -1,0 +1,9 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "http_status": 402,
+  "response": {
+    "code": 30001,
+    "message": "Sorry, your account balance is insufficient",
+    "data": null
+  }
+}
