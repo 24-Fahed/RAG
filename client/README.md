@@ -2,6 +2,10 @@
 
 `client/` 是命令行客户端，用来模拟上层调用方向知识库发起请求。
 
+## 访问令牌
+
+向管理员申请令牌，将完整字符串保存至本地文件。CLI 的 `--token-file /path/to/access.token` 放在 `query` 或 `index` 子命令之前；管理员续期后不需要修改文件，撤销后无法继续使用。新令牌和已有 JWT 使用方式相同。完整流程见[熟人访问令牌](../docs/auth.md)。本页下方旧命令与模型默认值属于历史示例，当前必填业务参数请以 `python -m client.client --help` 和 Server OpenAPI 为准。
+
 它的职责是：
 
 - 触发建库
