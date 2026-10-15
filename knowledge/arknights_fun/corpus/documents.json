@@ -1,0 +1,1237 @@
+[
+  {
+    "id": "AKF001",
+    "title": "啃源石",
+    "category": "gameplay",
+    "aliases": [
+      "碎石",
+      "吃石头",
+      "源石恢复理智"
+    ],
+    "source_ids": [
+      "PRTS003"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "啃源石｜明日方舟娱乐知识\n别名与问法：碎石、吃石头、源石恢复理智。\n释义：玩家把消耗至纯源石恢复理智戏称为啃源石或碎石，将体力恢复操作想象成博士吃石头。\n语境与边界：这是机制拟人化的玩笑，不能据此认定剧情中的博士真的以源石为食。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《啃源石》 https://prts.wiki/w/明日方舟黑话·梗·成句/机制相关/啃源石"
+  },
+  {
+    "id": "AKF002",
+    "title": "失去理智",
+    "category": "gameplay",
+    "aliases": [
+      "失智博士",
+      "理智见底",
+      "理智是什么"
+    ],
+    "source_ids": [
+      "PRTS004"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "失去理智｜明日方舟娱乐知识\n别名与问法：失智博士、理智见底、理智是什么。\n释义：游戏把体力命名为理智，刷关耗尽理智便被玩家说成失去理智，并衍生出博士行为离谱的二创。\n语境与边界：这里主要指游戏资源与玩家自嘲，不是对现实心理状态的诊断。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《失去理智》 https://prts.wiki/w/明日方舟黑话·梗·成句/机制相关/失去理智"
+  },
+  {
+    "id": "AKF003",
+    "title": "调箱师",
+    "category": "gameplay",
+    "aliases": [
+      "箱子怎么摆",
+      "调箱子",
+      "调香师和调箱师"
+    ],
+    "source_ids": [
+      "PRTS005"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "调箱师｜明日方舟娱乐知识\n别名与问法：箱子怎么摆、调箱子、调香师和调箱师。\n释义：指通过摆放障碍物改变敌人行进路线的操作，名字借用了干员调香师的谐音。4-4是常见讨论场景。\n语境与边界：调箱师指玩法操作，不是新干员；具体路线仍取决于关卡。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《调箱师》 https://prts.wiki/w/明日方舟黑话·梗·成句/机制相关/调箱师"
+  },
+  {
+    "id": "AKF004",
+    "title": "近卫方舟",
+    "category": "gameplay",
+    "aliases": [
+      "Guardnights",
+      "全是近卫",
+      "近卫队"
+    ],
+    "source_ids": [
+      "PRTS006"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "近卫方舟｜明日方舟娱乐知识\n别名与问法：Guardnights、全是近卫、近卫队。\n释义：玩家用近卫方舟调侃近卫干员类型丰富、能承担多种地面职责，或某支队伍高度依赖近卫的现象。\n语境与边界：这是阵容讨论中的夸张称呼，不代表所有关卡只用近卫最优。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《近卫方舟》 https://prts.wiki/w/明日方舟黑话·梗·成句/机制相关/近卫方舟"
+  },
+  {
+    "id": "AKF005",
+    "title": "1507与29010",
+    "category": "gameplay",
+    "aliases": [
+      "1507",
+      "29010",
+      "2903",
+      "练度暗号"
+    ],
+    "source_ids": [
+      "PRTS008"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "1507与29010｜明日方舟娱乐知识\n别名与问法：1507、29010、2903、练度暗号。\n释义：1507通常表示精一50级、技能7级；29010通常表示精二90级、某技能专精三。是攻略描述练度的压缩写法。\n语境与边界：最后一项可能有不同写法，应结合技能名确认；不是抽卡概率或身份证明。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《1507·29010》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/1507·29010"
+  },
+  {
+    "id": "AKF006",
+    "title": "充电宝",
+    "category": "gameplay",
+    "aliases": [
+      "技力充能",
+      "雷蛇充电",
+      "白面鸮充电"
+    ],
+    "source_ids": [
+      "PRTS009"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "充电宝｜明日方舟娱乐知识\n别名与问法：技力充能、雷蛇充电、白面鸮充电。\n释义：给队友补充技力或加速技能回复的干员被叫作充电宝；电指技力图标，雷蛇、白面鸮是常见例子。\n语境与边界：充能条件各异，有的依赖受击，有的只加速自然回复，不能视为完全相同。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《充电宝》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/充电宝"
+  },
+  {
+    "id": "AKF007",
+    "title": "剑圣模板",
+    "category": "gameplay",
+    "aliases": [
+      "玫兰莎剑圣",
+      "挡一近卫",
+      "无畏者"
+    ],
+    "source_ids": [
+      "PRTS010"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "剑圣模板｜明日方舟娱乐知识\n别名与问法：玫兰莎剑圣、挡一近卫、无畏者。\n释义：早期玩家把高攻高血、阻挡一名敌人的一类近卫称为剑圣，玫兰莎是代表；现有官方分支名为无畏者。\n语境与边界：模板俗称与闪灵的剧情外号剑圣不同，询问时需看对象。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《剑圣(挡一近卫)》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/剑圣(挡一近卫)"
+  },
+  {
+    "id": "AKF008",
+    "title": "掀地板",
+    "category": "enemy_stage",
+    "aliases": [
+      "霜星封地板",
+      "地格不能部署",
+      "封印地板"
+    ],
+    "source_ids": [
+      "PRTS011"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "掀地板｜明日方舟娱乐知识\n别名与问法：霜星封地板、地格不能部署、封印地板。\n释义：霜星让若干地格无法再部署、并使格上干员强制退场的能力被调侃为掀地板，突出直接破坏站位的观感。\n语境与边界：这里解释历史关卡梗，不把所有地形变化都判成同一种机制。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《掀地板》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/掀地板"
+  },
+  {
+    "id": "AKF009",
+    "title": "摔炮与工具人",
+    "category": "gameplay",
+    "aliases": [
+      "红摔炮",
+      "落地放技能就撤",
+      "快速复活工具人"
+    ],
+    "source_ids": [
+      "PRTS012"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "摔炮与工具人｜明日方舟娱乐知识\n别名与问法：红摔炮、落地放技能就撤、快速复活工具人。\n释义：工具人指为挡刀、控场等临时任务上场的干员；摔炮突出落地触发效果后马上撤退，红的二技能是常见例子。\n语境与边界：它们是用途和操作俗称，不限定某个职业，也不是贬低现实劳动者。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《摔炮·工具人》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/摔炮·工具人"
+  },
+  {
+    "id": "AKF010",
+    "title": "罚站与白嫖",
+    "category": "gameplay",
+    "aliases": [
+      "敌人罚站",
+      "无伤偷输出",
+      "站着不走"
+    ],
+    "source_ids": [
+      "PRTS013"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "罚站与白嫖｜明日方舟娱乐知识\n别名与问法：敌人罚站、无伤偷输出、站着不走。\n释义：罚站指敌人出场后暂时停留；趁它不移动或无法反击时输出、提前削血，玩家常称白嫖。\n语境与边界：这里的白嫖是战斗术语，不是充值或账号交易；能否安全输出取决于攻击范围。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《罚站·白嫖》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/罚站·白嫖"
+  },
+  {
+    "id": "AKF011",
+    "title": "逃课",
+    "category": "gameplay",
+    "aliases": [
+      "逃课打法",
+      "不硬接",
+      "机制解法"
+    ],
+    "source_ids": [
+      "PRTS014"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "逃课｜明日方舟娱乐知识\n别名与问法：逃课打法、不硬接、机制解法。\n释义：用特殊干员、技能组合或地图机制绕开正面数值压力的打法常称逃课，如推拉控制、改变路线或远程提前击杀。\n语境与边界：是玩家对解法的称呼，不等于作弊；同一解法也可能就是关卡的正常设计。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《逃课》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/逃课"
+  },
+  {
+    "id": "AKF012",
+    "title": "低配与平民队",
+    "category": "gameplay",
+    "aliases": [
+      "平民队",
+      "低星攻略",
+      "低配攻略"
+    ],
+    "source_ids": [
+      "PRTS015"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "低配与平民队｜明日方舟娱乐知识\n别名与问法：平民队、低星攻略、低配攻略。\n释义：以较易获得的低星干员为主通关的攻略常称低配或平民队；有时会另借一名高星核心。\n语境与边界：低星不等于低等级、低操作或人人都能照抄，仍需核对技能、潜能与时序。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《低配·平民队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/低配·平民队"
+  },
+  {
+    "id": "AKF013",
+    "title": "娱乐型队伍",
+    "category": "gameplay",
+    "aliases": [
+      "整活队",
+      "画师队",
+      "主题编队"
+    ],
+    "source_ids": [
+      "PRTS016"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "娱乐型队伍｜明日方舟娱乐知识\n别名与问法：整活队、画师队、主题编队。\n释义：按画师、角色关系等共同特点组队，而非只按通关效率选择干员，属于娱乐型队伍或主题编队。\n语境与边界：这是玩家自定玩法，不能据名称保证通关强度或一套统一规则。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《娱乐型队伍》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/娱乐型队伍"
+  },
+  {
+    "id": "AKF014",
+    "title": "职业队",
+    "category": "gameplay",
+    "aliases": [
+      "纯狙队",
+      "特种队",
+      "单职业队"
+    ],
+    "source_ids": [
+      "PRTS017"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "职业队｜明日方舟娱乐知识\n别名与问法：纯狙队、特种队、单职业队。\n释义：主要甚至全部使用同一职业干员的挑战队伍称职业队，如纯狙、纯辅助或特种队。\n语境与边界：不同作者可能允许少量外援，比较记录时先看具体限制。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《职业队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/职业队"
+  },
+  {
+    "id": "AKF015",
+    "title": "自限型编队",
+    "category": "gameplay",
+    "aliases": [
+      "自限队",
+      "限制挑战",
+      "为什么自己加难度"
+    ],
+    "source_ids": [
+      "PRTS018"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "自限型编队｜明日方舟娱乐知识\n别名与问法：自限队、限制挑战、为什么自己加难度。\n释义：主动限制人数、稀有度、部署位置或操作次数以提高挑战性的打法统称自限。\n语境与边界：限制由作者声明，不是游戏统一竞赛规则；不同流派不能只看通关结果直接比较。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《自限型编队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/自限型编队"
+  },
+  {
+    "id": "AKF016",
+    "title": "高练低配与单核",
+    "category": "gameplay",
+    "aliases": [
+      "高练低配",
+      "单核攻略",
+      "双核",
+      "低配不低练"
+    ],
+    "source_ids": [
+      "PRTS019"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "高练低配与单核｜明日方舟娱乐知识\n别名与问法：高练低配、单核攻略、双核、低配不低练。\n释义：配描述干员获取配置，练描述培养程度，核描述核心数量；高练低配可使用高等级低星，单核则依赖一个关键核心。\n语境与边界：三者衡量不同维度，低配作业仍可能对练度、潜能或操作有要求。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《高练低配·X练·X配·X核》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/高练低配·X练·X配·X核"
+  },
+  {
+    "id": "AKF017",
+    "title": "黄金大队",
+    "category": "gameplay",
+    "aliases": [
+      "全六星",
+      "高星大队",
+      "金色阵容"
+    ],
+    "source_ids": [
+      "PRTS020"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "黄金大队｜明日方舟娱乐知识\n别名与问法：全六星、高星大队、金色阵容。\n释义：由大量五星、六星干员组成的队伍常被叫黄金大队，名称突出阵容的高稀有度。\n语境与边界：高星阵容也会因卡费、摆位或机制理解失误翻车，不是无条件通关保证。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《黄金大队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/黄金大队"
+  },
+  {
+    "id": "AKF018",
+    "title": "方舟武内崇",
+    "category": "community",
+    "aliases": [
+      "幻象黑兔画风",
+      "相似脸型梗"
+    ],
+    "source_ids": [
+      "PRTS021"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "方舟武内崇｜明日方舟娱乐知识\n别名与问法：幻象黑兔画风、相似脸型梗。\n释义：部分社区用方舟武内崇形容画师幻象黑兔笔下角色面部特征相近，借用了其他游戏画师相关的社区说法。\n语境与边界：这是特定玩家的主观审美调侃，不是对画师能力或作品质量的客观结论。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《方舟武内崇》 https://prts.wiki/w/明日方舟黑话·梗·成句/画师·CV/方舟武内崇"
+  },
+  {
+    "id": "AKF019",
+    "title": "誓约胜利之锤",
+    "category": "character",
+    "aliases": [
+      "锤尔托莉雅",
+      "推进之王锤子",
+      "碎颅击"
+    ],
+    "source_ids": [
+      "PRTS023"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "誓约胜利之锤｜明日方舟娱乐知识\n别名与问法：锤尔托莉雅、推进之王锤子、碎颅击。\n释义：推进之王拿锤、日语配音与Saber同为川澄绫子等相似点，使玩家把碎颅击或她的锤称作誓约胜利之锤。\n语境与边界：是跨作品联想，不代表两个角色属于同一世界观。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《誓约胜利之锤》 https://prts.wiki/w/明日方舟黑话·梗·成句/画师·CV/誓约胜利之锤"
+  },
+  {
+    "id": "AKF020",
+    "title": "一格不亏两格稳赚三格上天",
+    "category": "character",
+    "aliases": [
+      "小火龙快乐位",
+      "把我无敌的小火龙放下去",
+      "伊芙利特直线"
+    ],
+    "source_ids": [
+      "PRTS025"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "一格不亏两格稳赚三格上天｜明日方舟娱乐知识\n别名与问法：小火龙快乐位、把我无敌的小火龙放下去、伊芙利特直线。\n释义：伊芙利特的直线攻击范围挑地形，但覆盖敌人路径时输出可观，玩家用一格不亏、两格稳赚、三格上天来找合适站位。\n语境与边界：是站位调侃，不是按格数必然成立的收益公式。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《一格不亏·两格稳赚·三格上天》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/一格不亏·两格稳赚·三格上天"
+  },
+  {
+    "id": "AKF021",
+    "title": "基建永动机",
+    "category": "gameplay",
+    "aliases": [
+      "第五宿舍",
+      "彩虹小队控制中枢",
+      "心情不掉"
+    ],
+    "source_ids": [
+      "PRTS028"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "基建永动机｜明日方舟娱乐知识\n别名与问法：第五宿舍、彩虹小队控制中枢、心情不掉。\n释义：彩虹小队等特定后勤组合可抵消控制中枢心情消耗，让工作时心情不降甚至恢复，因此被叫基建永动机或第五宿舍。\n语境与边界：只在组合和额外消耗条件满足时成立，不等于整个基建无需换班。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《基建永动机》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/基建永动机"
+  },
+  {
+    "id": "AKF022",
+    "title": "常山豆子龙",
+    "category": "character",
+    "aliases": [
+      "红豆赵云",
+      "豆战胜佛",
+      "红豆输出"
+    ],
+    "source_ids": [
+      "PRTS029"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "常山豆子龙｜明日方舟娱乐知识\n别名与问法：红豆赵云、豆战胜佛、红豆输出。\n释义：红豆持长枪且技能能显著提高攻击，早期帮助玩家开荒，被借赵云的常山赵子龙之名叫作常山豆子龙。\n语境与边界：是角色战斗表现的夸张爱称，不是剧情里与三国人物存在关系。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《常山豆子龙》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/常山豆子龙"
+  },
+  {
+    "id": "AKF023",
+    "title": "拖把奶人",
+    "category": "character",
+    "aliases": [
+      "调香师拖把",
+      "植物种志",
+      "拖把回血"
+    ],
+    "source_ids": [
+      "PRTS030"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "拖把奶人｜明日方舟娱乐知识\n别名与问法：调香师拖把、植物种志、拖把回血。\n释义：调香师时装植物种志的战斗动作看起来像举起拖把治疗队友，因此有拖把奶人的调侃；奶指回复生命。\n语境与边界：是时装演出的观感，不是现实治疗方法。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《拖把奶人》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/拖把奶人"
+  },
+  {
+    "id": "AKF024",
+    "title": "求生剑法",
+    "category": "character",
+    "aliases": [
+      "赫拉格求生",
+      "宴低血攻速",
+      "赤冬求生"
+    ],
+    "source_ids": [
+      "PRTS031"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "求生剑法｜明日方舟娱乐知识\n别名与问法：赫拉格求生、宴低血攻速、赤冬求生。\n释义：赫拉格、宴、赤冬等干员低血时攻速更快，并依赖攻击恢复生命，画面像边打边挣扎求生，被称求生剑法。\n语境与边界：核心是低血攻速与自我恢复的互动，不代表所有低血干员机制相同。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《求生剑法》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/求生剑法"
+  },
+  {
+    "id": "AKF025",
+    "title": "法国干员",
+    "category": "character",
+    "aliases": [
+      "桃金娘投降",
+      "举白旗",
+      "开技能漏怪"
+    ],
+    "source_ids": [
+      "PRTS032"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "法国干员｜明日方舟娱乐知识\n别名与问法：桃金娘投降、举白旗、开技能漏怪。\n释义：桃金娘举旗、技能期间不阻挡敌人的画面，被一些玩家套用投降笑话称法国干员。\n语境与边界：源于现实国家刻板印象的社区玩笑，不是角色国籍设定或对法国人的事实判断。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《法国干员》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/法国干员"
+  },
+  {
+    "id": "AKF026",
+    "title": "满潜模拟器",
+    "category": "character",
+    "aliases": [
+      "德克萨斯初始费用",
+      "模拟满潜",
+      "战术快递"
+    ],
+    "source_ids": [
+      "PRTS033"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "满潜模拟器｜明日方舟娱乐知识\n别名与问法：德克萨斯初始费用、模拟满潜、战术快递。\n释义：德克萨斯编入队伍后提供额外初始部署费用，能缓解一部分费用压力，玩家把这种效果比作满潜降费。\n语境与边界：只是局部效果类比，不会真的改变其他干员潜能、面板或全部天赋。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《满潜模拟器》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/满潜模拟器"
+  },
+  {
+    "id": "AKF027",
+    "title": "莱茵拳皇",
+    "category": "character",
+    "aliases": [
+      "塞雷娅拳皇",
+      "塞爹拳术",
+      "坚城动作"
+    ],
+    "source_ids": [
+      "PRTS034"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "莱茵拳皇｜明日方舟娱乐知识\n别名与问法：塞雷娅拳皇、塞爹拳术、坚城动作。\n释义：塞雷娅档案描述其高超搏击能力，时装坚城也有拳术动作，形成莱茵拳皇外号。\n语境与边界：是设定与动作引出的称呼，不应拿医疗重装的常规战斗表现直接替代所有剧情战力判断。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《莱茵拳皇》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/莱茵拳皇"
+  },
+  {
+    "id": "AKF028",
+    "title": "重装力场与法抗力场",
+    "category": "character",
+    "aliases": [
+      "闪灵力场",
+      "夜莺圣域",
+      "教条立场"
+    ],
+    "source_ids": [
+      "PRTS035"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "重装力场与法抗力场｜明日方舟娱乐知识\n别名与问法：闪灵力场、夜莺圣域、教条立场。\n释义：闪灵三技能提高范围内友军防御，被叫重装力场；夜莺三技能圣域提供法术抗性等保护，被类比叫法抗力场。\n语境与边界：两个俗称针对不同防护方向，不是同一个技能。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《重装力场·法抗力场》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/重装力场·法抗力场"
+  },
+  {
+    "id": "AKF029",
+    "title": "高台重装",
+    "category": "gameplay",
+    "aliases": [
+      "高台抗伤",
+      "蜜蜡抗伤",
+      "铁块杰西卡"
+    ],
+    "source_ids": [
+      "PRTS036"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "高台重装｜明日方舟娱乐知识\n别名与问法：高台抗伤、蜜蜡抗伤、铁块杰西卡。\n释义：高台位置上物理生存能力强、能承担吸引火力任务的单位被调侃为高台重装；杰西卡铁块时装也常被这样称呼。\n语境与边界：是用途或外观俗称，不会因此改变职业和可部署地格。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《高台重装》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/高台重装"
+  },
+  {
+    "id": "AKF030",
+    "title": "高尔夫剑法",
+    "category": "character",
+    "aliases": [
+      "斯卡蒂挥杆",
+      "舞铲阶级",
+      "挖土剑法"
+    ],
+    "source_ids": [
+      "PRTS037"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "高尔夫剑法｜明日方舟娱乐知识\n别名与问法：斯卡蒂挥杆、舞铲阶级、挖土剑法。\n释义：斯卡蒂的挥剑动作像打高尔夫挥杆，玩家因此称高尔夫剑法，并制作相关拼图二创。\n语境与边界：是动作联想，不是技能名称；不能据此推断角色真的擅长高尔夫。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《高尔夫剑法》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/高尔夫剑法"
+  },
+  {
+    "id": "AKF031",
+    "title": "42星干员",
+    "category": "character",
+    "aliases": [
+      "可露希尔42",
+      "四十二星",
+      "权限42"
+    ],
+    "source_ids": [
+      "PRTS038"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "42星干员｜明日方舟娱乐知识\n别名与问法：可露希尔42、四十二星、权限42。\n释义：可露希尔早期介绍和相关视觉元素出现42，玩家由此称她42星干员。\n语境与边界：娱乐称呼不等于可招募干员的真实星级；与史尔特尔的简称42也不同。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《42星干员》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/42星干员"
+  },
+  {
+    "id": "AKF032",
+    "title": "kokodayo",
+    "category": "character",
+    "aliases": [
+      "kkdy",
+      "扣扣哒哟",
+      "在这里哦",
+      "克洛丝语音"
+    ],
+    "source_ids": [
+      "PRTS039"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "kokodayo｜明日方舟娱乐知识\n别名与问法：kkdy、扣扣哒哟、在这里哦、克洛丝语音。\n释义：克洛丝日语作战语音的独特拉长语调让kokodayo广为传播，也写作kkdy并被用来代指克洛丝。\n语境与边界：日语意为在这里哦；不是每个说这句话的角色都叫克洛丝。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《kokodayo》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/kokodayo"
+  },
+  {
+    "id": "AKF033",
+    "title": "丢人熊",
+    "category": "character",
+    "aliases": [
+      "凛冬丢人",
+      "退出战场",
+      "凛冬失败语音"
+    ],
+    "source_ids": [
+      "PRTS040"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "丢人熊｜明日方舟娱乐知识\n别名与问法：凛冬丢人、退出战场、凛冬失败语音。\n释义：凛冬行动失败时会严厉要求撤退，与安慰型失败语音形成反差，因此产生丢人熊外号。\n语境与边界：熊联系其乌萨斯形象；这里说明角色台词梗，不用来辱骂现实玩家。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《丢人熊》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/丢人熊"
+  },
+  {
+    "id": "AKF034",
+    "title": "你究竟是什么人",
+    "category": "character",
+    "aliases": [
+      "你的战术是现代的",
+      "构思却相当古老",
+      "塞雷娅反差句式"
+    ],
+    "source_ids": [
+      "PRTS041"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "你究竟是什么人｜明日方舟娱乐知识\n别名与问法：你的战术是现代的、构思却相当古老、塞雷娅反差句式。\n释义：塞雷娅评价博士战术与构思的台词被改成反差句式：先夸某一方面，再指出另一面反差，最后问你究竟是什么人。\n语境与边界：这是台词套用；不能仅凭一句话断定未获证据支持的博士身份理论。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《你究竟是什么人》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/你究竟是什么人"
+  },
+  {
+    "id": "AKF035",
+    "title": "闪灵剑圣",
+    "category": "character",
+    "aliases": [
+      "闪剑圣",
+      "医疗为什么拿剑",
+      "闪灵剑术"
+    ],
+    "source_ids": [
+      "PRTS042"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "闪灵剑圣｜明日方舟娱乐知识\n别名与问法：闪剑圣、医疗为什么拿剑、闪灵剑术。\n释义：闪灵档案中被描述为强大的剑士，与她平时作为医疗干员的形象形成反差，所以被称闪剑圣。\n语境与边界：这是剧情外号，与早期挡一近卫的剑圣模板应消歧。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《剑圣(闪灵)》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/剑圣(闪灵)"
+  },
+  {
+    "id": "AKF036",
+    "title": "太后",
+    "category": "character",
+    "aliases": [
+      "凯尔希太后",
+      "海猫早期角色"
+    ],
+    "source_ids": [
+      "PRTS043"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "太后｜明日方舟娱乐知识\n别名与问法：凯尔希太后、海猫早期角色。\n释义：早期社区把与制作人早期创作有关、在罗德岛地位重要的凯尔希叫作太后，与12F的太子称呼形成对应。\n语境与边界：属于创作背景与角色地位的社区联想，不是泰拉王室称号。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《太后》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/太后"
+  },
+  {
+    "id": "AKF037",
+    "title": "太子",
+    "category": "character",
+    "aliases": [
+      "12F太子",
+      "海猫亲绘",
+      "十二F"
+    ],
+    "source_ids": [
+      "PRTS044"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "太子｜明日方舟娱乐知识\n别名与问法：12F太子、海猫亲绘、十二F。\n释义：12F的立绘由制作人海猫络合物绘制等创作背景，使部分玩家把他称为太子。\n语境与边界：是创作者关系的调侃，不代表剧情中有皇位继承关系，也不是强度评级。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《太子》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/太子"
+  },
+  {
+    "id": "AKF038",
+    "title": "富婆杰西卡",
+    "category": "character",
+    "aliases": [
+      "杰西卡点心钱",
+      "富婆小饼干",
+      "买光饼干"
+    ],
+    "source_ids": [
+      "PRTS045"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "富婆杰西卡｜明日方舟娱乐知识\n别名与问法：杰西卡点心钱、富婆小饼干、买光饼干。\n释义：杰西卡买下大量饼干、用点心钱购买昂贵弹药等剧情与邮件细节，使她被玩家叫富婆。\n语境与边界：通常指杰西卡，但其他有财力的女性角色也可能被这样称呼，须看语境。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《富婆》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/富婆"
+  },
+  {
+    "id": "AKF039",
+    "title": "整合运动的卧底",
+    "category": "character",
+    "aliases": [
+      "阿打队友",
+      "榴莲针",
+      "阿内鬼"
+    ],
+    "source_ids": [
+      "PRTS046"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "整合运动的卧底｜明日方舟娱乐知识\n别名与问法：阿打队友、榴莲针、阿内鬼。\n释义：阿给友军增益前会先进行一轮攻击，脆弱队友可能没等到增益就退场，于是玩家戏称他是整合运动的卧底。\n语境与边界：是机制反差梗，不是断言阿在剧情里真的为整合运动卧底。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《整合运动的卧底》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/整合运动的卧底"
+  },
+  {
+    "id": "AKF040",
+    "title": "现在还不能休息哦",
+    "category": "character",
+    "aliases": [
+      "阿米娅监工",
+      "博士还有工作",
+      "恶魔低语"
+    ],
+    "source_ids": [
+      "PRTS049"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "现在还不能休息哦｜明日方舟娱乐知识\n别名与问法：阿米娅监工、博士还有工作、恶魔低语。\n释义：术师阿米娅作为助理时的闲置语音会提醒博士继续处理事情，玩家据此塑造她的监工形象。\n语境与边界：是特定形态语音的社区演绎；其他形态语音与角色行为不应一概而论。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《现在还不能休息哦》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/现在还不能休息哦"
+  },
+  {
+    "id": "AKF041",
+    "title": "罗德岛厨神",
+    "category": "character",
+    "aliases": [
+      "角峰厨艺",
+      "古米做饭",
+      "吽炒菜"
+    ],
+    "source_ids": [
+      "PRTS050"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "罗德岛厨神｜明日方舟娱乐知识\n别名与问法：角峰厨艺、古米做饭、吽炒菜。\n释义：玩家把角峰、古米、吽等拥有烹饪描写的干员称作罗德岛厨神，笑点在作战干员也有突出的生活技能。\n语境与边界：这是多个候选者共享的外号，不是一项有唯一获奖者的官方厨艺排名。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《罗德岛厨神》 https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/罗德岛厨神"
+  },
+  {
+    "id": "AKF042",
+    "title": "不要恐慌与弑界杯",
+    "category": "enemy_stage",
+    "aliases": [
+      "4-4",
+      "弑界杯",
+      "弑君者推来推去"
+    ],
+    "source_ids": [
+      "PRTS051"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "不要恐慌与弑界杯｜明日方舟娱乐知识\n别名与问法：4-4、弑界杯、弑君者推来推去。\n释义：4-4的标题不要恐慌与箱子改道、推拉弑君者的演示关联；玩家在该图研究位移整活，又形成弑界杯等娱乐挑战。\n语境与边界：此处只概括玩法文化，不沿用早已修复的堵路漏洞作为现行攻略。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《不要恐慌》 https://prts.wiki/w/明日方舟黑话·梗·成句/敌人·关卡相关/不要恐慌"
+  },
+  {
+    "id": "AKF043",
+    "title": "九号空降兵",
+    "category": "enemy_stage",
+    "aliases": [
+      "⑨号空降兵",
+      "Kevin",
+      "凯文空降兵"
+    ],
+    "source_ids": [
+      "PRTS052"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "九号空降兵｜明日方舟娱乐知识\n别名与问法：⑨号空降兵、Kevin、凯文空降兵。\n释义：龙门市区剿灭中有空降兵直接落到地穴而退场，被玩家叫九号空降兵；海外社区还使用Kevin的称呼。\n语境与边界：描述特定关卡名场面；相关后续剧情联想需与玩家猜测区分。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《九号空降兵》 https://prts.wiki/w/明日方舟黑话·梗·成句/敌人·关卡相关/九号空降兵"
+  },
+  {
+    "id": "AKF044",
+    "title": "刁民与一起来看流星雨",
+    "category": "enemy_stage",
+    "aliases": [
+      "H8-4平民",
+      "乌萨斯平民",
+      "平民罚站"
+    ],
+    "source_ids": [
+      "PRTS053"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "刁民与一起来看流星雨｜明日方舟娱乐知识\n别名与问法：H8-4平民、乌萨斯平民、平民罚站。\n释义：第八章需要保护的平民可能绕路或在危险处停留；H8-4中其面对火球仍停在终点附近，形成看流星雨的调侃。\n语境与边界：含第八章玩法剧透；刁民是对游戏单位行为的抱怨，不评价现实受灾者。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《刁民·一起来看流星雨》 https://prts.wiki/w/明日方舟黑话·梗·成句/敌人·关卡相关/刁民·一起来看流星雨"
+  },
+  {
+    "id": "AKF045",
+    "title": "肥宅美少女",
+    "category": "enemy_stage",
+    "aliases": [
+      "霜星重量",
+      "推不动霜星",
+      "冰兔重量"
+    ],
+    "source_ids": [
+      "PRTS054"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "肥宅美少女｜明日方舟娱乐知识\n别名与问法：霜星重量、推不动霜星、冰兔重量。\n释义：霜星外观与游戏内较高重量等级之间的反差，使部分玩家用肥宅美少女调侃推拉困难。\n语境与边界：游戏重量等级是位移计算参数，不能当成角色体重、健康或现实外貌评价。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《肥宅美少女》 https://prts.wiki/w/明日方舟黑话·梗·成句/敌人·关卡相关/肥宅美少女"
+  },
+  {
+    "id": "AKF046",
+    "title": "迫害安德切尔",
+    "category": "enemy_stage",
+    "aliases": [
+      "1-11",
+      "W炸安德切尔",
+      "零理智刷任务"
+    ],
+    "source_ids": [
+      "PRTS055"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "迫害安德切尔｜明日方舟娱乐知识\n别名与问法：1-11、W炸安德切尔、零理智刷任务。\n释义：玩家反复进入不消耗理智的1-11完成相关任务，而开头安德切尔会被W打退，于是同一剧情反复上演被叫迫害安德切尔。\n语境与边界：这是旧任务与关卡结合的玩法梗，当前收益仍应核对实际任务条件。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《迫害安德切尔》 https://prts.wiki/w/明日方舟黑话·梗·成句/敌人·关卡相关/迫害安德切尔"
+  },
+  {
+    "id": "AKF047",
+    "title": "领袖传统艺能",
+    "category": "enemy_stage",
+    "aliases": [
+      "BOSS逛街",
+      "弑君者散步",
+      "三过家门不入"
+    ],
+    "source_ids": [
+      "PRTS056"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "领袖传统艺能｜明日方舟娱乐知识\n别名与问法：BOSS逛街、弑君者散步、三过家门不入。\n释义：敌方领袖常在出场后停留、绕路或迟迟不进目标点，玩家把这种路线表现称为领袖传统艺能。\n语境与边界：并非所有领袖都这样，路线差异是关卡机制，不能推定人物智力或真实动机。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《领袖传统艺能》 https://prts.wiki/w/明日方舟黑话·梗·成句/敌人·关卡相关/领袖传统艺能"
+  },
+  {
+    "id": "AKF048",
+    "title": "龙门粗口",
+    "category": "story",
+    "aliases": [
+      "龙门文明用语",
+      "诗怀雅和陈吵架",
+      "星熊叹气"
+    ],
+    "source_ids": [
+      "PRTS057"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "龙门粗口｜明日方舟娱乐知识\n别名与问法：龙门文明用语、诗怀雅和陈吵架、星熊叹气。\n释义：剧情中陈与诗怀雅争执时以龙门粗口代替具体骂词，玩家也用这种占位式表达制造喜剧效果。\n语境与边界：收录替代表达，不补写露骨脏话；不是一段固定可逐字翻译的完整句子。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《*龙门粗口*》 https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/*龙门粗口*"
+  },
+  {
+    "id": "AKF049",
+    "title": "炭烤沙虫腿",
+    "category": "story",
+    "aliases": [
+      "沙虫腿来一根",
+      "伊芙利特零食",
+      "战地秘闻课后作业"
+    ],
+    "source_ids": [
+      "PRTS059"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "炭烤沙虫腿｜明日方舟娱乐知识\n别名与问法：沙虫腿来一根、伊芙利特零食、战地秘闻课后作业。\n释义：战地秘闻的课后作业里，博士用炭烤沙虫腿与伊芙利特互动，这个有冲击力的食品名字成了玩家熟悉的零食梗。\n语境与边界：来自虚构世界的食品名，不用于推断现实沙虫有腿。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《炭烤沙虫腿》 https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/炭烤沙虫腿"
+  },
+  {
+    "id": "AKF050",
+    "title": "男游客B与女游客C",
+    "category": "story",
+    "aliases": [
+      "女游客C",
+      "男游客B",
+      "游客陈",
+      "游客鲍勃"
+    ],
+    "source_ids": [
+      "PRTS060"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "男游客B与女游客C｜明日方舟娱乐知识\n别名与问法：女游客C、男游客B、游客陈、游客鲍勃。\n释义：火蓝之心的路人游客被玩家按外观与名称联想到大鲍勃和陈，形成男游客B、女游客C称呼；女游客C后来又与假日威龙陈关联。\n语境与边界：早期路人身份联想与后续明确的陈异格消息不是同一层证据，不应混为最初就已官宣。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《男游客B·女游客C》 https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/男游客B·女游客C"
+  },
+  {
+    "id": "AKF051",
+    "title": "黑心药厂",
+    "category": "story",
+    "aliases": [
+      "罗德岛制药公司",
+      "罗德岛黑心公司",
+      "博士ICU"
+    ],
+    "source_ids": [
+      "PRTS061"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "黑心药厂｜明日方舟娱乐知识\n别名与问法：罗德岛制药公司、罗德岛黑心公司、博士ICU。\n释义：罗德岛自称制药公司，却经常进行武装行动，基建还要安排干员工作，玩家把这种反差调侃为黑心药厂。\n语境与边界：这是虚构组织的社区戏称，不等于否认其治疗工作，也不是现实企业指控。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《黑心药厂》 https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/黑心药厂"
+  },
+  {
+    "id": "AKF052",
+    "title": "黑钢相声组",
+    "category": "story",
+    "aliases": [
+      "芙兰卡雷蛇",
+      "黑钢互怼",
+      "相声搭档"
+    ],
+    "source_ids": [
+      "PRTS062"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": true,
+    "content_rating": "non_adult",
+    "content": "黑钢相声组｜明日方舟娱乐知识\n别名与问法：芙兰卡雷蛇、黑钢互怼、相声搭档。\n释义：芙兰卡和雷蛇同属黑钢，档案与剧情里经常互怼、接话，因喜剧般的搭档互动被称黑钢相声组。\n语境与边界：相声是玩家比喻，不是二人的正式职业或官方组合名称。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《黑钢相声组》 https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/黑钢相声组"
+  },
+  {
+    "id": "AKF053",
+    "title": "七星干员",
+    "category": "community",
+    "aliases": [
+      "博士手撕敌人",
+      "地火七星",
+      "七星不是六星"
+    ],
+    "source_ids": [
+      "PRTS063"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "七星干员｜明日方舟娱乐知识\n别名与问法：博士手撕敌人、地火七星、七星不是六星。\n释义：玩家用七星干员夸张形容表现超常的角色或地图机制；博士在蓝门处理漏怪、地火高伤害都曾被这样玩梗。\n语境与边界：它是超过常规稀有度的笑话，不应当成真实寻访星级或官方战力排行。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《七星干员》 https://prts.wiki/w/明日方舟黑话·梗·成句/其他/七星干员"
+  },
+  {
+    "id": "AKF054",
+    "title": "灌铅抱枕",
+    "category": "character",
+    "aliases": [
+      "斯卡蒂抱枕打人",
+      "虎鲸抱枕",
+      "驭浪WR04"
+    ],
+    "source_ids": [
+      "PRTS030"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "灌铅抱枕｜明日方舟娱乐知识\n别名与问法：斯卡蒂抱枕打人、虎鲸抱枕、驭浪WR04。\n释义：斯卡蒂时装驭浪WR04用虎鲸抱枕攻击，柔软道具与高伤害形成反差，因此有灌铅抱枕的调侃。\n语境与边界：灌铅是玩家想象的解释，不能写成时装道具的已确认材质。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《拖把奶人》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/拖把奶人"
+  },
+  {
+    "id": "AKF055",
+    "title": "购物袋打人",
+    "category": "character",
+    "aliases": [
+      "棘刺购物袋",
+      "惬意时装",
+      "购物袋伤害"
+    ],
+    "source_ids": [
+      "PRTS030"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "购物袋打人｜明日方舟娱乐知识\n别名与问法：棘刺购物袋、惬意时装、购物袋伤害。\n释义：棘刺时装惬意的近战动作像举购物袋砸人，与远程或技能时用剑的动作不同，形成购物袋打人的视觉梗。\n语境与边界：只是特定时装动作，不是更换武器后获得独立数值机制。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《拖把奶人》 https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/拖把奶人"
+  },
+  {
+    "id": "AKF056",
+    "title": "绝食流",
+    "category": "gameplay",
+    "aliases": [
+      "不带奶队",
+      "拒绝常规治疗",
+      "绝食干员"
+    ],
+    "source_ids": [
+      "PRTS018"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "绝食流｜明日方舟娱乐知识\n别名与问法：不带奶队、拒绝常规治疗、绝食干员。\n释义：绝食流围绕不接受常规友方治疗、靠自我恢复或其他生存手段作战；社区也用绝食干员称某些能独守的单位。\n语境与边界：严格限制与泛称有差异，缓回是否允许要看该作业的声明。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《自限型编队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/自限型编队"
+  },
+  {
+    "id": "AKF057",
+    "title": "解手流",
+    "category": "gameplay",
+    "aliases": [
+      "解放双手",
+      "少操作通关",
+      "挂机流"
+    ],
+    "source_ids": [
+      "PRTS018"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "解手流｜明日方舟娱乐知识\n别名与问法：解放双手、少操作通关、挂机流。\n释义：解手流追求减少手动操作次数，双关解放双手与赶着离开操作界面；挂机流常强调部署后自动完成。\n语境与边界：和少人挑战衡量不同：操作少不等于用人少，也不保证最低练度。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《自限型编队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/自限型编队"
+  },
+  {
+    "id": "AKF058",
+    "title": "孤岛流",
+    "category": "gameplay",
+    "aliases": [
+      "单格通关",
+      "双岛流",
+      "只用一个格子"
+    ],
+    "source_ids": [
+      "PRTS018"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "孤岛流｜明日方舟娱乐知识\n别名与问法：单格通关、双岛流、只用一个格子。\n释义：孤岛流以极少部署格作战，常见严格版本只用一个格子；扩展为双岛等时会声明使用格数。\n语境与边界：限制围绕格子，不等于只带一名干员或全程只部署一次。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《自限型编队》 https://prts.wiki/w/明日方舟黑话·梗·成句/队伍搭配/自限型编队"
+  },
+  {
+    "id": "AKF059",
+    "title": "325",
+    "category": "community",
+    "aliases": [
+      "Zc325",
+      "魔法Zc目录325",
+      "不周山",
+      "落Z坡"
+    ],
+    "source_ids": [
+      "RECENT325"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "325｜明日方舟娱乐知识\n别名与问法：Zc325、魔法Zc目录325、不周山、落Z坡。\n释义：325是魔法Zc目录在第五届仙术杯探索中止后游戏结算的分数，随后成为数字梗；利刃所指也被调侃为不周山或落Z坡。\n语境与边界：这里是游戏结算分，不应直接当成按赛事规则计算的总分；首次传播日期未核实。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：烨華TvT / 哔哩哔哩《仙术杯·梗百科》 https://www.bilibili.com/opus/1010752946069045251"
+  },
+  {
+    "id": "AKF060",
+    "title": "799",
+    "category": "community",
+    "aliases": [
+      "提丰799",
+      "799DPS",
+      "提丰伤害计算"
+    ],
+    "source_ids": [
+      "RECENT799",
+      "RECENT799VIDEO"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "community_documented",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "799｜明日方舟娱乐知识\n别名与问法：提丰799、799DPS、提丰伤害计算。\n释义：799是用简化口径评价提丰的社区数字梗：取满配、三级X模组、二技能专三、低重量敌人且非首次攻击等条件，以(1189+90)×1.5÷2.4≈799计算对单DPS。\n语境与边界：该口径没有反映首次命中、重量加成和二连击等完整效果，不能据此断言提丰普遍只有799DPS；最初发言录播未核实。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：粥批手册社区贡献者 / Fandom《799》 https://akp.fandom.com/zh/wiki/799?variant=zh-tw"
+  },
+  {
+    "id": "AKF061",
+    "title": "呼呼呼与哐哐哐",
+    "category": "community",
+    "aliases": [
+      "呼呼呼",
+      "哐哐哐",
+      "吹丰机",
+      "吹风机",
+      "洗伊机",
+      "洗衣机"
+    ],
+    "source_ids": [
+      "RECENTSOUND",
+      "SOUND_CREATOR",
+      "SOUND_WALLPAPER"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "cross_checked_usage",
+    "origin_status": "not_established",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "呼呼呼与哐哐哐｜明日方舟娱乐知识\n别名与问法：呼呼呼、哐哐哐、吹丰机、吹风机、洗伊机、洗衣机。\n释义：在提丰和莱伊的社区讨论里，呼呼呼对应提丰粉丝吹丰机，哐哐哐对应莱伊粉丝洗伊机，借电器谐音与声音表达支持。\n语境与边界：仅收录非成人的拟声与粉丝称呼用法；相同声音在别处可能另有所指，未确认首次造梗者。\n证据范围：非成人用法由社区索引与创作用例交叉支持；首次造梗未确认。\n来源：萌娘百科社区内容镜像 moegirl.uk《呼呼呼》 https://moegirl.uk/index.php?title=呼呼呼&variant=zh-sg"
+  },
+  {
+    "id": "AKF_META_IDENTITY",
+    "title": "助手是谁",
+    "category": "meta",
+    "aliases": [
+      "你是谁",
+      "你是什么",
+      "自我介绍",
+      "你叫什么",
+      "我是谁"
+    ],
+    "source_ids": [
+      "LOCAL_SCOPE"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "project_defined",
+    "origin_status": "not_applicable",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "助手是谁｜你是谁、你是什么、你叫什么、自我介绍\n本项目助手自称：RAG知识库查询Agent，了解明日方舟各种梗知识。它依据当前知识包解释梗、外号、台词、玩法黑话和二创语境，并说明来源与不确定处。身份是本项目的明日方舟娱乐知识查询助手，不是鹰角官方、游戏角色或真人主播。用户问“我是谁”、问到用户自己的身份时，助手没有个人资料或会话记忆可确认，不能编造用户是谁。\n来源：本仓库 knowledge/arknights_fun/README.md，项目身份由用户确认。"
+  },
+  {
+    "id": "AKF_META_SCOPE",
+    "title": "知识库有什么",
+    "category": "meta",
+    "aliases": [
+      "库里有什么",
+      "你知道什么",
+      "有哪些内容",
+      "知识范围",
+      "介绍一下",
+      "随便聊点舟的",
+      "有什么好玩的",
+      "推荐几个梗"
+    ],
+    "source_ids": [
+      "LOCAL_SCOPE"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "project_defined",
+    "origin_status": "not_applicable",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "知识库有什么｜库里有什么、你知道什么、知识范围、有哪些内容、介绍一下、随便聊点舟的、有什么好玩的、推荐几个梗\n这是面向面试展示的明日方舟娱乐知识包，2026年10月15日整理，共61条独立梗与黑话及3条助手导航卡。覆盖角色外号台词23条、玩法21条、敌人与关卡7条、剧情二创5条、社区5条；可从kokodayo、小火龙快乐位、九号空降兵、黑钢相声组或325、799、呼呼呼与哐哐哐开始聊。资料以早期PRTS封存黑话和少量后续社区解释为主，含部分剧情剧透，覆盖不是全集、不是截至今日所有新梗；排除成人与性暗示内容，未核实条目在待核实清单而非回答库。\n新梗与最初起源：本包没有覆盖所有新梗，也不能证明每个梗的最初起源，未收录部分需要继续核实。\n来源：本仓库 knowledge/arknights_fun/README.md 与 sources.json。"
+  },
+  {
+    "id": "AKF_META_CAPABILITIES",
+    "title": "能帮你做什么",
+    "category": "meta",
+    "aliases": [
+      "你能做什么",
+      "你能帮我什么",
+      "有什么用",
+      "怎么用",
+      "推荐几个梗",
+      "给我讲个梗"
+    ],
+    "source_ids": [
+      "LOCAL_SCOPE"
+    ],
+    "checked_on": "2026-10-15",
+    "evidence_status": "project_defined",
+    "origin_status": "not_applicable",
+    "spoiler": false,
+    "content_rating": "non_adult",
+    "content": "能帮你做什么｜你能做什么、你能帮我什么、有什么用、怎么用、推荐几个梗、给我讲个梗\nRAG知识库查询Agent可以查明日方舟梗的含义、角色别称和台词语境，解释低配与低练等黑话区别，按角色或类别推荐库中梗，并指出社区调侃与游戏事实的区别。可以参考条目里的来源链接和证据范围追查；未核实最初出处时会说明。它不能证明所有梗的最初起源、提供实时活动与最新强度保证、登录游戏代操作、替用户抽卡、记住跨次对话或获知用户私人身份。本轮交付是仓库资料与离线召回验证，尚未接入线上部署。\n来源：本仓库 knowledge/arknights_fun/README.md，能力以现有RAG单轮查询链与本知识包为限。"
+  }
+]

@@ -1,0 +1,567 @@
+{
+  "description": "标题检索是入库冒烟；challenge 是独立问法与消歧/导航召回检查。真实 BM25 top-5，不含向量模型、重排、压缩或回答验收。",
+  "top_k": 5,
+  "title_smoke": [
+    {
+      "query": "啃源石是什么意思？",
+      "expected_ids": [
+        "AKF001"
+      ]
+    },
+    {
+      "query": "失去理智是什么意思？",
+      "expected_ids": [
+        "AKF002"
+      ]
+    },
+    {
+      "query": "调箱师是什么意思？",
+      "expected_ids": [
+        "AKF003"
+      ]
+    },
+    {
+      "query": "近卫方舟是什么意思？",
+      "expected_ids": [
+        "AKF004"
+      ]
+    },
+    {
+      "query": "1507与29010是什么意思？",
+      "expected_ids": [
+        "AKF005"
+      ]
+    },
+    {
+      "query": "充电宝是什么意思？",
+      "expected_ids": [
+        "AKF006"
+      ]
+    },
+    {
+      "query": "剑圣模板是什么意思？",
+      "expected_ids": [
+        "AKF007"
+      ]
+    },
+    {
+      "query": "掀地板是什么意思？",
+      "expected_ids": [
+        "AKF008"
+      ]
+    },
+    {
+      "query": "摔炮与工具人是什么意思？",
+      "expected_ids": [
+        "AKF009"
+      ]
+    },
+    {
+      "query": "罚站与白嫖是什么意思？",
+      "expected_ids": [
+        "AKF010"
+      ]
+    },
+    {
+      "query": "逃课是什么意思？",
+      "expected_ids": [
+        "AKF011"
+      ]
+    },
+    {
+      "query": "低配与平民队是什么意思？",
+      "expected_ids": [
+        "AKF012"
+      ]
+    },
+    {
+      "query": "娱乐型队伍是什么意思？",
+      "expected_ids": [
+        "AKF013"
+      ]
+    },
+    {
+      "query": "职业队是什么意思？",
+      "expected_ids": [
+        "AKF014"
+      ]
+    },
+    {
+      "query": "自限型编队是什么意思？",
+      "expected_ids": [
+        "AKF015"
+      ]
+    },
+    {
+      "query": "高练低配与单核是什么意思？",
+      "expected_ids": [
+        "AKF016"
+      ]
+    },
+    {
+      "query": "黄金大队是什么意思？",
+      "expected_ids": [
+        "AKF017"
+      ]
+    },
+    {
+      "query": "方舟武内崇是什么意思？",
+      "expected_ids": [
+        "AKF018"
+      ]
+    },
+    {
+      "query": "誓约胜利之锤是什么意思？",
+      "expected_ids": [
+        "AKF019"
+      ]
+    },
+    {
+      "query": "一格不亏两格稳赚三格上天是什么意思？",
+      "expected_ids": [
+        "AKF020"
+      ]
+    },
+    {
+      "query": "基建永动机是什么意思？",
+      "expected_ids": [
+        "AKF021"
+      ]
+    },
+    {
+      "query": "常山豆子龙是什么意思？",
+      "expected_ids": [
+        "AKF022"
+      ]
+    },
+    {
+      "query": "拖把奶人是什么意思？",
+      "expected_ids": [
+        "AKF023"
+      ]
+    },
+    {
+      "query": "求生剑法是什么意思？",
+      "expected_ids": [
+        "AKF024"
+      ]
+    },
+    {
+      "query": "法国干员是什么意思？",
+      "expected_ids": [
+        "AKF025"
+      ]
+    },
+    {
+      "query": "满潜模拟器是什么意思？",
+      "expected_ids": [
+        "AKF026"
+      ]
+    },
+    {
+      "query": "莱茵拳皇是什么意思？",
+      "expected_ids": [
+        "AKF027"
+      ]
+    },
+    {
+      "query": "重装力场与法抗力场是什么意思？",
+      "expected_ids": [
+        "AKF028"
+      ]
+    },
+    {
+      "query": "高台重装是什么意思？",
+      "expected_ids": [
+        "AKF029"
+      ]
+    },
+    {
+      "query": "高尔夫剑法是什么意思？",
+      "expected_ids": [
+        "AKF030"
+      ]
+    },
+    {
+      "query": "42星干员是什么意思？",
+      "expected_ids": [
+        "AKF031"
+      ]
+    },
+    {
+      "query": "kokodayo是什么意思？",
+      "expected_ids": [
+        "AKF032"
+      ]
+    },
+    {
+      "query": "丢人熊是什么意思？",
+      "expected_ids": [
+        "AKF033"
+      ]
+    },
+    {
+      "query": "你究竟是什么人是什么意思？",
+      "expected_ids": [
+        "AKF034"
+      ]
+    },
+    {
+      "query": "闪灵剑圣是什么意思？",
+      "expected_ids": [
+        "AKF035"
+      ]
+    },
+    {
+      "query": "太后是什么意思？",
+      "expected_ids": [
+        "AKF036"
+      ]
+    },
+    {
+      "query": "太子是什么意思？",
+      "expected_ids": [
+        "AKF037"
+      ]
+    },
+    {
+      "query": "富婆杰西卡是什么意思？",
+      "expected_ids": [
+        "AKF038"
+      ]
+    },
+    {
+      "query": "整合运动的卧底是什么意思？",
+      "expected_ids": [
+        "AKF039"
+      ]
+    },
+    {
+      "query": "现在还不能休息哦是什么意思？",
+      "expected_ids": [
+        "AKF040"
+      ]
+    },
+    {
+      "query": "罗德岛厨神是什么意思？",
+      "expected_ids": [
+        "AKF041"
+      ]
+    },
+    {
+      "query": "不要恐慌与弑界杯是什么意思？",
+      "expected_ids": [
+        "AKF042"
+      ]
+    },
+    {
+      "query": "九号空降兵是什么意思？",
+      "expected_ids": [
+        "AKF043"
+      ]
+    },
+    {
+      "query": "刁民与一起来看流星雨是什么意思？",
+      "expected_ids": [
+        "AKF044"
+      ]
+    },
+    {
+      "query": "肥宅美少女是什么意思？",
+      "expected_ids": [
+        "AKF045"
+      ]
+    },
+    {
+      "query": "迫害安德切尔是什么意思？",
+      "expected_ids": [
+        "AKF046"
+      ]
+    },
+    {
+      "query": "领袖传统艺能是什么意思？",
+      "expected_ids": [
+        "AKF047"
+      ]
+    },
+    {
+      "query": "龙门粗口是什么意思？",
+      "expected_ids": [
+        "AKF048"
+      ]
+    },
+    {
+      "query": "炭烤沙虫腿是什么意思？",
+      "expected_ids": [
+        "AKF049"
+      ]
+    },
+    {
+      "query": "男游客B与女游客C是什么意思？",
+      "expected_ids": [
+        "AKF050"
+      ]
+    },
+    {
+      "query": "黑心药厂是什么意思？",
+      "expected_ids": [
+        "AKF051"
+      ]
+    },
+    {
+      "query": "黑钢相声组是什么意思？",
+      "expected_ids": [
+        "AKF052"
+      ]
+    },
+    {
+      "query": "七星干员是什么意思？",
+      "expected_ids": [
+        "AKF053"
+      ]
+    },
+    {
+      "query": "灌铅抱枕是什么意思？",
+      "expected_ids": [
+        "AKF054"
+      ]
+    },
+    {
+      "query": "购物袋打人是什么意思？",
+      "expected_ids": [
+        "AKF055"
+      ]
+    },
+    {
+      "query": "绝食流是什么意思？",
+      "expected_ids": [
+        "AKF056"
+      ]
+    },
+    {
+      "query": "解手流是什么意思？",
+      "expected_ids": [
+        "AKF057"
+      ]
+    },
+    {
+      "query": "孤岛流是什么意思？",
+      "expected_ids": [
+        "AKF058"
+      ]
+    },
+    {
+      "query": "325是什么意思？",
+      "expected_ids": [
+        "AKF059"
+      ]
+    },
+    {
+      "query": "799是什么意思？",
+      "expected_ids": [
+        "AKF060"
+      ]
+    },
+    {
+      "query": "呼呼呼与哐哐哐是什么意思？",
+      "expected_ids": [
+        "AKF061"
+      ]
+    }
+  ],
+  "challenge": [
+    {
+      "group": "指定数字梗",
+      "query": "方舟325这个数字和Zc有什么关系",
+      "expected_ids": [
+        "AKF059"
+      ]
+    },
+    {
+      "group": "指定数字梗",
+      "query": "提丰真的在任何情况下都只有799DPS吗",
+      "expected_ids": [
+        "AKF060"
+      ]
+    },
+    {
+      "group": "指定拟声梗",
+      "query": "呼呼呼和哐哐哐各指谁",
+      "expected_ids": [
+        "AKF061"
+      ]
+    },
+    {
+      "group": "拟声别名",
+      "query": "吹丰机和洗伊机是在讨论什么",
+      "expected_ids": [
+        "AKF061"
+      ]
+    },
+    {
+      "group": "跨语言别名",
+      "query": "kkdy是在叫哪位干员",
+      "expected_ids": [
+        "AKF032"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "敌人站着不走的时候先把它打掉算什么",
+      "expected_ids": [
+        "AKF010"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "为什么总想把小火龙放下去",
+      "expected_ids": [
+        "AKF020"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "调香师为什么拿拖把治疗",
+      "expected_ids": [
+        "AKF023"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "柔软的虎鲸抱枕怎么能打人",
+      "expected_ids": [
+        "AKF054"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "棘刺为什么用购物袋攻击",
+      "expected_ids": [
+        "AKF055"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "开局多两点费用为什么叫模拟满潜",
+      "expected_ids": [
+        "AKF026"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "低配是不是就不用把角色练高",
+      "expected_ids": [
+        "AKF016",
+        "AKF012"
+      ]
+    },
+    {
+      "group": "语义改写",
+      "query": "角色说现在不能休息所以被当成监工的是谁",
+      "expected_ids": [
+        "AKF040"
+      ]
+    },
+    {
+      "group": "剧情语境",
+      "query": "芙兰卡和雷蛇互怼的组合叫什么",
+      "expected_ids": [
+        "AKF052"
+      ]
+    },
+    {
+      "group": "关卡语境",
+      "query": "H8-4的平民为什么说在看流星雨",
+      "expected_ids": [
+        "AKF044"
+      ]
+    },
+    {
+      "group": "消歧",
+      "query": "剑圣一定是闪灵吗",
+      "expected_ids": [
+        "AKF007",
+        "AKF035"
+      ]
+    },
+    {
+      "group": "消歧",
+      "query": "42星干员是史尔特尔吗",
+      "expected_ids": [
+        "AKF031"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "你是谁",
+      "expected_ids": [
+        "AKF_META_IDENTITY"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "介绍一下你自己",
+      "expected_ids": [
+        "AKF_META_IDENTITY"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "库里有什么内容",
+      "expected_ids": [
+        "AKF_META_SCOPE"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "你知道什么",
+      "expected_ids": [
+        "AKF_META_SCOPE"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "随便聊点舟的",
+      "expected_ids": [
+        "AKF_META_SCOPE"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "你能帮我什么",
+      "expected_ids": [
+        "AKF_META_CAPABILITIES"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "推荐几个梗",
+      "expected_ids": [
+        "AKF_META_CAPABILITIES",
+        "AKF_META_SCOPE"
+      ]
+    },
+    {
+      "group": "导航",
+      "query": "你叫什么名字",
+      "expected_ids": [
+        "AKF_META_IDENTITY"
+      ]
+    },
+    {
+      "group": "边界",
+      "query": "你知道我是谁吗",
+      "expected_ids": [
+        "AKF_META_IDENTITY"
+      ]
+    },
+    {
+      "group": "边界",
+      "query": "能告诉我所有新梗和最初起源吗",
+      "expected_ids": [
+        "AKF_META_SCOPE",
+        "AKF_META_CAPABILITIES"
+      ]
+    }
+  ]
+}

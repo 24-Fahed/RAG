@@ -1,0 +1,89 @@
+{
+  "checked_on": "2026-10-15",
+  "not_indexed": true,
+  "items": [
+    {
+      "title": "镀金",
+      "status": "pending_source_access",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/机制相关/镀金",
+      "reason": "本次两次直接读取均超时；导航页只证明存在链接，不能替代释义证据。",
+      "next_step": "读取原页或其他可核实的独立来源后再编写，不按记忆补齐。"
+    },
+    {
+      "title": "火索米",
+      "status": "pending_source_access",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/画师·CV/火索米",
+      "reason": "本次两次直接读取均超时；导航页只证明存在链接，不能替代释义证据。",
+      "next_step": "读取原页或其他可核实的独立来源后再编写，不按记忆补齐。"
+    },
+    {
+      "title": "X天使",
+      "status": "pending_source_access",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/X天使",
+      "reason": "本次两次直接读取均超时；导航页只证明存在链接，不能替代释义证据。",
+      "next_step": "读取原页或其他可核实的独立来源后再编写，不按记忆补齐。"
+    },
+    {
+      "title": "全家输出你杂技",
+      "status": "pending_source_access",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/技能·天赋相关/全家输出你杂技",
+      "reason": "本次两次直接读取均超时；导航页只证明存在链接，不能替代释义证据。",
+      "next_step": "读取原页或其他可核实的独立来源后再编写，不按记忆补齐。"
+    },
+    {
+      "title": "物理治疗",
+      "status": "pending_source_access",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/干员·资料相关/物理治疗",
+      "reason": "本次两次直接读取均超时；导航页只证明存在链接，不能替代释义证据。",
+      "next_step": "读取原页或其他可核实的独立来源后再编写，不按记忆补齐。"
+    },
+    {
+      "title": "……——？",
+      "status": "pending_source_access",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/……——？",
+      "reason": "本次两次直接读取均超时；导航页只证明存在链接，不能替代释义证据。",
+      "next_step": "读取原页或其他可核实的独立来源后再编写，不按记忆补齐。"
+    },
+    {
+      "title": "在洁难逃／洁哥不要",
+      "status": "excluded_content_scope",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句/其他/在洁难逃",
+      "reason": "已读取的社区释义直接关联性侵害教育片相关梗；本轮按排除成人与性暗示内容的边界不收。"
+    },
+    {
+      "title": "纵火相关性暗示梗",
+      "status": "excluded_content_scope",
+      "url": "https://prts.wiki/w/明日方舟黑话·梗·成句",
+      "reason": "导航标题本身包含性暗示；未进一步搜集细节，不进入回答库。"
+    },
+    {
+      "title": "325与图耶编号的关联说法",
+      "status": "not_supported_by_reviewed_evidence",
+      "url": "https://wenku.baidu.com/view/d0dc3342804769eae009581b6bd97f192279bf0f.html",
+      "reason": "搜索结果有附会叙述，但本次可信创作者文章只支持赛事游戏结算数字梗；不把附会写成事实。",
+      "next_step": "如需扩展，独立核对游戏档案与原始创作，不从聚合说明推定关系。"
+    },
+    {
+      "title": "官方因325梗庆祝而给模组加血的因果说法",
+      "status": "not_supported_by_reviewed_evidence",
+      "url": "https://cnmeme.wiki/entry/325",
+      "reason": "所见聚合说明不足以证明官方动机，不收录该因果；不是声称已证明其为假。"
+    },
+    {
+      "title": "325与799的首发时间、首创者、完整原始录播",
+      "status": "pending_primary_origin",
+      "reason": "已能支持社区释义，但未完整核对最初录播及传播链；正式卡片已标明起源未确认。"
+    },
+    {
+      "title": "呼呼呼／哐哐哐的首次造梗帖",
+      "status": "pending_primary_origin",
+      "reason": "非成人粉丝拟声用法已有交叉支持，但没有定位首次造梗帖；不宣称所有同词用法均来自方舟。"
+    },
+    {
+      "title": "2024年以后其他新梗、终末地与跨游戏梗",
+      "status": "coverage_backlog",
+      "reason": "首版以61条有证据的独立梗/黑话为范围，未进行系统穷尽搜集。",
+      "next_step": "继续以创作者原文或可读取社区记录补充，优先补新活动与新角色，不按条数拆分同义词。"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "query": "325是什么意思，能确认它是赛事总分吗？",
+  "collection": "arknights_fun_20261015_v1",
+  "search_method": "hybrid",
+  "embedding_model": "BAAI/bge-base-zh-v1.5",
+  "embedding_dim": 768,
+  "rerank_method": "bge",
+  "rerank_model": "BAAI/bge-reranker-v2-m3",
+  "top_k": 5,
+  "repack_method": "compact",
+  "compression_method": "llmlingua",
+  "compression_model": "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
+  "compression_ratio": 1,
+  "hybrid_alpha": 0.3,
+  "search_k": 30,
+  "classification_enabled": false,
+  "answer_model": "Qwen/Qwen2.5-7B-Instruct",
+  "answer_max_out_len": 1024
+}

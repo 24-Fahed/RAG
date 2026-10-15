@@ -1,0 +1,2311 @@
+{
+  "generated_at": "2026-10-15T12:20:31.836502+00:00",
+  "corpus_sha256": "a8663e23d453c226972114abc69b87e43714737d651d9e3122a2d63a8a78647b",
+  "method": "Existing loader + 512/20 splitter + real rank_bm25 BM25Index, no mocks",
+  "scope": "Offline structure and BM25 candidate recall only; no dense retrieval, reranking, compression, answer generation or deployment validation",
+  "document_count": 64,
+  "independent_entry_count": 61,
+  "chunk_count": 64,
+  "source_count": 60,
+  "categories": {
+    "character": 23,
+    "community": 5,
+    "enemy_stage": 7,
+    "gameplay": 21,
+    "meta": 3,
+    "story": 5
+  },
+  "top_k": 5,
+  "structural_passed": true,
+  "checks": [
+    {
+      "name": "unique_document_ids",
+      "passed": true
+    },
+    {
+      "name": "unique_titles",
+      "passed": true
+    },
+    {
+      "name": "at_least_60_independent_entries",
+      "passed": true
+    },
+    {
+      "name": "three_navigation_cards",
+      "passed": true
+    },
+    {
+      "name": "five_content_categories",
+      "passed": true
+    },
+    {
+      "name": "unique_source_ids",
+      "passed": true
+    },
+    {
+      "name": "source_references_resolve",
+      "passed": true
+    },
+    {
+      "name": "aliases_in_searchable_body",
+      "passed": true
+    },
+    {
+      "name": "primary_source_in_searchable_body",
+      "passed": true
+    },
+    {
+      "name": "evidence_and_rating_fields",
+      "passed": true
+    },
+    {
+      "name": "loader_preserves_all_documents",
+      "passed": true
+    },
+    {
+      "name": "import_directory_contains_only_corpus",
+      "passed": true
+    },
+    {
+      "name": "flat_metadata_survives_loader",
+      "passed": true
+    },
+    {
+      "name": "one_self_contained_chunk_per_card",
+      "passed": true
+    },
+    {
+      "name": "unique_hybrid_dedup_prefixes",
+      "passed": true
+    },
+    {
+      "name": "query_expected_ids_resolve",
+      "passed": true
+    }
+  ],
+  "retrieval": {
+    "title_smoke": {
+      "passed": 61,
+      "total": 61,
+      "all_expected_recall_at_k": 1.0,
+      "cases": [
+        {
+          "group": "title_smoke",
+          "query": "啃源石是什么意思？",
+          "expected_ids": [
+            "AKF001"
+          ],
+          "retrieved_ids": [
+            "AKF001",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF001": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            17.349242,
+            14.371117,
+            8.483573,
+            8.304432,
+            7.973732
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "失去理智是什么意思？",
+          "expected_ids": [
+            "AKF002"
+          ],
+          "retrieved_ids": [
+            "AKF002",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF001"
+          ],
+          "expected_ranks": {
+            "AKF002": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            25.224178,
+            15.12565,
+            8.723532,
+            7.4591,
+            7.078435
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "调箱师是什么意思？",
+          "expected_ids": [
+            "AKF003"
+          ],
+          "retrieved_ids": [
+            "AKF003",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF003": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            16.455455,
+            13.449636,
+            8.388112,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "近卫方舟是什么意思？",
+          "expected_ids": [
+            "AKF004"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF004",
+            "AKF007",
+            "AKF035",
+            "AKF055"
+          ],
+          "expected_ranks": {
+            "AKF004": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            15.559719,
+            14.674158,
+            12.157943,
+            12.083421,
+            9.897759
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "1507与29010是什么意思？",
+          "expected_ids": [
+            "AKF005"
+          ],
+          "retrieved_ids": [
+            "AKF005",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF005": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            16.746862,
+            14.533506,
+            8.671746,
+            8.562652,
+            7.686735
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "充电宝是什么意思？",
+          "expected_ids": [
+            "AKF006"
+          ],
+          "retrieved_ids": [
+            "AKF006",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF006": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            21.174036,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "剑圣模板是什么意思？",
+          "expected_ids": [
+            "AKF007"
+          ],
+          "retrieved_ids": [
+            "AKF035",
+            "AKF007",
+            "AKF034",
+            "AKF055",
+            "AKF026"
+          ],
+          "expected_ranks": {
+            "AKF007": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            20.815961,
+            18.443087,
+            13.449636,
+            7.998457,
+            7.731015
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "掀地板是什么意思？",
+          "expected_ids": [
+            "AKF008"
+          ],
+          "retrieved_ids": [
+            "AKF008",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF035"
+          ],
+          "expected_ranks": {
+            "AKF008": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            15.199418,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.203012
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "摔炮与工具人是什么意思？",
+          "expected_ids": [
+            "AKF009"
+          ],
+          "retrieved_ids": [
+            "AKF009",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF009": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            26.07032,
+            14.533506,
+            8.671746,
+            8.562652,
+            7.686735
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "罚站与白嫖是什么意思？",
+          "expected_ids": [
+            "AKF010"
+          ],
+          "retrieved_ids": [
+            "AKF010",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF010": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            26.330121,
+            14.533506,
+            8.671746,
+            8.562652,
+            7.686735
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "逃课是什么意思？",
+          "expected_ids": [
+            "AKF011"
+          ],
+          "retrieved_ids": [
+            "AKF011",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF011": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            14.453135,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "低配与平民队是什么意思？",
+          "expected_ids": [
+            "AKF012"
+          ],
+          "retrieved_ids": [
+            "AKF012",
+            "AKF034",
+            "AKF044",
+            "AKF_META_CAPABILITIES",
+            "AKF016"
+          ],
+          "expected_ranks": {
+            "AKF012": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            22.365817,
+            14.533506,
+            13.518414,
+            12.335766,
+            9.394225
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "娱乐型队伍是什么意思？",
+          "expected_ids": [
+            "AKF013"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF015",
+            "AKF013",
+            "AKF_META_SCOPE",
+            "AKF056"
+          ],
+          "expected_ranks": {
+            "AKF013": 3
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            14.721108,
+            12.992994,
+            12.295794,
+            8.662837,
+            8.409167
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "职业队是什么意思？",
+          "expected_ids": [
+            "AKF014"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF014",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF014": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.449636,
+            11.290493,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "自限型编队是什么意思？",
+          "expected_ids": [
+            "AKF015"
+          ],
+          "retrieved_ids": [
+            "AKF015",
+            "AKF056",
+            "AKF034",
+            "AKF058",
+            "AKF057"
+          ],
+          "expected_ranks": {
+            "AKF015": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            20.587033,
+            14.178767,
+            13.449636,
+            13.190754,
+            12.969621
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "高练低配与单核是什么意思？",
+          "expected_ids": [
+            "AKF016"
+          ],
+          "retrieved_ids": [
+            "AKF016",
+            "AKF_META_CAPABILITIES",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF012"
+          ],
+          "expected_ranks": {
+            "AKF016": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            20.661599,
+            16.672505,
+            15.169242,
+            10.92179,
+            10.644929
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "黄金大队是什么意思？",
+          "expected_ids": [
+            "AKF017"
+          ],
+          "retrieved_ids": [
+            "AKF017",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF035",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF017": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            21.594231,
+            13.449636,
+            7.4591,
+            7.427235,
+            7.334413
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "方舟武内崇是什么意思？",
+          "expected_ids": [
+            "AKF018"
+          ],
+          "retrieved_ids": [
+            "AKF018",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF055",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF018": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            19.683947,
+            15.559719,
+            11.293212,
+            10.573393,
+            9.092405
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "誓约胜利之锤是什么意思？",
+          "expected_ids": [
+            "AKF019"
+          ],
+          "retrieved_ids": [
+            "AKF019",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF019": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            38.224122,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "一格不亏两格稳赚三格上天是什么意思？",
+          "expected_ids": [
+            "AKF020"
+          ],
+          "retrieved_ids": [
+            "AKF020",
+            "AKF034",
+            "AKF058",
+            "AKF008",
+            "AKF024"
+          ],
+          "expected_ranks": {
+            "AKF020": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            51.152671,
+            14.975785,
+            14.374644,
+            14.028723,
+            11.734723
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "基建永动机是什么意思？",
+          "expected_ids": [
+            "AKF021"
+          ],
+          "retrieved_ids": [
+            "AKF021",
+            "AKF034",
+            "AKF055",
+            "AKF051",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF021": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            22.746748,
+            13.449636,
+            8.310853,
+            8.268095,
+            8.253248
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "常山豆子龙是什么意思？",
+          "expected_ids": [
+            "AKF022"
+          ],
+          "retrieved_ids": [
+            "AKF022",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF022": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            24.092695,
+            13.449636,
+            9.063619,
+            7.4591,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "拖把奶人是什么意思？",
+          "expected_ids": [
+            "AKF023"
+          ],
+          "retrieved_ids": [
+            "AKF055",
+            "AKF023",
+            "AKF034",
+            "AKF054",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF023": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            15.125822,
+            14.429313,
+            13.449636,
+            10.328086,
+            7.4591
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "求生剑法是什么意思？",
+          "expected_ids": [
+            "AKF024"
+          ],
+          "retrieved_ids": [
+            "AKF024",
+            "AKF034",
+            "AKF035",
+            "AKF055",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF024": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            15.951069,
+            14.085372,
+            10.577293,
+            8.674571,
+            7.861326
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "法国干员是什么意思？",
+          "expected_ids": [
+            "AKF025"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF025",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF025": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            14.43697,
+            9.359782,
+            7.861326,
+            7.686735,
+            7.4591
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "满潜模拟器是什么意思？",
+          "expected_ids": [
+            "AKF026"
+          ],
+          "retrieved_ids": [
+            "AKF026",
+            "AKF034",
+            "AKF055",
+            "AKF_META_CAPABILITIES",
+            "AKF035"
+          ],
+          "expected_ranks": {
+            "AKF026": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            26.525678,
+            13.449636,
+            8.488277,
+            7.4591,
+            7.427235
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "莱茵拳皇是什么意思？",
+          "expected_ids": [
+            "AKF027"
+          ],
+          "retrieved_ids": [
+            "AKF027",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF027": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            27.312933,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "重装力场与法抗力场是什么意思？",
+          "expected_ids": [
+            "AKF028"
+          ],
+          "retrieved_ids": [
+            "AKF028",
+            "AKF029",
+            "AKF034",
+            "AKF027",
+            "AKF055"
+          ],
+          "expected_ranks": {
+            "AKF028": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            29.573858,
+            18.231345,
+            15.169242,
+            10.941164,
+            10.805139
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "高台重装是什么意思？",
+          "expected_ids": [
+            "AKF029"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF029",
+            "AKF028",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF029": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            16.473724,
+            15.533213,
+            9.569406,
+            9.352293,
+            9.221347
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "高尔夫剑法是什么意思？",
+          "expected_ids": [
+            "AKF030"
+          ],
+          "retrieved_ids": [
+            "AKF030",
+            "AKF034",
+            "AKF035",
+            "AKF055",
+            "AKF007"
+          ],
+          "expected_ranks": {
+            "AKF030": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            21.983111,
+            14.085372,
+            10.577293,
+            8.674571,
+            7.958931
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "42星干员是什么意思？",
+          "expected_ids": [
+            "AKF031"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF031",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF031": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.801234,
+            12.302044,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "kokodayo是什么意思？",
+          "expected_ids": [
+            "AKF032"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF032",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF032": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.449636,
+            10.112234,
+            9.867654,
+            7.4591,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "丢人熊是什么意思？",
+          "expected_ids": [
+            "AKF033"
+          ],
+          "retrieved_ids": [
+            "AKF033",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF033": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.553258,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "你究竟是什么人是什么意思？",
+          "expected_ids": [
+            "AKF034"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF_META_SCOPE",
+            "AKF002"
+          ],
+          "expected_ranks": {
+            "AKF034": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            39.005236,
+            18.894396,
+            18.37017,
+            16.713887,
+            9.990611
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "闪灵剑圣是什么意思？",
+          "expected_ids": [
+            "AKF035"
+          ],
+          "retrieved_ids": [
+            "AKF035",
+            "AKF007",
+            "AKF034",
+            "AKF028",
+            "AKF055"
+          ],
+          "expected_ranks": {
+            "AKF035": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            27.211282,
+            17.073777,
+            13.449636,
+            12.872861,
+            7.998457
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "太后是什么意思？",
+          "expected_ids": [
+            "AKF036"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF036",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF037"
+          ],
+          "expected_ranks": {
+            "AKF036": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            14.55217,
+            9.474583,
+            8.24822,
+            7.4591,
+            7.317223
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "太子是什么意思？",
+          "expected_ids": [
+            "AKF037"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF037",
+            "AKF036",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF037": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.449636,
+            10.55174,
+            8.918565,
+            7.4591,
+            7.334413
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "富婆杰西卡是什么意思？",
+          "expected_ids": [
+            "AKF038"
+          ],
+          "retrieved_ids": [
+            "AKF038",
+            "AKF034",
+            "AKF029",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF038": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            26.896462,
+            13.449636,
+            11.156278,
+            8.348743,
+            8.189157
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "整合运动的卧底是什么意思？",
+          "expected_ids": [
+            "AKF039"
+          ],
+          "retrieved_ids": [
+            "AKF039",
+            "AKF034",
+            "AKF002",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF039": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            29.786637,
+            15.273974,
+            9.946957,
+            9.387751,
+            8.945289
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "现在还不能休息哦是什么意思？",
+          "expected_ids": [
+            "AKF040"
+          ],
+          "retrieved_ids": [
+            "AKF040",
+            "AKF034",
+            "AKF032",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF040": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            28.360137,
+            16.028548,
+            12.453111,
+            9.916447,
+            9.813377
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "罗德岛厨神是什么意思？",
+          "expected_ids": [
+            "AKF041"
+          ],
+          "retrieved_ids": [
+            "AKF041",
+            "AKF051",
+            "AKF034",
+            "AKF036",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF041": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            29.547382,
+            13.98589,
+            13.449636,
+            8.833152,
+            7.4591
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "不要恐慌与弑界杯是什么意思？",
+          "expected_ids": [
+            "AKF042"
+          ],
+          "retrieved_ids": [
+            "AKF042",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF002",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF042": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            31.781653,
+            16.090724,
+            10.828715,
+            9.468369,
+            9.248628
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "九号空降兵是什么意思？",
+          "expected_ids": [
+            "AKF043"
+          ],
+          "retrieved_ids": [
+            "AKF043",
+            "AKF_META_SCOPE",
+            "AKF034",
+            "AKF_META_IDENTITY",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF043": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            27.127525,
+            18.64855,
+            13.449636,
+            8.558472,
+            7.4591
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "刁民与一起来看流星雨是什么意思？",
+          "expected_ids": [
+            "AKF044"
+          ],
+          "retrieved_ids": [
+            "AKF044",
+            "AKF034",
+            "AKF012",
+            "AKF015",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF044": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            35.739792,
+            16.409647,
+            12.437892,
+            11.830602,
+            10.18503
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "肥宅美少女是什么意思？",
+          "expected_ids": [
+            "AKF045"
+          ],
+          "retrieved_ids": [
+            "AKF045",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF045": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            29.782281,
+            13.449636,
+            9.208429,
+            7.4591,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "迫害安德切尔是什么意思？",
+          "expected_ids": [
+            "AKF046"
+          ],
+          "retrieved_ids": [
+            "AKF046",
+            "AKF034",
+            "AKF055",
+            "AKF051",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF046": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            33.857862,
+            13.449636,
+            7.998457,
+            7.491097,
+            7.4591
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "领袖传统艺能是什么意思？",
+          "expected_ids": [
+            "AKF047"
+          ],
+          "retrieved_ids": [
+            "AKF047",
+            "AKF034",
+            "AKF015",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF047": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            33.115373,
+            14.371117,
+            9.754337,
+            8.671746,
+            7.861326
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "龙门粗口是什么意思？",
+          "expected_ids": [
+            "AKF048"
+          ],
+          "retrieved_ids": [
+            "AKF048",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF048": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            22.599847,
+            13.449636,
+            9.063619,
+            7.4591,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "炭烤沙虫腿是什么意思？",
+          "expected_ids": [
+            "AKF049"
+          ],
+          "retrieved_ids": [
+            "AKF049",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF049": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            35.976463,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "男游客B与女游客C是什么意思？",
+          "expected_ids": [
+            "AKF050"
+          ],
+          "retrieved_ids": [
+            "AKF050",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF045",
+            "AKF018"
+          ],
+          "expected_ranks": {
+            "AKF050": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            51.010961,
+            14.533506,
+            13.195906,
+            12.09189,
+            11.872513
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "黑心药厂是什么意思？",
+          "expected_ids": [
+            "AKF051"
+          ],
+          "retrieved_ids": [
+            "AKF051",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF051": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            19.139698,
+            14.085372,
+            8.304432,
+            8.035982,
+            7.686735
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "黑钢相声组是什么意思？",
+          "expected_ids": [
+            "AKF052"
+          ],
+          "retrieved_ids": [
+            "AKF052",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF052": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            18.355484,
+            15.006853,
+            14.584498,
+            8.035982,
+            7.686735
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "七星干员是什么意思？",
+          "expected_ids": [
+            "AKF053"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF053",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF053": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.801234,
+            12.83355,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "灌铅抱枕是什么意思？",
+          "expected_ids": [
+            "AKF054"
+          ],
+          "retrieved_ids": [
+            "AKF054",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF054": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            26.87713,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "购物袋打人是什么意思？",
+          "expected_ids": [
+            "AKF055"
+          ],
+          "retrieved_ids": [
+            "AKF055",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF055": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            25.694107,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.014181
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "绝食流是什么意思？",
+          "expected_ids": [
+            "AKF056"
+          ],
+          "retrieved_ids": [
+            "AKF056",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF015"
+          ],
+          "expected_ranks": {
+            "AKF056": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            16.544644,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.069226
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "解手流是什么意思？",
+          "expected_ids": [
+            "AKF057"
+          ],
+          "retrieved_ids": [
+            "AKF_META_IDENTITY",
+            "AKF034",
+            "AKF057",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF057": 3
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.547028,
+            13.449636,
+            11.853824,
+            10.452738,
+            8.979955
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "孤岛流是什么意思？",
+          "expected_ids": [
+            "AKF058"
+          ],
+          "retrieved_ids": [
+            "AKF058",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF015"
+          ],
+          "expected_ranks": {
+            "AKF058": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            14.322251,
+            13.449636,
+            7.4591,
+            7.334413,
+            7.069226
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "325是什么意思？",
+          "expected_ids": [
+            "AKF059"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF059"
+          ],
+          "expected_ranks": {
+            "AKF059": 5
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.449636,
+            9.867654,
+            7.4591,
+            7.014181,
+            6.386433
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "799是什么意思？",
+          "expected_ids": [
+            "AKF060"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF060"
+          ],
+          "expected_ranks": {
+            "AKF060": 5
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.449636,
+            9.867654,
+            7.4591,
+            7.014181,
+            7.010927
+          ]
+        },
+        {
+          "group": "title_smoke",
+          "query": "呼呼呼与哐哐哐是什么意思？",
+          "expected_ids": [
+            "AKF061"
+          ],
+          "retrieved_ids": [
+            "AKF061",
+            "AKF_META_SCOPE",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF061": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            32.26513,
+            29.235285,
+            14.533506,
+            8.671746,
+            7.686735
+          ]
+        }
+      ]
+    },
+    "challenge": {
+      "passed": 27,
+      "total": 27,
+      "all_expected_recall_at_k": 1.0,
+      "cases": [
+        {
+          "group": "指定数字梗",
+          "query": "方舟325这个数字和Zc有什么关系",
+          "expected_ids": [
+            "AKF059"
+          ],
+          "retrieved_ids": [
+            "AKF059",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF034"
+          ],
+          "expected_ranks": {
+            "AKF059": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            18.553816,
+            15.177349,
+            12.498778,
+            11.079746,
+            10.900329
+          ]
+        },
+        {
+          "group": "指定数字梗",
+          "query": "提丰真的在任何情况下都只有799DPS吗",
+          "expected_ids": [
+            "AKF060"
+          ],
+          "retrieved_ids": [
+            "AKF060",
+            "AKF061",
+            "AKF046",
+            "AKF053",
+            "AKF004"
+          ],
+          "expected_ranks": {
+            "AKF060": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            16.632017,
+            10.678948,
+            7.601196,
+            7.43108,
+            6.644744
+          ]
+        },
+        {
+          "group": "指定拟声梗",
+          "query": "呼呼呼和哐哐哐各指谁",
+          "expected_ids": [
+            "AKF061"
+          ],
+          "retrieved_ids": [
+            "AKF061",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY",
+            "AKF031",
+            "AKF038"
+          ],
+          "expected_ranks": {
+            "AKF061": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            33.420643,
+            21.654666,
+            11.311017,
+            6.111577,
+            6.090042
+          ]
+        },
+        {
+          "group": "拟声别名",
+          "query": "吹丰机和洗伊机是在讨论什么",
+          "expected_ids": [
+            "AKF061"
+          ],
+          "retrieved_ids": [
+            "AKF061",
+            "AKF003",
+            "AKF004",
+            "AKF_META_SCOPE",
+            "AKF034"
+          ],
+          "expected_ranks": {
+            "AKF061": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            33.270017,
+            10.523392,
+            10.318534,
+            9.298478,
+            9.216
+          ]
+        },
+        {
+          "group": "跨语言别名",
+          "query": "kkdy是在叫哪位干员",
+          "expected_ids": [
+            "AKF032"
+          ],
+          "retrieved_ids": [
+            "AKF032",
+            "AKF_META_SCOPE",
+            "AKF036",
+            "AKF017",
+            "AKF022"
+          ],
+          "expected_ranks": {
+            "AKF032": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            10.146341,
+            5.953504,
+            5.930722,
+            4.073143,
+            3.757311
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "敌人站着不走的时候先把它打掉算什么",
+          "expected_ids": [
+            "AKF010"
+          ],
+          "retrieved_ids": [
+            "AKF010",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF_META_SCOPE"
+          ],
+          "expected_ranks": {
+            "AKF010": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            19.537579,
+            11.810488,
+            11.638635,
+            10.882717,
+            9.400408
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "为什么总想把小火龙放下去",
+          "expected_ids": [
+            "AKF020"
+          ],
+          "retrieved_ids": [
+            "AKF020",
+            "AKF_META_SCOPE",
+            "AKF002",
+            "AKF050",
+            "AKF034"
+          ],
+          "expected_ranks": {
+            "AKF020": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            18.699143,
+            14.43984,
+            11.607575,
+            7.730273,
+            7.614516
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "调香师为什么拿拖把治疗",
+          "expected_ids": [
+            "AKF023"
+          ],
+          "retrieved_ids": [
+            "AKF023",
+            "AKF003",
+            "AKF035",
+            "AKF051",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF023": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            26.54367,
+            14.178523,
+            11.725286,
+            8.394743,
+            8.388112
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "柔软的虎鲸抱枕怎么能打人",
+          "expected_ids": [
+            "AKF054"
+          ],
+          "retrieved_ids": [
+            "AKF054",
+            "AKF_META_CAPABILITIES",
+            "AKF003",
+            "AKF015",
+            "AKF034"
+          ],
+          "expected_ranks": {
+            "AKF054": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            36.31998,
+            8.551369,
+            6.925743,
+            5.478675,
+            5.4728
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "棘刺为什么用购物袋攻击",
+          "expected_ids": [
+            "AKF055"
+          ],
+          "retrieved_ids": [
+            "AKF055",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY"
+          ],
+          "expected_ranks": {
+            "AKF055": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            28.952597,
+            7.731529,
+            7.667916,
+            6.891308,
+            5.858439
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "开局多两点费用为什么叫模拟满潜",
+          "expected_ids": [
+            "AKF026"
+          ],
+          "retrieved_ids": [
+            "AKF026",
+            "AKF_META_SCOPE",
+            "AKF035",
+            "AKF034",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF026": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            31.519036,
+            10.223531,
+            7.971049,
+            7.731529,
+            7.667916
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "低配是不是就不用把角色练高",
+          "expected_ids": [
+            "AKF016",
+            "AKF012"
+          ],
+          "retrieved_ids": [
+            "AKF016",
+            "AKF_META_CAPABILITIES",
+            "AKF012",
+            "AKF009",
+            "AKF030"
+          ],
+          "expected_ranks": {
+            "AKF016": 1,
+            "AKF012": 3
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            17.550955,
+            10.978726,
+            10.228185,
+            8.9824,
+            8.76366
+          ]
+        },
+        {
+          "group": "语义改写",
+          "query": "角色说现在不能休息所以被当成监工的是谁",
+          "expected_ids": [
+            "AKF040"
+          ],
+          "retrieved_ids": [
+            "AKF040",
+            "AKF_META_IDENTITY",
+            "AKF_META_CAPABILITIES",
+            "AKF053",
+            "AKF032"
+          ],
+          "expected_ranks": {
+            "AKF040": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            31.149359,
+            17.803598,
+            12.741095,
+            11.639415,
+            11.223172
+          ]
+        },
+        {
+          "group": "剧情语境",
+          "query": "芙兰卡和雷蛇互怼的组合叫什么",
+          "expected_ids": [
+            "AKF052"
+          ],
+          "retrieved_ids": [
+            "AKF052",
+            "AKF034",
+            "AKF006",
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES"
+          ],
+          "expected_ranks": {
+            "AKF052": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            36.724246,
+            11.743846,
+            11.152012,
+            10.935427,
+            10.345946
+          ]
+        },
+        {
+          "group": "关卡语境",
+          "query": "H8-4的平民为什么说在看流星雨",
+          "expected_ids": [
+            "AKF044"
+          ],
+          "retrieved_ids": [
+            "AKF044",
+            "AKF012",
+            "AKF_META_CAPABILITIES",
+            "AKF015",
+            "AKF035"
+          ],
+          "expected_ranks": {
+            "AKF044": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            41.958718,
+            16.954437,
+            10.486796,
+            10.096597,
+            9.382481
+          ]
+        },
+        {
+          "group": "消歧",
+          "query": "剑圣一定是闪灵吗",
+          "expected_ids": [
+            "AKF007",
+            "AKF035"
+          ],
+          "retrieved_ids": [
+            "AKF035",
+            "AKF007",
+            "AKF028",
+            "AKF030",
+            "AKF024"
+          ],
+          "expected_ranks": {
+            "AKF007": 2,
+            "AKF035": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            24.231763,
+            18.478494,
+            13.907007,
+            6.456517,
+            5.683495
+          ]
+        },
+        {
+          "group": "消歧",
+          "query": "42星干员是史尔特尔吗",
+          "expected_ids": [
+            "AKF031"
+          ],
+          "retrieved_ids": [
+            "AKF031",
+            "AKF030",
+            "AKF046",
+            "AKF036",
+            "AKF008"
+          ],
+          "expected_ranks": {
+            "AKF031": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            25.98018,
+            10.570343,
+            10.34894,
+            8.061408,
+            6.286559
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "你是谁",
+          "expected_ids": [
+            "AKF_META_IDENTITY"
+          ],
+          "retrieved_ids": [
+            "AKF_META_IDENTITY",
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF039"
+          ],
+          "expected_ranks": {
+            "AKF_META_IDENTITY": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            12.546176,
+            6.212876,
+            4.553079,
+            3.015078,
+            1.214018
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "介绍一下你自己",
+          "expected_ids": [
+            "AKF_META_IDENTITY"
+          ],
+          "retrieved_ids": [
+            "AKF_META_IDENTITY",
+            "AKF_META_SCOPE",
+            "AKF015",
+            "AKF031",
+            "AKF034"
+          ],
+          "expected_ranks": {
+            "AKF_META_IDENTITY": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            15.902384,
+            8.895564,
+            6.724764,
+            5.978828,
+            5.501805
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "库里有什么内容",
+          "expected_ids": [
+            "AKF_META_SCOPE"
+          ],
+          "retrieved_ids": [
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF034",
+            "AKF018"
+          ],
+          "expected_ranks": {
+            "AKF_META_SCOPE": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            18.59615,
+            13.917194,
+            10.414367,
+            7.614516,
+            6.858253
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "你知道什么",
+          "expected_ids": [
+            "AKF_META_SCOPE"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF_META_IDENTITY",
+            "AKF054"
+          ],
+          "expected_ranks": {
+            "AKF_META_SCOPE": 3
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            12.511652,
+            11.882888,
+            11.749163,
+            11.195542,
+            4.857569
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "随便聊点舟的",
+          "expected_ids": [
+            "AKF_META_SCOPE"
+          ],
+          "retrieved_ids": [
+            "AKF_META_SCOPE",
+            "AKF002",
+            "AKF059",
+            "AKF038",
+            "AKF041"
+          ],
+          "expected_ranks": {
+            "AKF_META_SCOPE": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            13.038932,
+            5.238804,
+            4.926735,
+            4.615619,
+            4.216838
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "你能帮我什么",
+          "expected_ids": [
+            "AKF_META_CAPABILITIES"
+          ],
+          "retrieved_ids": [
+            "AKF_META_CAPABILITIES",
+            "AKF_META_IDENTITY",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF015"
+          ],
+          "expected_ranks": {
+            "AKF_META_CAPABILITIES": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            19.247961,
+            14.061016,
+            12.797397,
+            8.936368,
+            4.945262
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "推荐几个梗",
+          "expected_ids": [
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE"
+          ],
+          "retrieved_ids": [
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF019",
+            "AKF049",
+            "AKF042"
+          ],
+          "expected_ranks": {
+            "AKF_META_CAPABILITIES": 1,
+            "AKF_META_SCOPE": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            12.21256,
+            9.40183,
+            4.696004,
+            4.123518,
+            3.585692
+          ]
+        },
+        {
+          "group": "导航",
+          "query": "你叫什么名字",
+          "expected_ids": [
+            "AKF_META_IDENTITY"
+          ],
+          "retrieved_ids": [
+            "AKF034",
+            "AKF_META_IDENTITY",
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF003"
+          ],
+          "expected_ranks": {
+            "AKF_META_IDENTITY": 2
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            12.511652,
+            11.520018,
+            10.858415,
+            8.409455,
+            5.375013
+          ]
+        },
+        {
+          "group": "边界",
+          "query": "你知道我是谁吗",
+          "expected_ids": [
+            "AKF_META_IDENTITY"
+          ],
+          "retrieved_ids": [
+            "AKF_META_IDENTITY",
+            "AKF_META_CAPABILITIES",
+            "AKF034",
+            "AKF_META_SCOPE",
+            "AKF054"
+          ],
+          "expected_ranks": {
+            "AKF_META_IDENTITY": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            17.178724,
+            8.629252,
+            6.848612,
+            6.354786,
+            5.544591
+          ]
+        },
+        {
+          "group": "边界",
+          "query": "能告诉我所有新梗和最初起源吗",
+          "expected_ids": [
+            "AKF_META_SCOPE",
+            "AKF_META_CAPABILITIES"
+          ],
+          "retrieved_ids": [
+            "AKF_META_CAPABILITIES",
+            "AKF_META_SCOPE",
+            "AKF024",
+            "AKF003",
+            "AKF056"
+          ],
+          "expected_ranks": {
+            "AKF_META_SCOPE": 2,
+            "AKF_META_CAPABILITIES": 1
+          },
+          "all_expected_in_top_k": true,
+          "scores": [
+            15.473123,
+            13.512709,
+            9.615144,
+            9.342293,
+            7.979698
+          ]
+        }
+      ]
+    }
+  },
+  "passed": true
+}

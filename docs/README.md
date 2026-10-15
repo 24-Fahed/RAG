@@ -9,6 +9,7 @@ RAG 提供中英文文档索引、检索、重排、压缩和无记忆单轮回�
 | [架构视图](architecture/README.md) | 逻辑架构、程序单元、物理架构及三种部署模式 |
 | [OpenAPI](api/openapi.json) | 从 FastAPI 生成的请求、响应及 Bearer 鉴权定义 |
 | [已知问题](ISSUES.md) | 已解决问题及当前限制 |
+| [明日方舟娱乐知识包](../knowledge/arknights_fun/README.md) | 61 条独立梗与黑话、3 条助手导航、来源与离线 BM25 召回验证 |
 
 ## 系统组成
 
