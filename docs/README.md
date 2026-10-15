@@ -8,6 +8,7 @@ RAG 提供中英文文档索引、检索、重排、压缩和无记忆单轮回�
 | --- | --- |
 | [架构视图](architecture/README.md) | 逻辑架构、程序单元、物理架构及三种部署模式 |
 | [OpenAPI](api/openapi.json) | 从 FastAPI 生成的请求、响应及 Bearer 鉴权定义 |
+| [熟人访问令牌](auth.md) | 管理员生成、列表、原令牌续期、撤销及持久化配置 |
 | [已知问题](ISSUES.md) | 已解决问题及当前限制 |
 
 ## 系统组成
@@ -29,14 +30,17 @@ RAG 提供中英文文档索引、检索、重排、压缩和无记忆单轮回�
 | POST | `/api/agent_query` | 检索后由 Qwen 组织单轮回答 |
 | GET | `/health` | 服务进程健康状态 |
 
-以上接口要求 `Authorization: Bearer <token>`。`/docs` 提供 Swagger UI，可通过 Authorize 输入 Token；`/openapi.json` 提供规范。Token 为 RS256 JWT，校验有效期、签发者、受众和权限。密钥存放于文件。
+以上接口要求 `Authorization: Bearer <token>`。`/docs` 提供 Swagger UI，可通过 Authorize 输入 Token；`/openapi.json` 提供规范。熟人访问使用管理员生成的不透明令牌，服务端仅保存哈希和有效期，支持原字符串续期与永久撤销；现有 RS256 JWT 继续兼容。
 
 ```bash
-python -m server.auth init-keys --directory /secure/rag-auth
-python -m server.auth generate-token --subject client --expires-in 3600
+export RAG_AUTH_TOKEN_DB_FILE=/var/lib/rag/auth/tokens.sqlite3
+python -m server.auth issue-token --subject friend --days 30
+python -m server.auth list-tokens
+python -m server.auth renew-token --id <ID> --days 30
+python -m server.auth revoke-token --id <ID>
 ```
 
-验证公钥与签发私钥分别通过 `RAG_AUTH_PUBLIC_KEY_FILE`、`RAG_AUTH_PRIVATE_KEY_FILE` 指定文件路径。CLI 使用 `--token-file /path/to/access.token`，Token 不进入模型参数。配置缺失不会自动关闭鉴权。
+数据库必须位于受限的持久化目录，并与 Server 使用同一路径；新令牌不要求 RSA 密钥。CLI 使用 `--token-file /path/to/access.token`，Token 不进入模型参数。**熟人令牌仍可建库和查询，不提供只读或用户数据隔离。**完整操作、容器挂载和 JWT 兼容说明见[熟人访问令牌](auth.md)。配置缺失不会自动关闭鉴权。
 
 ## 模型与存储
 

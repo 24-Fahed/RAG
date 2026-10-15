@@ -62,6 +62,8 @@ python -m server.main --mode local
 
 接口与鉴权入口见[当前文档](docs/README.md)，规范见[OpenAPI](docs/api/openapi.json)。
 
+熟人访问可由管理员在服务器生成 30 天令牌，按 ID 续期或撤销；用法与持久化配置见[熟人访问令牌](docs/auth.md)。已有 JWT 继续兼容。
+
 ## 文档入口
 
 - [文档导航](docs/README.md)

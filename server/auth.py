@@ -1,16 +1,21 @@
-"""Authlib RFC 9068 access tokens and FastAPI Bearer authentication.
+"""Locally managed opaque tokens and compatible Authlib JWT authentication.
 
 CLI: python -m server.auth init-keys --directory /secure/rag-auth
      python -m server.auth generate-token --subject client --expires-in 86400
+     python -m server.auth issue-token --subject friend --days 30
 """
 
 import argparse
+from datetime import datetime, timezone
+import json
 import os
+import sys
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
 from authlib.oauth2 import OAuth2Error
+from authlib.oauth2.rfc6750 import BearerTokenValidator
 from authlib.oauth2.rfc9068 import JWTBearerTokenGenerator, JWTBearerTokenValidator
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -19,9 +24,11 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from joserfc.jwk import RSAKey
 from joserfc.errors import JoseError
 
+from server.token_store import TOKEN_PREFIX, TOKEN_SCOPE, TokenStoreError, configured_store
+
 ISSUER = "rag-server-cli"
 AUDIENCE = "rag-server-api"
-SCOPE = "rag:api"
+SCOPE = TOKEN_SCOPE
 bearer = HTTPBearer(auto_error=False, scheme_name="RAGAccessToken")
 
 
@@ -57,6 +64,11 @@ class AccessTokenValidator(JWTBearerTokenValidator):
         return self.key
 
 
+class OpaqueTokenValidator(BearerTokenValidator):
+    def authenticate_token(self, token_string):
+        return configured_store().authenticate(token_string)
+
+
 @lru_cache(maxsize=1)
 def get_validator() -> AccessTokenValidator:
     return AccessTokenValidator(load_key("RAG_AUTH_PUBLIC_KEY_FILE"))
@@ -68,11 +80,12 @@ def require_access_token(
     if credentials is None:
         raise HTTPException(401, "Bearer access token required", headers={"WWW-Authenticate": "Bearer"})
     try:
-        validator = get_validator()
+        opaque = credentials.credentials.startswith(TOKEN_PREFIX)
+        validator = OpaqueTokenValidator() if opaque else get_validator()
         token = validator.authenticate_token(credentials.credentials)
         validator.validate_token(token, [SCOPE], None)
-        return dict(token)
-    except AuthConfigurationError as exc:
+        return token.claims() if opaque else dict(token)
+    except (AuthConfigurationError, TokenStoreError) as exc:
         # Missing configuration can never silently disable authentication.
         raise HTTPException(503, "API authentication is not configured") from exc
     except OAuth2Error as exc:
@@ -120,15 +133,42 @@ def main():
     issue = commands.add_parser("generate-token", help="Print a signed access token to stdout")
     issue.add_argument("--subject", default="rag-client")
     issue.add_argument("--expires-in", type=int, default=86400, help="Lifetime in seconds (default: 86400)")
+    opaque_issue = commands.add_parser("issue-token", help="Create an opaque token; print its secret once")
+    opaque_issue.add_argument("--subject", required=True, help="Friend or purpose, used as a management label")
+    opaque_issue.add_argument("--days", type=int, default=30, help="Lifetime in 24-hour days (default: 30)")
+    commands.add_parser("list-tokens", help="List token IDs, subjects, UTC expiry and status; never secrets")
+    renew = commands.add_parser("renew-token", help="Extend an unrevoked token without changing its secret")
+    renew.add_argument("--id", dest="token_id", required=True)
+    renew.add_argument("--days", type=int, default=30, help="Additional 24-hour days (default: 30)")
+    revoke = commands.add_parser("revoke-token", help="Permanently revoke a token by ID")
+    revoke.add_argument("--id", dest="token_id", required=True)
     args = parser.parse_args()
     try:
         if args.command == "init-keys":
             init_keys(args.directory)
             print(f"Keys created in {args.directory}")
-        else:
+        elif args.command == "generate-token":
             print(generate_token(args.subject, args.expires_in))
-    except (AuthConfigurationError, ValueError, OSError) as exc:
+        elif args.command == "issue-token":
+            token, record = configured_store().issue(args.subject, args.days)
+            # Keep stdout suitable for redirecting straight into a client token file.
+            print(json.dumps(_token_summary(record), ensure_ascii=False), file=sys.stderr)
+            print(token)
+        elif args.command == "list-tokens":
+            print(json.dumps([_token_summary(record) for record in configured_store().list_tokens()],
+                             ensure_ascii=False, indent=2))
+        elif args.command == "renew-token":
+            print(json.dumps(_token_summary(configured_store().renew(args.token_id, args.days)), ensure_ascii=False))
+        elif args.command == "revoke-token":
+            print(json.dumps(_token_summary(configured_store().revoke(args.token_id)), ensure_ascii=False))
+    except (AuthConfigurationError, TokenStoreError, ValueError, OSError) as exc:
         parser.exit(1, f"{exc}\n")
+
+
+def _token_summary(record) -> dict:
+    return {"id": record.id, "subject": record.subject,
+            "expires_at": datetime.fromtimestamp(record.expires_at, timezone.utc).isoformat().replace("+00:00", "Z"),
+            "status": record.status()}
 
 
 if __name__ == "__main__":

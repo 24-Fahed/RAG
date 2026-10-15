@@ -2,6 +2,10 @@
 
 `server/` 是知识库服务入口，负责建库、检索和上下文整理编排。
 
+## 访问认证
+
+业务接口与 `/health` 要求 Bearer 令牌。管理员可通过 `python -m server.auth issue-token --subject friend --days 30` 生成熟人令牌，并按 ID 查看、续期或撤销；需先配置 `RAG_AUTH_TOKEN_DB_FILE` 的绝对持久化路径。现有 RS256 JWT 兼容。完整说明见[熟人访问令牌](../docs/auth.md)；这些令牌可以建库和查询，并非只读权限。
+
 ## 当前主流程
 
 当前查询主流程为：
