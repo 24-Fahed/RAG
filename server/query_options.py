@@ -19,7 +19,7 @@ class QueryRequest(BaseModel):
     rerank_model: ModelIdentifier = Field(description='重排模型 ID 或 Worker 本地路径。必填，无默认模型；不接受以适配器名称代替模型标识。')
     top_k: int = Field(10, gt=0, le=1000, description='最终保留文档数上限，不得大于 search_k。')
     repack_method: Literal["sides", "compact", "compact_reverse"] = Field("sides", description='上下文重排方法：compact 按重排结果顺序拼接；compact_reverse 逆序拼接；sides 交替取首尾文档拼接。')
-    compression_method: Literal["recomp_extractive", "recomp_abstractive", "llmlingua"] = Field(description='压缩适配器名称，决定推理实现；须与 compression_model 相容。')
+    compression_method: Literal["recomp_extractive", "recomp_abstractive", "llmlingua", "xprovence"] = Field(description='压缩适配器名称，决定推理实现；须与 compression_model 相容。')
     compression_model: ModelIdentifier = Field(description='压缩模型 ID 或 Worker 本地路径。必填，无默认模型。')
     compression_ratio: float = Field(0.6, gt=0, le=1, description='目标保留比例。实际长度取决于压缩适配器，不保证精确比例。')
     hybrid_alpha: float = Field(0.3, ge=0, le=1, description='混合检索中 BM25 的融合权重；向量权重为 1-alpha。仅 hybrid 和 hyde_with_hybrid 使用。')

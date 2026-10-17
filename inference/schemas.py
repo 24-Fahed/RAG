@@ -37,7 +37,7 @@ class RerankRequest(Request):
 class CompressRequest(Request):
     query: str
     context: str
-    method: Literal["recomp_extractive", "recomp_abstractive", "llmlingua"] = "recomp_extractive"
+    method: Literal["recomp_extractive", "recomp_abstractive", "llmlingua", "xprovence"] = "recomp_extractive"
     model_name: str | None = None
     ratio: float = Field(0.6, gt=0, le=1)
 

@@ -206,7 +206,7 @@ def main() -> None:
     q.add_argument(
         "--compression-method",
         required=True,
-        choices=["recomp_extractive", "recomp_abstractive", "llmlingua"],
+        choices=["recomp_extractive", "recomp_abstractive", "llmlingua", "xprovence"],
         help="Context compression method",
     )
     q.add_argument("--compression-ratio", type=float, default=0.6, help="Compression ratio")

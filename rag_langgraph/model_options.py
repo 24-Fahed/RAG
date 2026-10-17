@@ -10,6 +10,7 @@ RERANK_MODELS = {
     "rankllama": "castorini/rankllama-v1-7b-lora-passage",
 }
 COMPRESSION_MODELS = {
+    "xprovence": "naver/xprovence-reranker-bgem3-v1",
     "recomp_extractive": "fangyuan/nq_extractive_compressor",
     "recomp_abstractive": "fangyuan/nq_abstractive_compressor",
     "llmlingua": "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",

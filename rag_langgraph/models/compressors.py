@@ -4,11 +4,13 @@
 支持的模型：
 - recomp_extractive: fangyuan/nq_extractive_compressor（基于 Contriever）
 - recomp_abstractive: fangyuan/nq_abstractive_compressor（基于 T5）
+- xprovence: naver/xprovence-reranker-bgem3-v1
 - llmlingua: microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank
 """
 
 import logging
 from abc import ABC, abstractmethod
+from rag_langgraph.models.xprovence import XProvenceCompressor
 
 
 logger = logging.getLogger(__name__)
@@ -148,6 +150,7 @@ COMPRESSOR_REGISTRY = {
     "recomp_extractive": RecompExtractiveCompressor,
     "recomp_abstractive": RecompAbstractiveCompressor,
     "llmlingua": LLMLinguaCompressor,
+    "xprovence": XProvenceCompressor,
 }
 
 
