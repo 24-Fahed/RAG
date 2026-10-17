@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-10-17",
+  "purpose": "issue7_independent_quality_criteria",
+  "status": "criteria_only_inference_and_review_pending",
+  "scope": "中文压缩模型替换的四例小样本回归；不代表全面性能结论。中文训练双语模型允许，按最终效果判断。",
+  "provenance": {
+    "local_issue_number_warning": "branches/main/docs/ISSUES.md 第7条是BM25元数据问题，不等同GitHub issue #7中文压缩问题。",
+    "original_user_failure_request": "not_confirmed",
+    "original_deployment_config": "not_confirmed",
+    "akf061_sample": "从当前本地原条目重建，不宣称精确复现用户原始失败请求。",
+    "historical_325": "deployments/chinese-chain-20261016-evidence.json 保存真实request、response.repacked_context、compressed_context、answer；purpose声明仅检查链路。",
+    "additional_local_diagnostic": "local-knowledge/arknights_fun/verification/online-v2-recomp-diagnostic.jsonl 的 sound_recomp_top1 有完整请求与输出，recomp_extractive、ratio=1.0；非用户原失败输入，非有效压缩通过证据。"
+  },
+  "comparison_protocol": {
+    "arms": [
+      "original_uncompressed",
+      "old_compressor",
+      "zilliz_bilingual",
+      "naver_xprovence_v1",
+      "naver_xprovence_v2"
+    ],
+    "isolate_compression": "每例五组使用完全相同的query和source_context。直接重放固定重排上下文，避免检索变化混入模型对比；完整链路另行验收。",
+    "answer_model": "Qwen/Qwen2.5-7B-Instruct",
+    "generation_controls": "本轮获授权以api.siliconflow.cn的Qwen/Qwen2.5-7B-Instruct回答固定四例五组，最多20次（失败计数），不自动重试。统一既有提示模板、max_tokens=1024、temperature=0.2；provider revision不可见，seed未指定，不能宣称确定性。每次前后记录；中断后人工核对，不自动重发。本地FP16方案已暂停。",
+    "budget_controls": "三候选固定目标保留率0.8，以统一回答tokenizer计算ceil(source_tokens*0.8)，按原句概率均值排序选择完整原句，源顺序输出；报告实际保留率与超预算token。旧LLMLingua2保持原生rate=.8，仅作历史基线，不声称等预算。测试前固定规则，不根据输出调参。",
+    "old_model": "记录实际旧方法及模型版本；历史325为llmlingua/microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank，ratio=0.8。其他重建样本如使用该旧模型须标注实验基线，不能推定原用户部署配置。",
+    "required_evidence": [
+      "完整源上下文及hash",
+      "各组压缩输出与hash",
+      "模型名及revision/依赖版本",
+      "全部请求配置",
+      "同一回答模型各组完整输出",
+      "耗时及token/字符统计",
+      "逐命题证据位置及人工判定",
+      "失败与不确定项"
+    ],
+    "no_shortcuts": [
+      "关键词存在不证明关系正确",
+      "不可用模型自评分证明通过",
+      "原文透传或ratio=1通过只能证明保真，不能证明压缩效果",
+      "若原文回答也失败，区分回答模型问题；候选不得因此自动判合格"
+    ],
+    "candidate_scoring": "Zilliz原生逐句概率；NAVER forward keep-token概率按统一原句均值聚合，不等同其原生双阈值process；固定revision，记录原生窗口差异。"
+  },
+  "review_rubric": {
+    "reviewer": "指定独立评估人按原文逐命题人工判定，主管复核；尽量隐藏候选身份，仅按A/B/C审阅。",
+    "claim_status": [
+      "preserved",
+      "missing",
+      "contradicted",
+      "unsupported",
+      "uncertain"
+    ],
+    "compression_review": "对每个required_claim检查主语、对象、关系、否定、条件、数量及证据强度；逐项引用源文本和压缩输出。省略可以作为missing，不能凭领域知识补全。",
+    "answer_review": "逐项核对answer_required_claims并检查回答所有额外事实是否由对应输入支持。未知信息明确未知，不能捏造。",
+    "hard_fail": [
+      "实体对应交换或关系错配",
+      "否定/限制变肯定",
+      "数字含义或单位错误",
+      "社区用法升级为官方定论",
+      "编造未确认起源或首创者/日期",
+      "跨文档拼接成原文未支持事实"
+    ],
+    "minimum_acceptance": "四例全部关键命题在压缩文本保留、回答必需命题正确、无hard_fail，才能称本轮小样本保真合格。另须候选至少一个真实缺陷优于旧组，才能声称已证明相对改善。若旧组未失败，标注本样本未证明改善，不据此自动判定候选不合格。任何关键命题missing均不能宣称尽量不丢失已得到验证。",
+    "compression_efficiency": "报告每例token保留率；只有实际缩短输入且满足保真门槛才能同时称该例有效压缩。无压缩须单独标注，不能用高保真掩盖无效压缩。",
+    "release_labels": "部署成功、链路跑通、效果合格分别记录；本文件均未证明。",
+    "entity_surface_observation": "独立于命题关系评估，逐例记录源实体/别名在输出中是否连续保留、被插入空格拆字、部分删除或变成未知字符（如[UNK]），并引用源文与输出片段。实体连续不等于关系正确；拆字与语义丢失分别报告，不能仅凭关键词存在判通过。"
+  },
+  "cases": [
+    {
+      "id": "Q01_entity_scope_unknown",
+      "query": "呼呼呼和哐哐哐分别是什么，适用什么语境，首次造梗者是谁？",
+      "source_kind": "reconstructed_from_local_corpus",
+      "source_document_ids": [
+        "AKF061"
+      ],
+      "source_context": "呼呼呼与哐哐哐｜明日方舟娱乐知识\n别名与问法：呼呼呼、哐哐哐、吹丰机、吹风机、洗伊机、洗衣机。\n释义：在提丰和莱伊的社区讨论里，呼呼呼对应提丰粉丝吹丰机，哐哐哐对应莱伊粉丝洗伊机，借电器谐音与声音表达支持。\n语境与边界：仅收录非成人的拟声与粉丝称呼用法；相同声音在别处可能另有所指，未确认首次造梗者。\n证据范围：非成人用法由社区索引与创作用例交叉支持；首次造梗未确认。\n来源：萌娘百科社区内容镜像 moegirl.uk《呼呼呼》 https://moegirl.uk/index.php?title=呼呼呼&variant=zh-sg",
+      "required_claims": [
+        "在提丰和莱伊的社区讨论中，呼呼呼对应提丰粉丝吹丰机，哐哐哐对应莱伊粉丝洗伊机，不能交换对应关系。",
+        "借电器谐音与声音表达支持。",
+        "本条仅收录非成人拟声与粉丝称呼用法，相同声音在其他地方可能另有所指。",
+        "首次造梗者未确认；交叉支持的是非成人用法，不能据此声称已确认首创者。"
+      ],
+      "answer_required_claims": [
+        "在提丰和莱伊的社区讨论中，呼呼呼对应提丰粉丝吹丰机，哐哐哐对应莱伊粉丝洗伊机，不能交换对应关系。",
+        "借电器谐音与声音表达支持。",
+        "本条仅收录非成人拟声与粉丝称呼用法，相同声音在其他地方可能另有所指。",
+        "首次造梗者未确认；交叉支持的是非成人用法，不能据此声称已确认首创者。"
+      ]
+    },
+    {
+      "id": "Q02_negation_relationship",
+      "query": "325是赛事总分吗？不周山和落Z坡指什么，首次传播时间是否确定？",
+      "source_kind": "reconstructed_from_local_corpus",
+      "source_document_ids": [
+        "AKF059"
+      ],
+      "source_context": "325｜明日方舟娱乐知识\n别名与问法：Zc325、魔法Zc目录325、不周山、落Z坡。\n释义：325是魔法Zc目录在第五届仙术杯探索中止后游戏结算的分数，随后成为数字梗；利刃所指也被调侃为不周山或落Z坡。\n语境与边界：这里是游戏结算分，不应直接当成按赛事规则计算的总分；首次传播日期未核实。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：烨華TvT / 哔哩哔哩《仙术杯·梗百科》 https://www.bilibili.com/opus/1010752946069045251",
+      "required_claims": [
+        "325是魔法Zc目录在第五届仙术杯探索中止后的游戏结算分数，后来成为数字梗。",
+        "游戏结算分不能直接当成按赛事规则计算的总分。",
+        "被调侃为不周山或落Z坡的对象是利刃所指；不能改写为325这个分数本身。",
+        "首次传播日期未核实，最初起源未完整核实，社区释义不能视为官方定论。"
+      ],
+      "answer_required_claims": [
+        "325是魔法Zc目录在第五届仙术杯探索中止后的游戏结算分数，后来成为数字梗。",
+        "游戏结算分不能直接当成按赛事规则计算的总分。",
+        "被调侃为不周山或落Z坡的对象是利刃所指；不能改写为325这个分数本身。",
+        "首次传播日期未核实，最初起源未完整核实，社区释义不能视为官方定论。"
+      ]
+    },
+    {
+      "id": "Q03_numbers",
+      "query": "1507和29010各表示什么？能否理解为抽卡概率？",
+      "source_kind": "reconstructed_from_local_corpus",
+      "source_document_ids": [
+        "AKF005"
+      ],
+      "source_context": "1507与29010｜明日方舟娱乐知识\n别名与问法：1507、29010、2903、练度暗号。\n释义：1507通常表示精一50级、技能7级；29010通常表示精二90级、某技能专精三。是攻略描述练度的压缩写法。\n语境与边界：最后一项可能有不同写法，应结合技能名确认；不是抽卡概率或身份证明。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《1507·29010》 https://prts.wiki/w/明日方舟黑话·梗·成句/战斗术语/1507·29010",
+      "required_claims": [
+        "1507通常表示精一50级、技能7级。",
+        "29010通常表示精二90级、某技能专精三。",
+        "末项可能有不同写法，应结合技能名确认。",
+        "这些是攻略练度压缩写法，不是抽卡概率或身份证明。",
+        "社区释义有记录，最初起源未完整核实，不能视为官方定论。"
+      ],
+      "answer_required_claims": [
+        "1507通常表示精一50级、技能7级。",
+        "29010通常表示精二90级、某技能专精三。",
+        "末项应结合技能名确认，不是抽卡概率。"
+      ]
+    },
+    {
+      "id": "Q04_historical_multidoc",
+      "query": "325是什么意思？",
+      "source_kind": "historical_exact_repacked_context_and_query",
+      "source_document_ids": [
+        "AKF059",
+        "AKF048"
+      ],
+      "source_context": "325｜明日方舟娱乐知识\n别名与问法：Zc325、魔法Zc目录325、不周山、落Z坡。\n释义：325是魔法Zc目录在第五届仙术杯探索中止后游戏结算的分数，随后成为数字梗；利刃所指也被调侃为不周山或落Z坡。\n语境与边界：这里是游戏结算分，不应直接当成按赛事规则计算的总分；首次传播日期未核实。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：烨華TvT / 哔哩哔哩《仙术杯·梗百科》 https://www.bilibili.com/opus/1010752946069045251\n\n龙门粗口｜明日方舟娱乐知识\n别名与问法：龙门文明用语、诗怀雅和陈吵架、星熊叹气。\n释义：剧情中陈与诗怀雅争执时以龙门粗口代替具体骂词，玩家也用这种占位式表达制造喜剧效果。\n语境与边界：收录替代表达，不补写露骨脏话；不是一段固定可逐字翻译的完整句子。\n证据范围：社区释义有记录；最初起源未完整核实，不能视为官方定论。\n来源：PRTS 社区贡献者《*龙门粗口*》 https://prts.wiki/w/明日方舟黑话·梗·成句/剧情相关/*龙门粗口*\n\n知识库有什么｜库里有什么、你知道什么、知识范围、有哪些内容、介绍一下、随便聊点舟的、有什么好玩的、推荐几个梗\n这是面向面试展示的明日方舟娱乐知识包，2026年10月15日整理，共61条独立梗与黑话及3条助手导航卡。覆盖角色外号台词23条、玩法21条、敌人与关卡7条、剧情二创5条、社区5条；可从kokodayo、小火龙快乐位、九号空降兵、黑钢相声组或325、799、呼呼呼与哐哐哐开始聊。资料以早期PRTS封存黑话和少量后续社区解释为主，含部分剧情剧透，覆盖不是全集、不是截至今日所有新梗；排除成人与性暗示内容，未核实条目在待核实清单而非回答库。\n新梗与最初起源：本包没有覆盖所有新梗，也不能证明每个梗的最初起源，未收录部分需要继续核实。\n来源：本仓库 knowledge/arknights_fun/README.md 与 sources.json。",
+      "required_claims": [
+        "325是魔法Zc目录在第五届仙术杯探索中止后的游戏结算分数，后来成为数字梗。",
+        "利刃所指被调侃为不周山或落Z坡；游戏结算分不应直接当成按赛事规则计算的总分；首次传播日期及最初起源未完整核实。",
+        "龙门粗口是陈与诗怀雅争执时替代具体骂词的表达，不是固定可逐字翻译的完整句子，不补写露骨脏话。",
+        "知识包整理于2026年10月15日，61条独立梗与黑话加3条导航卡；类别数23、21、7、5、5分别对应角色外号台词、玩法、敌人与关卡、剧情二创、社区。",
+        "知识包并非全集或截至今日所有新梗；未核实条目不在回答库；不能证明每个梗的最初起源。",
+        "三篇条目的事实和来源保持边界，不把导航卡或龙门粗口的属性移给325。"
+      ],
+      "answer_required_claims": [
+        "325是魔法Zc目录在第五届仙术杯探索中止后的游戏结算分数，后来成为数字梗。",
+        "不能直接当成赛事规则总分；不周山和落Z坡对应利刃所指而非赛事积分异常。",
+        "若谈及起源或日期，保留未核实状态，不新增比赛分数计算规则的调侃解释。"
+      ],
+      "source_document_identifiers": [
+        {
+          "title": "325",
+          "id": "AKF059"
+        },
+        {
+          "title": "龙门粗口",
+          "id": "AKF048"
+        },
+        {
+          "title": "知识库有什么",
+          "id": null,
+          "source_references": [
+            "knowledge/arknights_fun/README.md",
+            "sources.json"
+          ],
+          "provenance": "历史 response.reranked_documents 中该导航卡 metadata 为空；以输入标题和原文来源标识，不虚构文档 ID。"
+        }
+      ],
+      "fidelity_reporting": {
+        "query_relevant": "单独报告与325问题相关的 required_claims 第1、2、6项及 answer_required_claims。",
+        "whole_context": "仍逐项严格检查全部 required_claims（含龙门粗口与导航卡），报告 missing 等结果。",
+        "interpretation": "查询相关保真通过不能替代全上下文保真通过；两个维度分别报告。"
+      }
+    }
+  ],
+  "candidates": {
+    "zilliz_bilingual": {
+      "model": "zilliz/semantic-highlight-bilingual-v1",
+      "revision": "6dfd9cbee6d9309201b4ff4b4bdd814e1c064491",
+      "status": "not_evaluated"
+    },
+    "naver_xprovence_v1": {
+      "model": "naver/xprovence-reranker-bgem3-v1",
+      "revision": "8dd5d79b6b57b3498a1180352daaf8c457af832b",
+      "status": "not_evaluated"
+    },
+    "naver_xprovence_v2": {
+      "model": "naver/xprovence-reranker-bgem3-v2",
+      "revision": "f2798d357213c40164bdd79557d6d2e43ca7d8d2",
+      "status": "not_evaluated"
+    }
+  }
+}
